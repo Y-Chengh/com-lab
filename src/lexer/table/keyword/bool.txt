@@ -3,4 +3,4 @@ flag:1
 1 o:2
 2 o:3
 3 l:4
-4<type,value>
+4<bool,->

@@ -62,7 +62,12 @@ public class Lexer {
             if (acceptPack == null) {
                 // 没有识别出任何的可接受的串
 //                System.out.println("pass");
-                errorTokenList.add("" + sb.charAt(0));
+                String errString = "" + sb.charAt(0);
+                if (errString.trim().length() == 0) {
+                    sb.deleteCharAt(0);
+                    continue;
+                }
+                errorTokenList.add(errString);
                 sb.deleteCharAt(0);
 
             } else {
@@ -72,7 +77,7 @@ public class Lexer {
                 acceptTokenList.add(acceptPack);
             }
         }
-        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token));
+        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + ">"));
         System.out.println(errorTokenList);
     }
 
@@ -135,7 +140,7 @@ public class Lexer {
             return "[0-9]";
         } else if ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')) {
             return "[a-zA-Z]";
-        } else if ("; {} [] = != + - / * & | \" ' _".indexOf(s) != -1) {
+        } else if ("; {} [] () = != + - / * & | \" ' _".indexOf(s) != -1) {
             return "" + s;
         } else {
             return "others";

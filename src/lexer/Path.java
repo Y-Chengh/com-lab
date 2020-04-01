@@ -16,8 +16,6 @@ public class Path {
             "table/keyword/true.txt",
             "table/keyword/false.txt",
 
-            "table/identifier.txt",
-
             "table/operator/arithmetic_divide.txt",
             "table/operator/arithmetic_minus.txt",
             "table/operator/arithmetic_multiply.txt",
@@ -30,5 +28,19 @@ public class Path {
             "table/operator/relational_largerEqual.txt",
             "table/operator/relational_less.txt",
             "table/operator/relational_lessEqual.txt",
-            "table/operator/relational_notEqual.txt"};
+            "table/operator/relational_notEqual.txt",
+
+            "table/delimiters/dot.txt",
+            "table/delimiters/equal.txt",
+            "table/delimiters/left_middle_parentheses.txt",
+            "table/delimiters/left_big_parentheses.txt",
+            "table/delimiters/left_small_parentheses.txt",
+            "table/delimiters/right_big_parentheses.txt",
+            "table/delimiters/right_middle_parentheses.txt",
+            "table/delimiters/right_small_parentheses.txt",
+            "table/delimiters/semicolon.txt",
+            "table/delimiters/comma.txt",
+
+            "table/identifier.txt",};
+
 }

@@ -32,6 +32,9 @@ public class State {
 
     public String generateValue(String string) {
         assert accept;
+        if(value.equals("#")){
+            return string;
+        }
         return value;
     }
 }

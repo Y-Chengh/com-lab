@@ -4,4 +4,4 @@ flag:1
 2 o:3
 3 a:4
 4 t:5
-5<type,value>
+5<float,->

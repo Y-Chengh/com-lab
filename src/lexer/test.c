@@ -1,6 +1,6 @@
 int a;
 a = 1 + 2;
-int b;
+int basd;
 int c;
 c = 10;
 b = c + 1;
