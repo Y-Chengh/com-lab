@@ -45,7 +45,9 @@ public class Lexer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         sb = new StringBuilder(("" + sb).trim());
+        boolean isLastCharAccept = true;//记录上一个字符是否被接收，如果没有被接收的同时，下一个字符也没有被接收，那么就将这两个字符合并
         while(sb.length() != 0){
             Pack acceptPack = null; // 最终被接受的pack，可能会有很多的table都有接受的串，但是选最长的串接受
             for(int i = 0; i < tableList.size(); i++){
@@ -65,13 +67,19 @@ public class Lexer {
                 String errString = "" + sb.charAt(0);
                 if (errString.trim().length() == 0) {
                     sb.deleteCharAt(0);
+                    isLastCharAccept = true;
                     continue;
                 }
-                errorTokenList.add(errString);
+                if (!isLastCharAccept) {
+                    errString = errorTokenList.get(errorTokenList.size() - 1) + errString;
+                    errorTokenList.set(errorTokenList.size() - 1, errString);
+                } else {
+                    errorTokenList.add(errString);
+                    isLastCharAccept = false;
+                }
                 sb.deleteCharAt(0);
-
             } else {
-
+                isLastCharAccept = true;
                 acceptPack.token = "" + sb.substring(0, acceptPack.length);
                 sb.delete(0, acceptPack.length);
                 acceptTokenList.add(acceptPack);
