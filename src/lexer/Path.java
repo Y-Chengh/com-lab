@@ -15,6 +15,7 @@ public class Path {
             "table/keyword/struct.txt",
             "table/keyword/true.txt",
             "table/keyword/false.txt",
+            "table/keyword/return.txt",
 
             "table/operator/arithmetic_divide.txt",
             "table/operator/arithmetic_minus.txt",
