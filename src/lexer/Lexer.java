@@ -1,7 +1,6 @@
 package lexer;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +24,8 @@ public class Lexer {
             "table/keyword/int.txt",
             "table/keyword/struct.txt",
             "table/keyword/true.txt",
-            "table/keyword/false.txt"};
+            "table/keyword/false.txt",
+            "table/identifier.txt"};
 
     public static void main(String[] args) {
         Lexer lexer = new Lexer();
@@ -94,7 +94,7 @@ public class Lexer {
         for (int i = 0; i < sb.length(); i++) {
             String input = tokenToTableInput(sb.charAt(i), flag);
 //            System.out.println("input:" + input);
-            Integer targetStateIndex = table.get(currentStateIndex).getOrDefault(input, -1);
+            int targetStateIndex = table.get(currentStateIndex).getOrDefault(input, -1);
             if (targetStateIndex == -1) {
 //                System.out.println("targetState=-1" + "  currentState=" + currentStateIndex);
                 return null;
@@ -103,6 +103,20 @@ public class Lexer {
             currentStateIndex = targetStateIndex;
             State currentState = states.get(currentStateIndex);
             if (currentState.getAccept()) {
+                if (i < sb.length() - 1) {
+                    // 这里主要是确保每次匹配得到的可接受的串都是最长的
+                    // 因为identifier每一个subString(0,n)都是可接受的，才可以这么处理
+                    char nextChar = sb.charAt(i+1);
+                    String nextInput = tokenToTableInput(nextChar, flag);
+                    int nextCurrentStateIndex = targetStateIndex; //本质上就是targetStateIndex
+                    int nextTargetStateIndex = table.get(nextCurrentStateIndex).getOrDefault(nextInput, -1);
+                    if (nextTargetStateIndex != -1) {
+                        State nextTargetState = states.get(nextTargetStateIndex);
+                        if(nextTargetState.getAccept()){
+                            continue;
+                        }
+                    }
+                }
                 String string = sb.substring(0, i+1);
                 String type = currentState.generateType(string);
                 String value = currentState.generateValue(string);
@@ -129,9 +143,9 @@ public class Lexer {
             return "" + s;
         }
 
-        if (s > '0' && s < '9') {
+        if (s >= '0' && s <= '9') {
             return "[0-9]";
-        } else if ((s > 'a' && s < 'z') || (s > 'A' && s < 'Z')) {
+        } else if ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')) {
             return "[a-zA-Z]";
         } else if ("; {} [] = ! + - / * & | \" ' _".indexOf(s) != -1) {
             return "" + s;

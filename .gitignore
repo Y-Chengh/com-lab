@@ -1,0 +1,9 @@
+
+*.class
+/bin/*
+/bin/*.class
+/.idea/*
+/out/*
+*.class
+*.xml
+bin/lexer/Lexer$Pack.class
