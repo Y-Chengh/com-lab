@@ -7,25 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 
+
 public class Lexer {
     private List<List<Map<String, Integer>>> tableList = new ArrayList<>();
     private List<List<State>> statesList = new ArrayList<>();// 记录每个转换表中的哪些状态是可接受的，以及type和value
     private List<Integer> flagList = new ArrayList<>();
-    private static String[] tablePaths = {
-            "table/keyword/bool.txt",
-            "table/keyword/break.txt",
-            "table/keyword/char.txt",
-            "table/keyword/continue.txt",
-            "table/keyword/do.txt",
-            "table/keyword/else.txt",
-            "table/keyword/false.txt",
-            "table/keyword/float.txt",
-            "table/keyword/if.txt",
-            "table/keyword/int.txt",
-            "table/keyword/struct.txt",
-            "table/keyword/true.txt",
-            "table/keyword/false.txt",
-            "table/identifier.txt"};
+    private static String[] tablePaths = Path.tablePaths;
 
     public static void main(String[] args) {
         Lexer lexer = new Lexer();
@@ -94,6 +81,7 @@ public class Lexer {
         for (int i = 0; i < sb.length(); i++) {
             String input = tokenToTableInput(sb.charAt(i), flag);
 //            System.out.println("input:" + input);
+//            System.out.println(table);
             int targetStateIndex = table.get(currentStateIndex).getOrDefault(input, -1);
             if (targetStateIndex == -1) {
 //                System.out.println("targetState=-1" + "  currentState=" + currentStateIndex);
@@ -147,7 +135,7 @@ public class Lexer {
             return "[0-9]";
         } else if ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')) {
             return "[a-zA-Z]";
-        } else if ("; {} [] = ! + - / * & | \" ' _".indexOf(s) != -1) {
+        } else if ("; {} [] = != + - / * & | \" ' _".indexOf(s) != -1) {
             return "" + s;
         } else {
             return "others";
