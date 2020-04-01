@@ -1,0 +1,6 @@
+flag:1
+0 e:1
+1 l:2
+2 s:3
+3 e:4
+4<type,value>
