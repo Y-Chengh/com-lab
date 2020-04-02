@@ -40,7 +40,7 @@ public class Lexer {
 
             String line = null;
             while((line = bufferedReader.readLine()) != null){
-                sb.append(line);
+                sb.append("\n" + line);
             }// 读取所有文本
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,13 +142,22 @@ public class Lexer {
     private String tokenToTableInput(char s, int flag) {
         if (flag == 1) {
             return "" + s;
+        } else if (flag == 2) { // 用于在识别科学计数法时使用
+            if (s >= '0' && s <= '9') {
+                return "[0-9]";
+            } else if (s == 'e') {
+                return "" + s;
+            } else if (s == '.') {
+                return "" + s;
+            } else {
+                return "others";
+            }
         }
-
         if (s >= '0' && s <= '9') {
             return "[0-9]";
         } else if ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')) {
             return "[a-zA-Z]";
-        } else if ("; {} [] () = != + - / * & | \" ' _".indexOf(s) != -1) {
+        } else if (";{}[]()=!+-/*&|.\"'_".indexOf(s) != -1) {
             return "" + s;
         } else {
             return "others";

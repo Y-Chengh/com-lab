@@ -42,6 +42,9 @@ public class Path {
             "table/delimiters/semicolon.txt",
             "table/delimiters/comma.txt",
 
-            "table/identifier.txt",};
+            "table/number2.txt",
+            "table/number1.txt",
+            "table/number.txt",
 
+            "table/identifier.txt",};
 }
