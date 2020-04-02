@@ -17,7 +17,7 @@ public class Lexer {
     public static void main(String[] args) {
         Lexer lexer = new Lexer();
 //        lexer.check(new StringBuilder("while"), lexer.statesList.get(0), lexer.tableList.get(0), 1);
-        lexer.scan(System.getProperty("user.dir") + "/src/lexer/" + "test111.c");
+        lexer.scan(System.getProperty("user.dir") + "/src/lexer/" + "test.c");
 
     }
 

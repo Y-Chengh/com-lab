@@ -20,10 +20,14 @@ while (a < b)
     if (c < d) x = y + z; else x = a + b;
 
 /*asdf "*/"asd */
-/*asdf "*/"asd */
 /* asdfb
 */
 /* asdf */
+
+"asdfasdf* \"
+
+"asdfasdf'
+
 a = b + c * (d + e);
 
 if(a > b)

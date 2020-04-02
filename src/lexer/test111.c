@@ -2,3 +2,7 @@
 /* asdfb
 */
 /* asdf */
+
+"asdfasdf* \"
+
+"asdfasdf'
