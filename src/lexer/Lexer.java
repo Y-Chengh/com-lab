@@ -17,7 +17,7 @@ public class Lexer {
     public static void main(String[] args) {
         Lexer lexer = new Lexer();
 //        lexer.check(new StringBuilder("while"), lexer.statesList.get(0), lexer.tableList.get(0), 1);
-        lexer.scan(System.getProperty("user.dir") + "/src/lexer/" + "test.c");
+        lexer.scan(System.getProperty("user.dir") + "/src/lexer/" + "test111.c");
 
     }
 
@@ -91,9 +91,10 @@ public class Lexer {
 
     private Pack check(StringBuilder sb, List<State> states, List<Map<String, Integer>> table, int flag) {
         int currentStateIndex = 0;
+//        System.out.println(sb);
         for (int i = 0; i < sb.length(); i++) {
             String input = tokenToTableInput(sb.charAt(i), flag);
-//            System.out.println("input:" + input);
+//            System.out.println("input:" + input + "  currentState:" + currentStateIndex);
 //            System.out.println(table);
             int targetStateIndex = table.get(currentStateIndex).getOrDefault(input, -1);
             if (targetStateIndex == -1) {
@@ -152,6 +153,12 @@ public class Lexer {
             } else {
                 return "others";
             }
+        } else if (flag == 3) { // 用于注释
+            if (s == '*' || s == '/' || s == '"') {
+                return "" + s;
+            } else {
+                return "others";
+            }
         }
         if (s >= '0' && s <= '9') {
             return "[0-9]";
@@ -179,6 +186,7 @@ public class Lexer {
             int flag = Integer.parseInt(line.substring(5, 6));
             flagList.add(flag);
             while((line = bufferedReader.readLine()) != null){
+//                System.out.println("line:" + line);
                 String[] strings = line.split(" ");
                 String state = strings[0];
                 if(state.contains("<")){
@@ -186,17 +194,20 @@ public class Lexer {
                     int tableState = Integer.parseInt(state.substring(0, indexOfState));
                     assert tableState == count;
                     String subString = state.substring(indexOfState + 1, state.length() - 1);
-//                    System.out.println(subString);
                     String type = subString.split(",")[0];
                     String value = subString.split(",")[1];
                     states.add(new State(tableState, true, type, value));
-                }else{                    int tableState = Integer.parseInt(state);
+                }else{
+                    int tableState = Integer.parseInt(state);
                     assert tableState == count;
                     states.add(new State(tableState));
+//                    System.out.println("get to line 206");
                 }
+//                System.out.println("get to line 207");
                 Map<String, Integer> map = new HashMap<>();
                 for(int i = 1; i < strings.length; i++){
                     String input = strings[i].split(":")[0];
+//                    System.out.println("input207:" + input);
                     int targetState = Integer.parseInt(strings[i].split(":")[1]);
                     map.put(input, targetState);
                 }

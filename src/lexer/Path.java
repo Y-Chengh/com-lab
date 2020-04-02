@@ -2,6 +2,12 @@ package lexer;
 
 public class Path {
     static String[] tablePaths = {
+//            "table/operator/arithmetic_minus.txt",
+            "table/multi_line_comments.txt",
+
+    };
+
+    static String[] tablePaths2 = {
             "table/keyword/bool.txt",
             "table/keyword/break.txt",
             "table/keyword/char.txt",
@@ -42,6 +48,7 @@ public class Path {
             "table/delimiters/semicolon.txt",
             "table/delimiters/comma.txt",
 
+            "table/multi_line_comments.txt",
             "table/number2.txt",
             "table/number1.txt",
             "table/number.txt",
