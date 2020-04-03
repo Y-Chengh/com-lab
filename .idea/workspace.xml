@@ -20,14 +20,19 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DataBase_2019_Spring" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Lexer">
     <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lexer.Lexer" />
       <module name="compiler" />
@@ -41,9 +46,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DreamHome_ER" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
+      <texify>
+        <compiler>PDFLATEX</compiler>
+        <compiler-path />
+        <sumatra-path />
+        <viewer-command />
+        <compiler-arguments />
+        <main-file>$PROJECT_DIR$/../DataBase_2019_Spring/lab_3/DreamHome_ER.tex</main-file>
+        <aux-dir>false</aux-dir>
+        <out-dir>true</out-dir>
+        <compile-twice>false</compile-twice>
+        <output-format>PDF</output-format>
+        <has-been-run>false</has-been-run>
+        <bib-run-config />
+        <makeindex-run-config />
+      </texify>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Lexer" />
+        <item itemvalue="LaTeX.DreamHome_ER" />
       </list>
     </recent_temporary>
   </component>
@@ -58,33 +82,58 @@
       <option name="presentableId" value="Default" />
       <updated>1585737939972</updated>
       <workItem from="1585737942819" duration="7019000" />
-      <workItem from="1585825240345" duration="2031000" />
+      <workItem from="1585825240345" duration="2524000" />
+      <workItem from="1585830324591" duration="116000" />
+      <workItem from="1585830793862" duration="5198000" />
+      <workItem from="1585836537065" duration="535000" />
+      <workItem from="1585839258231" duration="234000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state width="1431" height="506" key="GridCell.Tab.0.bottom" timestamp="1585827219695">
+    <state x="580" y="122" key="FileChooserDialogImpl" timestamp="1585830504050">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1431" height="506" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585827219695" />
-    <state width="1431" height="506" key="GridCell.Tab.0.center" timestamp="1585827219694">
+    <state x="580" y="122" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585830504050" />
+    <state width="1431" height="420" key="GridCell.Tab.0.bottom" timestamp="1585839497460">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1431" height="506" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585827219694" />
-    <state width="1431" height="506" key="GridCell.Tab.0.left" timestamp="1585827219694">
+    <state width="1431" height="420" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585839497460" />
+    <state width="1431" height="420" key="GridCell.Tab.0.center" timestamp="1585839497460">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1431" height="506" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585827219694" />
-    <state width="1431" height="506" key="GridCell.Tab.0.right" timestamp="1585827219695">
+    <state width="1431" height="420" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585839497460" />
+    <state width="1431" height="420" key="GridCell.Tab.0.left" timestamp="1585839497460">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1431" height="506" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585827219695" />
-    <state x="480" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1585825244877">
+    <state width="1431" height="420" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585839497460" />
+    <state width="1431" height="420" key="GridCell.Tab.0.right" timestamp="1585839497460">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="480" y="256" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585825244877" />
+    <state width="1431" height="420" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585839497460" />
+    <state x="280" y="7" key="SettingsEditor" timestamp="1585832057241">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="280" y="7" key="SettingsEditor/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585832057241" />
+    <state x="480" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1585839256110">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="480" y="256" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585839256110" />
   </component>
 </project>
