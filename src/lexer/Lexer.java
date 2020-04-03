@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import lexer.Lexer.Pack;
+
 
 
 public class Lexer {
@@ -14,39 +19,26 @@ public class Lexer {
     private List<Integer> flagList = new ArrayList<>();
     private static String[] tablePaths = Path.tablePaths;
 
-    public static void main(String[] args) {
-        Lexer lexer = new Lexer();
-//        lexer.check(new StringBuilder("while"), lexer.statesList.get(0), lexer.tableList.get(0), 1);
-        lexer.scan(System.getProperty("user.dir") + "/src/lexer/" + "test.c");
-
-    }
-
-    public Lexer(){
-        for(String filePath: tablePaths){
+    private JTable jtable1;
+	private JTable jtable2;
+	private String text;
+    
+    public Lexer(String text,JTable jtable1, JTable jtable2)
+	{
+    	this.text=text;
+		this.jtable1 = jtable1;
+		this.jtable2 = jtable2;
+		for(String filePath: tablePaths){
             //这里不知道为什么用相对路径没法读文件
             this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath);
         }
-    }
+	}
 
-    public void scan(String filePath){
+    public void scan(){
         List<Pack> acceptTokenList = new ArrayList<>();
         List<String> errorTokenList = new ArrayList<>();
-        File file = new File(filePath);
         StringBuilder sb = new StringBuilder();
-        try{
-            InputStream is = new FileInputStream(file);
-            Reader reader = new InputStreamReader(is);
-            BufferedReader bufferedReader = new BufferedReader(reader);
-
-            String line = null;
-            while((line = bufferedReader.readLine()) != null){
-                sb.append("\n" + line);
-            }// 读取所有文本
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        sb = new StringBuilder(("" + sb).trim());
+        sb = new StringBuilder(("" + text).trim());
         boolean isLastCharAccept = true;//记录上一个字符是否被接收，如果没有被接收的同时，下一个字符也没有被接收，那么就将这两个字符合并
         while(sb.length() != 0){
             Pack acceptPack = null; // 最终被接受的pack，可能会有很多的table都有接受的串，但是选最长的串接受
@@ -86,7 +78,17 @@ public class Lexer {
             }
         }
         acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + ">"));
+        for (Pack pp:acceptTokenList) {
+        	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
+            tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">"});
+            jtable1.invalidate();
+        }
         System.out.println(errorTokenList);
+        for (String pp:errorTokenList) {
+        	DefaultTableModel tableModel2 = (DefaultTableModel) jtable2.getModel();
+            tableModel2.addRow(new Object[] {"...",pp});
+            jtable2.invalidate();
+        }
     }
 
     private Pack check(StringBuilder sb, List<State> states, List<Map<String, Integer>> table, int flag) {
@@ -141,9 +143,21 @@ public class Lexer {
     }
 
     private String tokenToTableInput(char s, int flag) {
+    	if(flag==9) {//用于识别16进制
+        	if (s=='0') {
+        		return "" + s;
+        	}else if (s=='x'||s=='X') {
+        		return "" + s;
+        	}else if(s >= '0' && s <= '9') {
+        		return "[0-9]";
+        	}else if((s >= 'A' && s <= 'F')) {
+        		return "[A-F]";
+        	}
+        }
+    	
         if (flag == 1) {
             return "" + s;
-        } else if (flag == 2) { // 用于在识别科学计数法时使用
+        }else if (flag == 2) { // 用于在识别科学计数法时使用
             if (s >= '0' && s <= '9') {
                 return "[0-9]";
             } else if (s == 'e') {
@@ -159,7 +173,7 @@ public class Lexer {
             } else {
                 return "others";
             }
-        }
+        } 
         if (s >= '0' && s <= '9') {
             return "[0-9]";
         } else if ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')) {
