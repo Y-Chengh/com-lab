@@ -85,7 +85,7 @@ public class NFA2DFA {
             String line = null;
             int count = 0;
             while((line = bufferedReader.readLine()) != null){
-                getNFA(line.strip()); // 处理每一行, 形成DFA.
+                getNFA(line.trim()); // 处理每一行, 形成DFA.
                 if(count == 0){ // 将初始状态加入DFA集合.
                     Set<String> aSet = new HashSet();
                     aSet.add(line.split(" ")[0]);
