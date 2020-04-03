@@ -3,7 +3,7 @@ package lexer;
 /*
  类功能: 将NFA转为DFA, 方法为子集构造法.
  格式说明: 1.DNA与DFA中全部用 'a b:c' 表示: 状态a遇到状态输入b时转到状态c.
-         2.第一行必须是起始状态.
+         2.NFA中: 第一行放入状态必须是起始状态.最后一行留一个接收状态.
          3.NFA中:  'a b:c|d' 表示状态a中遇到输入b,既可以到状态c也可以到状态d.
          4.DFA中:   '[1,3] 0:[0, 1]'表示状态[1,3]遇到 输入0可以转到状态[0,1].
 */
@@ -20,13 +20,14 @@ public class NFA2DFA {
     public static HashSet<Set> DFAstates = new HashSet();              // 用于储存DFA的状态,每个状态都表示为set.
     public static HashSet<Set> newStates = new HashSet();              // 转换过程中会出现新的状态,要并入DFAstates.
     public static int fisrtFlag = 1;                                   // 仅初始状态产生的新状态集合要加入产生新状态.
+    public static String endState;                                     // NFA中的结束状态, 暂时无用.
 
 
 
     // 根据输入的一行构建NFA, 此函数多次执行, 直到处理完所有输入文件中的所有行.
     public static void getNFA(String input){
         HashMap lineMap = new HashMap();
-        String endState,trans,inchar;
+        String trans,inchar;
         String currentState= input.split(" ")[0];
         int len = input.split(" ").length;
         if(len == 1){ // 将NFA的最后一行留给结束状态
@@ -134,8 +135,8 @@ public class NFA2DFA {
     }
 
     public static void main(String[] args) {
-        readFile("C:\\Users\\Norman\\Desktop\\CODE\\com-lab\\src\\lexer\\NFA.txt");
+        readFile( System.getProperty("user.dir")+"/src/lexer/"+"NFA.txt");
         NFA2DFA();
-        writeFile("C:\\Users\\Norman\\Desktop\\CODE\\com-lab\\src\\lexer\\DFA.txt");
+        writeFile(System.getProperty("user.dir")+"/src/lexer/"+"DFA.txt");
     }
 }
