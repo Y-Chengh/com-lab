@@ -208,7 +208,7 @@ public class Frame extends javax.swing.JFrame {
 	private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		String program = jTextArea1.getText();
-		program = program.replaceAll("\r|\n", "");
+		//program = program.replaceAll("\r|\n", "");
 		// 清除原有行
 		DefaultTableModel tableModel1 = (DefaultTableModel) jTable1.getModel();
 		tableModel1.setRowCount(0);

@@ -1,6 +1,7 @@
 1.5e90
 3.4e45
 1.5
+int cc=0x12A;
 int a;
 a = 1 + 2;###
 int basd;
