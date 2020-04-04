@@ -52,8 +52,12 @@ public class Lexer {
     public void scan(){
         List<Pack> acceptTokenList = new ArrayList<>();
         List<String> errorTokenList = new ArrayList<>();
+        List<Integer> indicesOfLines = getIndexOfLinesFromText(text);
+        List<Integer> indicesOfErrors = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        sb = new StringBuilder(("" + text).trim());
+        sb = new StringBuilder(text);
+//        sb = new StringBuilder(("" + text).trim());
+        int count = 0;// 用于记录当前字符的index
         boolean isLastCharAccept = true;//记录上一个字符是否被接收，如果没有被接收的同时，下一个字符也没有被接收，那么就将这两个字符合并
         while(sb.length() != 0){
             Pack acceptPack = null; // 最终被接受的pack，可能会有很多的table都有接受的串，但是选最长的串接受
@@ -74,6 +78,7 @@ public class Lexer {
                 String errString = "" + sb.charAt(0);
                 if (errString.trim().length() == 0) {
                     sb.deleteCharAt(0);
+                    count++;
                     isLastCharAccept = true;
                     continue;
                 }
@@ -82,28 +87,67 @@ public class Lexer {
                     errorTokenList.set(errorTokenList.size() - 1, errString);
                 } else {
                     errorTokenList.add(errString);
+                    indicesOfErrors.add(findIndexOfLine(count, indicesOfLines));
                     isLastCharAccept = false;
                 }
+                count ++;
                 sb.deleteCharAt(0);
             } else {
                 isLastCharAccept = true;
                 acceptPack.token = "" + sb.substring(0, acceptPack.length);
                 sb.delete(0, acceptPack.length);
+                count += acceptPack.length;
                 acceptTokenList.add(acceptPack);
             }
         }
-        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+//        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
         for (Pack pp:acceptTokenList) {
         	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
             tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">"});
             jtable1.invalidate();
         }
         System.out.println(errorTokenList);
+        System.out.println(indicesOfErrors);
+        System.out.println(indicesOfLines);
         for (String pp:errorTokenList) {
         	DefaultTableModel tableModel2 = (DefaultTableModel) jtable2.getModel();
             tableModel2.addRow(new Object[] {"...",pp});
             jtable2.invalidate();
         }
+    }
+
+    private int findIndexOfLine(int index, List<Integer> indicesOfLines) {
+        System.out.println("index:"+index);
+        for (int i = 0; i < indicesOfLines.size()-1; i++) {
+            if (index >= indicesOfLines.get(i) && index < indicesOfLines.get(i + 1)) {
+                return i + 1;
+            }
+        }
+        assert false;
+        return -1;
+    }
+
+    /**
+     * 获取一段文本中每一行对应整个文本的index
+     * @param text 文本
+     * @return 每一行的起始index
+     */
+    private List<Integer> getIndexOfLinesFromText(String text) {
+        int index = 0;
+        List<Integer> indexList = new ArrayList<>();
+        while (index != -1) {
+            indexList.add(index);
+            if(index+1 == text.length()){
+                indexList.add(65535);
+                break;
+            }
+            index = text.indexOf("\n", index+1);
+            if (index == -1) {
+                indexList.add(65535);
+                break;
+            }
+        }
+        return indexList;
     }
 
     private Pack check(StringBuilder sb, List<State> states, List<Map<String, Integer>> table, int flag) {
