@@ -112,21 +112,40 @@ public class NFA2DFA {
         }
     }
 
+    // 将集合中元素以一定格式返回
+    public static String set2String(Set<String> set){
+        String res = "{";
+        for(String s:set){
+            res = res + s +",";
+        }
+        res = res.substring(0,res.length() -1);
+        res += "}";
+        return res;
+    }
+
     // 将NFA转为DFA后, 将DFA输出到文件.
     public static  void writeFile(String filePath){
         try{
 
             File file =new File(filePath);
             FileWriter fileWritter = new FileWriter(file);
-
+            fileWritter.write("flag:1\n");
+            int line_count = 1;
             for(Map.Entry<Set,Map<String,Set>> entry:DFAmap.entrySet()){
-                fileWritter.write(entry.getKey().toString());
+                fileWritter.write(set2String(entry.getKey()));
+                if(entry.getKey().contains(endState)){
+                    fileWritter.write("<type,#>");
+                }
                 fileWritter.write(" ");
                 for(Map.Entry<String,Set> entry1 : entry.getValue().entrySet()){
                     fileWritter.write(entry1.getKey()+":");
-                    fileWritter.write(entry1.getValue().toString()+" ");
+                    fileWritter.write(set2String(entry1.getValue())+" ");
                 }
-                fileWritter.write("\n");
+                if(line_count<DFAmap.size()){
+                    fileWritter.write("\n");
+                    line_count ++;
+                }
+
             }
             fileWritter.close();
         }catch(IOException e){
