@@ -270,7 +270,9 @@ public class Lexer {
                 return "" + s;
             } else if (s == '.') {
                 return "" + s;
-            } else {
+            }else if (s== '-') {
+				 return ""+s;
+			} else {
                 return "others";
             }
         } else if (flag == 3) { // 用于注释
