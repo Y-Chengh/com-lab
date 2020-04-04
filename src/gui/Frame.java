@@ -65,13 +65,13 @@ public class Frame extends javax.swing.JFrame {
 		jTextArea1.setFont(new Font("黑体",Font.BOLD,24));//设置字体大小
 		jScrollPane3 = new javax.swing.JScrollPane();
 		jTable2 = new javax.swing.JTable();//表格
-		jTable2.setFont(new Font("Menu.font", Font.PLAIN, 16));
+		jTable2.setFont(new Font("Menu.font", Font.PLAIN, 24));
 		jScrollPane2 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
-		jTable1.setFont(new Font("Menu.font", Font.PLAIN, 16));
+		jTable1.setFont(new Font("Menu.font", Font.PLAIN, 24));
 		jScrollPane4 = new javax.swing.JScrollPane();
 		jTable3 = new javax.swing.JTable();
-		jTable3.setFont(new Font("Menu.font", Font.PLAIN, 16));
+		jTable3.setFont(new Font("Menu.font", Font.PLAIN, 24));
 		jMenuBar1 = new javax.swing.JMenuBar();
 		jMenu1 = new javax.swing.JMenu();//菜单
 		jMenuItem1 = new javax.swing.JMenuItem();//菜单里面的选项
