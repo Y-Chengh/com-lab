@@ -123,15 +123,15 @@ public class Lexer {
         errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
         for (Pack pp:acceptTokenList) {
         	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
-            tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">"});
+            tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">",pp.parse});
             jtable1.invalidate();
         }
         System.out.println(errorTokenList);
         System.out.println(indicesOfErrors);
 //        System.out.println(indicesOfLines);
-        for (String pp:errorTokenList) {
+        for(Error aa:errorList) {
         	DefaultTableModel tableModel2 = (DefaultTableModel) jtable2.getModel();
-            tableModel2.addRow(new Object[] {"...",pp});
+            tableModel2.addRow(new Object[] {""+aa.line,aa.errorString+":"+aa.errorInfo});
             jtable2.invalidate();
         }
     }

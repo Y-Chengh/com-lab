@@ -12,6 +12,10 @@ import lexer.*;
 
 import java.awt.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * 
  */
 public class Frame extends javax.swing.JFrame {
-	
+		private static String[] tablePaths = Path.tablePaths;
 	//GEN-BEGIN:variables
 		// Variables declaration - do not modify
 		private javax.swing.JMenu jMenu1;
@@ -32,8 +36,10 @@ public class Frame extends javax.swing.JFrame {
 		private javax.swing.JScrollPane jScrollPane1;
 		private javax.swing.JScrollPane jScrollPane2;
 		private javax.swing.JScrollPane jScrollPane3;
+		private javax.swing.JScrollPane jScrollPane4;
 		private javax.swing.JTable jTable1;
 		private javax.swing.JTable jTable2;
+		private javax.swing.JTable jTable3;
 		private javax.swing.JTextArea jTextArea1;
 		// End of variables declaration//GEN-END:variables
 
@@ -56,10 +62,16 @@ public class Frame extends javax.swing.JFrame {
 
 		jScrollPane1 = new javax.swing.JScrollPane();//设置滚动面板
 		jTextArea1 = new javax.swing.JTextArea();
+		jTextArea1.setFont(new Font("黑体",Font.BOLD,24));
 		jScrollPane3 = new javax.swing.JScrollPane();
 		jTable2 = new javax.swing.JTable();
+		jTable2.setFont(new Font("Menu.font", Font.PLAIN, 16));
 		jScrollPane2 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
+		jTable1.setFont(new Font("Menu.font", Font.PLAIN, 16));
+		jScrollPane4 = new javax.swing.JScrollPane();
+		jTable3 = new javax.swing.JTable();
+		jTable3.setFont(new Font("Menu.font", Font.PLAIN, 16));
 		jMenuBar1 = new javax.swing.JMenuBar();
 		jMenu1 = new javax.swing.JMenu();
 		jMenuItem1 = new javax.swing.JMenuItem();
@@ -89,7 +101,7 @@ public class Frame extends javax.swing.JFrame {
 		jTable1.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] {
 
-				}, new String[] { "单词", "token" }) {
+				}, new String[] { "单词", "token","   识别过程    "}) {
 			boolean[] canEdit = new boolean[] { false, false};
 
 			public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -98,7 +110,19 @@ public class Frame extends javax.swing.JFrame {
 		});
 		jScrollPane2.setViewportView(jTable1);
 
+		
+		jTable3.setModel(new javax.swing.table.DefaultTableModel(
+				new Object[][] {
 
+				}, new String[] { "状态", "符号1","符号2","符号3","符号4","符号5","符号6","符号7" }) {
+			boolean[] canEdit = new boolean[] { false, false,false,false,false,false,false};
+
+			public boolean isCellEditable(int rowIndex, int columnIndex) {
+				return canEdit[columnIndex];
+			}
+		});
+		jScrollPane4.setViewportView(jTable3);
+		
 		jMenu1.setText("文件");
 
 		jMenuItem1.setText("打开文件");
@@ -163,7 +187,11 @@ public class Frame extends javax.swing.JFrame {
 										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 								.addComponent(jScrollPane2,
 										javax.swing.GroupLayout.PREFERRED_SIZE,
-										300,
+										550,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(jScrollPane4,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										450,
 										javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addContainerGap()));
 		layout.setVerticalGroup(layout	//设置{@code Group}的位置和大小沿垂直轴的分量。
@@ -176,6 +204,11 @@ public class Frame extends javax.swing.JFrame {
 												javax.swing.GroupLayout.Alignment.LEADING)
 												.addComponent(
 														jScrollPane2,
+														javax.swing.GroupLayout.Alignment.TRAILING,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														476, Short.MAX_VALUE)
+												.addComponent(
+														jScrollPane4,
 														javax.swing.GroupLayout.Alignment.TRAILING,
 														javax.swing.GroupLayout.DEFAULT_SIZE,
 														476, Short.MAX_VALUE)
@@ -217,6 +250,14 @@ public class Frame extends javax.swing.JFrame {
 		tableModel2.setRowCount(0);
 		jTable2.invalidate();
 		//创建词法分析类
+		for(String filePath: tablePaths){
+            //这里不知道为什么用相对路径没法读文件
+            this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath);
+            DefaultTableModel tableModel21 = (DefaultTableModel) jTable3.getModel();
+            tableModel21.addRow(new Object[] {"  ","  ","  ","  ","  "," "," "," "});
+            jTable3.invalidate();
+        }
+		
 		Lexer latex = new Lexer(program, jTable1, jTable2);
 		latex.scan();
 	}
@@ -252,7 +293,49 @@ public class Frame extends javax.swing.JFrame {
 			System.out.println(e);
 		}
 	}
-
+	
+	
+	public void readDFATable(String filePath){
+        File file = new File(filePath);
+        String[] a1= {" "," "," "," "," "," "," "," "};
+        try{
+            InputStream is = new FileInputStream(file);
+            Reader reader = new InputStreamReader(is);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line = null;
+            int count = 0;
+            line = bufferedReader.readLine();
+            //System.out.println(line);
+            String aa=line.substring(0, 6);
+            String line1 = bufferedReader.readLine();
+            System.out.println(line1);
+            String[] bbStrings=line1.split("\t\t");
+            //System.out.println(bbStrings.length);
+            a1[0]=aa;
+            for(int i=1;i<bbStrings.length;i++) {
+            	a1[i]=bbStrings[i];
+            }
+            DefaultTableModel tableModel21 = (DefaultTableModel) jTable3.getModel();
+            tableModel21.addRow(new Object[] {a1[0],a1[1],a1[2],a1[3],a1[4],a1[5],a1[6],a1[7]});
+            jTable3.invalidate();
+            
+            while((line = bufferedReader.readLine()) != null){
+            	//System.out.println(line);
+//                System.out.println("line:" + line);
+                String[] strings = line.split("\t\t");
+                System.out.println(strings.length);
+                for(int i=1;i<=strings.length;i++) {
+                	a1[i-1]=strings[i-1];
+                }
+                DefaultTableModel tableModel22 = (DefaultTableModel) jTable3.getModel();
+                tableModel22.addRow(new Object[] {a1[0],a1[1],a1[2],a1[3],a1[4],a1[5],a1[6],a1[7]});
+                jTable3.invalidate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	
 	/**
 	 * @param args the command line arguments
 	 */
