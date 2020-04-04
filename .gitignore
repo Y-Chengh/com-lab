@@ -8,3 +8,6 @@
 *.xml
 bin/lexer/Lexer$Pack.class
 .idea/
+.idea/workspace.xml
+*.xml
+*.xml

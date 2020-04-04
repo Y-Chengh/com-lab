@@ -1,8 +1,0 @@
-flag:3
-		/		*		others		"
-0		1		-		-		-
-1		-		2		-		-
-2		-		3		2		5
-3		4		3		2		5
-4<Multi_line_comments,->		-		-		-		-
-5		5		5		5		2

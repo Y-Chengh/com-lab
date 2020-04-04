@@ -1,5 +1,4 @@
 flag:1
-		<		=
-0		1		-
-1		-		2
-2<relational_lessEqual,->		-		-
+0 <:1
+1 =:2
+2<relational_lessEqual,->

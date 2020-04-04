@@ -1,5 +1,4 @@
 flag:3
-		"		*		/		others
-0		1		-		-		-
-1		2		1		1		1
-5<string,#>		-		-		-		-
+0 ":1
+1 *:1 /:1 others:1 ":2
+5<string,#>

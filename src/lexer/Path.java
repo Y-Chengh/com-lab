@@ -1,15 +1,15 @@
 package lexer;
 
 public class Path {
-    public static String[] tablePaths1 = {
+    static String[] tablePaths1 = {
 //            "table/operator/arithmetic_minus.txt",
             //"table/multi_line_comments.txt",
             //"table/string.txt"
-    		"formalTable/comments.txt"
+    		"table/sixteen.txt"
 
     };
 
-    public static String[] tablePaths = {
+    static String[] tablePaths = {
             "table/keyword/bool.txt",
             "table/keyword/break.txt",
             "table/keyword/char.txt",
