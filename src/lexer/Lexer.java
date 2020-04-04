@@ -22,9 +22,20 @@ public class Lexer {
     private JTable jtable1;
 	private JTable jtable2;
 	private String text;
-    
-    public Lexer(String text,JTable jtable1, JTable jtable2)
-	{
+    private String inputFilePath = null;
+
+    public Lexer(String text,JTable jtable1, JTable jtable2, String inputFilePath) {
+        this.text=text;
+        this.jtable1 = jtable1;
+        this.jtable2 = jtable2;
+        this.inputFilePath = inputFilePath;
+        for(String filePath: tablePaths){
+            //这里不知道为什么用相对路径没法读文件
+            this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath, 1);
+        }
+    }
+
+    public Lexer(String text,JTable jtable1, JTable jtable2) {
     	this.text=text;
 		this.jtable1 = jtable1;
 		this.jtable2 = jtable2;
@@ -34,8 +45,7 @@ public class Lexer {
         }
 	}
 
-    public Lexer()
-    {
+    public Lexer() {
         for(String filePath: tablePaths){
             //这里不知道为什么用相对路径没法读文件
             this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath, 1);
@@ -201,6 +211,11 @@ public class Lexer {
         }
     }
 
+    /**
+     * old version
+     * 用于读取旧版本的DFA转换表
+     * @param filePath
+     */
     public void readDFATable(String filePath){
         List<Map<String, Integer>> table = new ArrayList<>();
         List<State> states = new ArrayList<>();
