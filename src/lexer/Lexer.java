@@ -30,9 +30,25 @@ public class Lexer {
 		this.jtable2 = jtable2;
 		for(String filePath: tablePaths){
             //这里不知道为什么用相对路径没法读文件
-            this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath);
+            this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath, 1);
         }
 	}
+
+    public Lexer()
+    {
+        for(String filePath: tablePaths){
+            //这里不知道为什么用相对路径没法读文件
+            this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath, 1);
+        }
+    }
+
+    // this method is for testing
+    public static void main(String args[]) {
+        Lexer lexer = new Lexer();
+//        lexer.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + "formalTable/comments.txt", 1);
+//        lexer.check(new StringBuilder("while"), lexer.statesList.get(0), lexer.tableList.get(0), 1);
+//        lexer.scan("test", System.getProperty("user.dir") + "/src/lexer/" + "test.c");
+    }
 
     public void scan(){
         List<Pack> acceptTokenList = new ArrayList<>();
@@ -224,6 +240,68 @@ public class Lexer {
 //                    System.out.println("input207:" + input);
                     int targetState = Integer.parseInt(strings[i].split(":")[1]);
                     map.put(input, targetState);
+                }
+//                System.out.println(map);
+                table.add(map);
+                count++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        tableList.add(table);
+
+        statesList.add(states);
+
+        assert tableList.size() == statesList.size();
+    }
+
+    public void readDFATable(String filePath, int flag) {
+        List<Map<String, Integer>> table = new ArrayList<>();
+        List<State> states = new ArrayList<>();
+        List<String> inputList = new ArrayList<>();
+        File file = new File(filePath);
+//        System.out.println(file);
+        try{
+            InputStream is = new FileInputStream(file);
+            Reader reader = new InputStreamReader(is);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line = null;
+            int count = 0;
+            line = bufferedReader.readLine();
+            flag = Integer.parseInt(line.substring(5, 6));
+            flagList.add(flag);
+            line = bufferedReader.readLine();
+            String[] inputs = line.split("\t\t");
+            for (int i = 1; i < inputs.length; i++) {
+                inputList.add(inputs[i]);
+            }
+            while((line = bufferedReader.readLine()) != null){
+//                System.out.println("line:" + line);
+                String[] strings = line.split("\t\t");
+                String state = strings[0];
+                if(state.contains("<")){
+                    int indexOfState = state.indexOf("<");// 状态号的最后一个字符的index
+                    int tableState = Integer.parseInt(state.substring(0, indexOfState));
+                    assert tableState == count;
+                    String subString = state.substring(indexOfState + 1, state.length() - 1);
+                    String type = subString.split(",")[0];
+                    String value = subString.split(",")[1];
+                    states.add(new State(tableState, true, type, value));
+                }else{
+                    int tableState = Integer.parseInt(state);
+                    assert tableState == count;
+                    states.add(new State(tableState));
+//                    System.out.println("get to line 206");
+                }
+//                System.out.println("get to line 207");
+                Map<String, Integer> map = new HashMap<>();
+                for(int i = 1; i < strings.length; i++){
+//                    System.out.println("input207:" + input);
+                    if (strings[i].indexOf("-") != -1) {
+                        continue;
+                    }
+                    int targetState = Integer.parseInt(strings[i]);
+                    map.put(inputList.get(i-1), targetState);
                 }
 //                System.out.println(map);
                 table.add(map);

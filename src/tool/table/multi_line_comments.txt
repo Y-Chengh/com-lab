@@ -1,0 +1,7 @@
+flag:3
+0 /:1
+1 *:2
+2 *:3 others:2 ":5
+3 *:3 others:2 /:4 ":5
+4<Multi_line_comments,->
+5 ":2 others:5 /:5 *:5
