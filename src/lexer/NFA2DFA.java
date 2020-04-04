@@ -59,7 +59,7 @@ public class NFA2DFA {
         HashSet aSet = new HashSet();
         aSet.addAll(set1);
         aSet.addAll(set2);
-        newStates.add(aSet);
+//        newStates.add(aSet);
         return aSet;
     }
 
@@ -72,6 +72,9 @@ public class NFA2DFA {
             NFAmap.get(state).forEach((key, value) -> aMap.merge(key, value, (v1, v2) -> unionSet(v1,v2)));
         }
         DFAmap.put(startSet,aMap); // 将<输入, 下一个状态> 放入DFA中
+        for(Set set:aMap.values()){
+            newStates.add(set);
+        }
 
     }
 
