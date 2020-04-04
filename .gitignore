@@ -7,9 +7,15 @@
 *.class
 *.xml
 bin/lexer/Lexer$Pack.class
+<<<<<<< HEAD
 .idea/
 .idea/workspace.xml
 *.xml
 *.xml
+*.xml
+*.xml
+=======
+.idea/
+>>>>>>> parent of fe5a04e... fetch
 *.xml
 *.xml
