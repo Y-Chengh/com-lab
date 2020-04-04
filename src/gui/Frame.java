@@ -61,10 +61,10 @@ public class Frame extends javax.swing.JFrame {
 	private void initComponents() {
 
 		jScrollPane1 = new javax.swing.JScrollPane();//设置滚动面板
-		jTextArea1 = new javax.swing.JTextArea();
-		jTextArea1.setFont(new Font("黑体",Font.BOLD,24));
+		jTextArea1 = new javax.swing.JTextArea();//文本区域
+		jTextArea1.setFont(new Font("黑体",Font.BOLD,24));//设置字体大小
 		jScrollPane3 = new javax.swing.JScrollPane();
-		jTable2 = new javax.swing.JTable();
+		jTable2 = new javax.swing.JTable();//表格
 		jTable2.setFont(new Font("Menu.font", Font.PLAIN, 16));
 		jScrollPane2 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
@@ -73,8 +73,8 @@ public class Frame extends javax.swing.JFrame {
 		jTable3 = new javax.swing.JTable();
 		jTable3.setFont(new Font("Menu.font", Font.PLAIN, 16));
 		jMenuBar1 = new javax.swing.JMenuBar();
-		jMenu1 = new javax.swing.JMenu();
-		jMenuItem1 = new javax.swing.JMenuItem();
+		jMenu1 = new javax.swing.JMenu();//菜单
+		jMenuItem1 = new javax.swing.JMenuItem();//菜单里面的选项
 		jMenuItem3 = new javax.swing.JMenuItem();
 		jMenu2 = new javax.swing.JMenu();
 		jMenuItem2 = new javax.swing.JMenuItem();

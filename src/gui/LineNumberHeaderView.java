@@ -12,12 +12,12 @@ public class LineNumberHeaderView extends javax.swing.JComponent {
 	 * JAVA TextArea行数显示插件
 	 */
 	private static final long serialVersionUID = 1L;
-	private final  Font DEFAULT_FONT = new Font(Font.MONOSPACED, Font.PLAIN, 11);//字体类型+字体风格
+	private final  Font DEFAULT_FONT = new Font(Font.MONOSPACED, Font.PLAIN, 22);//字体类型+字体风格
     public final Color DEFAULT_BACKGROUD = new Color(228, 228, 228);
     public final Color DEFAULT_FOREGROUD = Color.BLACK;
     public final int nHEIGHT = Integer.MAX_VALUE - 1000000;
     public final int MARGIN = 5;
-    private int lineHeight;
+    private int lineHeight=28;
     private int fontLineHeight;
     private int currentRowWidth;
     private FontMetrics fontMetrics;
@@ -54,7 +54,7 @@ public class LineNumberHeaderView extends javax.swing.JComponent {
     
     //设置开始的地方
     public int getStartOffset() {
-        return 4;
+        return 7;
     }
     
     
