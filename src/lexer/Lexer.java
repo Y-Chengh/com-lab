@@ -24,17 +24,6 @@ public class Lexer {
 	private String text;
     private String inputFilePath = null;
 
-    public Lexer(String text,JTable jtable1, JTable jtable2, String inputFilePath) {
-        this.text=text;
-        this.jtable1 = jtable1;
-        this.jtable2 = jtable2;
-        this.inputFilePath = inputFilePath;
-        for(String filePath: tablePaths){
-            //这里不知道为什么用相对路径没法读文件
-            this.readDFATable(System.getProperty("user.dir") + "/src/lexer/" + filePath, 1);
-        }
-    }
-
     public Lexer(String text,JTable jtable1, JTable jtable2) {
     	this.text=text;
 		this.jtable1 = jtable1;
@@ -103,7 +92,7 @@ public class Lexer {
                 acceptTokenList.add(acceptPack);
             }
         }
-        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + ">"));
+        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
         for (Pack pp:acceptTokenList) {
         	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
             tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">"});
@@ -118,6 +107,7 @@ public class Lexer {
     }
 
     private Pack check(StringBuilder sb, List<State> states, List<Map<String, Integer>> table, int flag) {
+        String parse = "";
         int currentStateIndex = 0;
 //        System.out.println(sb);
         for (int i = 0; i < sb.length(); i++) {
@@ -129,7 +119,7 @@ public class Lexer {
 //                System.out.println("targetState=-1" + "  currentState=" + currentStateIndex);
                 return null;
             }
-
+            parse += "<" + currentStateIndex + "," + input + "," + targetStateIndex + ">";
             currentStateIndex = targetStateIndex;
             State currentState = states.get(currentStateIndex);
             if (currentState.getAccept()) {
@@ -150,7 +140,7 @@ public class Lexer {
                 String string = sb.substring(0, i+1);
                 String type = currentState.generateType(string);
                 String value = currentState.generateValue(string);
-                return new Pack(type, value, string.length());
+                return new Pack(type, value, string.length(), parse);
             }
         }
         return null;
@@ -161,11 +151,15 @@ public class Lexer {
         String value = null;
         int length = -1;
         String token = null;
-        public Pack(String type, String value, int length) {
+        String parse;
+        public Pack(String type, String value, int length, String parse) {
             this.type = type;
             this.value = value;
             this.length = length;
+            this.parse = parse;
         }
+
+
     }
 
     private String tokenToTableInput(char s, int flag) {
