@@ -14,6 +14,8 @@ import lexer.Lexer.Pack;
 
 
 public class Lexer {
+    private String allWordsValid = ";{}[]()=!+-/*&|.\"'_";// 用于识别error类型1.非法字符 2.注释、字符串未进入中止状态
+
     private List<List<Map<String, Integer>>> tableList = new ArrayList<>();
     private List<List<State>> statesList = new ArrayList<>();// 记录每个转换表中的哪些状态是可接受的，以及type和value
     private List<Integer> flagList = new ArrayList<>();
@@ -54,6 +56,7 @@ public class Lexer {
         List<String> errorTokenList = new ArrayList<>();
         List<Integer> indicesOfLines = getIndexOfLinesFromText(text);
         List<Integer> indicesOfErrors = new ArrayList<>();
+        List<Error> errorList = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         sb = new StringBuilder(text);
 //        sb = new StringBuilder(("" + text).trim());
@@ -83,11 +86,27 @@ public class Lexer {
                     continue;
                 }
                 if (!isLastCharAccept) {
+                    if ((allWordsValid.contains(errString) && errorList.get(errorList.size()-1).errorInfo.equals("未进入接受状态"))
+                            || (!allWordsValid.contains(errString) && errorList.get(errorList.size()-1).errorInfo.equals("非法字符"))) {
+                        errorList.get(errorList.size()-1).errorString += errString;
+                    }  else{
+                        String errorInfo = "非法字符";
+                        if (allWordsValid.contains(errString)) {
+                            errorInfo = "未进入接受状态";
+                        }
+                        errorList.add(new Error(findIndexOfLine(count, indicesOfLines), errString, errorInfo));
+                    }
                     errString = errorTokenList.get(errorTokenList.size() - 1) + errString;
                     errorTokenList.set(errorTokenList.size() - 1, errString);
+
                 } else {
                     errorTokenList.add(errString);
                     indicesOfErrors.add(findIndexOfLine(count, indicesOfLines));
+                    String errorInfo = "非法字符";
+                    if (allWordsValid.contains(errString)) {
+                         errorInfo = "未进入接受状态";
+                    }
+                    errorList.add(new Error(findIndexOfLine(count, indicesOfLines), errString, errorInfo));
                     isLastCharAccept = false;
                 }
                 count ++;
@@ -101,17 +120,18 @@ public class Lexer {
             }
         }
 //        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+        errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
         for (Pack pp:acceptTokenList) {
         	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
-            tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">"});
+            tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">",pp.parse});
             jtable1.invalidate();
         }
         System.out.println(errorTokenList);
         System.out.println(indicesOfErrors);
-        System.out.println(indicesOfLines);
-        for (String pp:errorTokenList) {
+//        System.out.println(indicesOfLines);
+        for(Error aa:errorList) {
         	DefaultTableModel tableModel2 = (DefaultTableModel) jtable2.getModel();
-            tableModel2.addRow(new Object[] {"...",pp});
+            tableModel2.addRow(new Object[] {""+aa.line,aa.errorString+":"+aa.errorInfo});
             jtable2.invalidate();
         }
     }
@@ -150,6 +170,14 @@ public class Lexer {
         return indexList;
     }
 
+    /**
+     * 对于给定的转换表，匹配句子识别能够到达接收状态
+     * @param sb StringBuilder
+     * @param states 转换表的所有状态
+     * @param table 转换表
+     * @param flag 用于标识使用何种tokenToTableInput
+     * @return
+     */
     private Pack check(StringBuilder sb, List<State> states, List<Map<String, Integer>> table, int flag) {
         String parse = "";
         int currentStateIndex = 0;
@@ -187,7 +215,21 @@ public class Lexer {
                 return new Pack(type, value, string.length(), parse);
             }
         }
+
         return null;
+    }
+
+    class Error {
+        int line;
+        String errorString;
+        String errorInfo;
+
+        public Error(int line, String errorString, String errorInfo) {
+            this.line = line;
+            this.errorString = errorString;
+            this.errorInfo = errorInfo;
+        }
+
     }
 
     class Pack {

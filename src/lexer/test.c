@@ -28,7 +28,7 @@ while (a < b)
 
 "asdfasdf* \"
 
-"asdfasdf'
+#"asdfasdf'#
 
 a = b + c * (d + e);
 
