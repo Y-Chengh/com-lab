@@ -7,3 +7,4 @@
 *.class
 *.xml
 bin/lexer/Lexer$Pack.class
+.idea/
