@@ -129,10 +129,13 @@ public class NFA2DFA {
 
             File file =new File(filePath);
             FileWriter fileWritter = new FileWriter(file);
-            fileWritter.write("flag:\n");
+            fileWritter.write("flag:1\n");
             int line_count = 1;
             for(Map.Entry<Set,Map<String,Set>> entry:DFAmap.entrySet()){
                 fileWritter.write(set2String(entry.getKey()));
+                if(entry.getKey().contains(endState)){
+                    fileWritter.write("<type,#>");
+                }
                 fileWritter.write(" ");
                 for(Map.Entry<String,Set> entry1 : entry.getValue().entrySet()){
                     fileWritter.write(entry1.getKey()+":");
