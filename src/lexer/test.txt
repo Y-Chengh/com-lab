@@ -11,5 +11,5 @@ do while return
 /* qwerc
 "abds"
 "anc
-
+'a' '\\' 'av'
  

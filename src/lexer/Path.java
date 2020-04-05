@@ -55,6 +55,7 @@ public class Path {
             "table/number2.txt",
             "table/number1.txt",
             "table/number.txt",
+            "table/char.txt",
 
             "table/identifier.txt",
     		"table/sixteen.txt",};

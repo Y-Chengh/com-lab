@@ -281,7 +281,14 @@ public class Lexer {
             } else {
                 return "others";
             }
-        } 
+        } else if (flag == 4) {
+            if (s == '\\' || s == '\'') {
+                return s + "";
+            } else if (s == '\"') {
+                return "letter'";
+            }
+            return "letter";
+        }
         if (s >= '0' && s <= '9') {
             return "[0-9]";
         } else if ((s >= 'a' && s <= 'z') || (s >= 'A' && s <= 'Z')) {
@@ -357,7 +364,7 @@ public class Lexer {
         List<State> states = new ArrayList<>();
         List<String> inputList = new ArrayList<>();
         File file = new File(filePath);
-//        System.out.println(file);
+        System.out.println(file);
         try{
             InputStream is = new FileInputStream(file);
             Reader reader = new InputStreamReader(is);
@@ -385,12 +392,11 @@ public class Lexer {
                     String value = subString.split(",")[1];
                     states.add(new State(tableState, true, type, value));
                 }else{
+                    System.out.println(filePath + " " + state);
                     int tableState = Integer.parseInt(state);
                     assert tableState == count;
                     states.add(new State(tableState));
-//                    System.out.println("get to line 206");
                 }
-//                System.out.println("get to line 207");
                 Map<String, Integer> map = new HashMap<>();
                 for(int i = 1; i < strings.length; i++){
 //                    System.out.println("input207:" + input);
