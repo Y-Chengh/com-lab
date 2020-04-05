@@ -119,7 +119,7 @@ public class Lexer {
                 acceptTokenList.add(acceptPack);
             }
         }
-//        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
         errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
         for (Pack pp:acceptTokenList) {
         	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
@@ -137,7 +137,6 @@ public class Lexer {
     }
 
     private int findIndexOfLine(int index, List<Integer> indicesOfLines) {
-        System.out.println("index:"+index);
         for (int i = 0; i < indicesOfLines.size()-1; i++) {
             if (index >= indicesOfLines.get(i) && index < indicesOfLines.get(i + 1)) {
                 return i + 1;
@@ -364,7 +363,6 @@ public class Lexer {
         List<State> states = new ArrayList<>();
         List<String> inputList = new ArrayList<>();
         File file = new File(filePath);
-        System.out.println(file);
         try{
             InputStream is = new FileInputStream(file);
             Reader reader = new InputStreamReader(is);
@@ -392,7 +390,6 @@ public class Lexer {
                     String value = subString.split(",")[1];
                     states.add(new State(tableState, true, type, value));
                 }else{
-                    System.out.println(filePath + " " + state);
                     int tableState = Integer.parseInt(state);
                     assert tableState == count;
                     states.add(new State(tableState));
