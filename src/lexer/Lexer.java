@@ -256,8 +256,8 @@ public class Lexer {
         		return "" + s;
         	}else if(s >= '0' && s <= '9') {
         		return "[0-9]";
-        	}else if((s >= 'A' && s <= 'F')) {
-        		return "[A-F]";
+        	}else if((s >= 'A' && s <= 'F') || (s >= 'a' && s <= 'f')) {
+        		return "[a-fA-F]";
         	}
         }
     	

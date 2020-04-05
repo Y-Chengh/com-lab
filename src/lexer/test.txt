@@ -1,0 +1,15 @@
+identifier _abc abc12 12abc 
+int char float
+do while return 
++ - * / =
+>= > == < <=
+&& || !
+; [ ] .
+123 -789 10.98 -8.29 1e9 2e-6 -3e8
+0x78 0xab 089
+/* asdb */
+/* qwerc
+"abds"
+"anc
+
+ 
