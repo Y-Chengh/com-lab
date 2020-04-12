@@ -1,0 +1,1 @@
+A  → A A α b c id | β|c|d

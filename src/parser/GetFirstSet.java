@@ -221,8 +221,7 @@ public class GetFirstSet {
         readProduct(filePath);
         getAllFisrtSet();
         printFisrtSet();
-        getAllFollowSet();
-        printFollowSet();
+
 
     }
 
