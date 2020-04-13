@@ -14,6 +14,7 @@ public class GetFollowSet {
     public static HashMap<String, Set<String>> followSet = new HashMap<>(); // follow集
     public static HashMap<String,Boolean> getFollowFlag = new HashMap<>();
     public static Set<String> lastWordSet = new HashSet<>();
+    public static HashMap<String,String> cycleRefenrence = new HashMap(); // 循环引用
     public static String startSymbol;
 
     public static void getOneFollowSet( String productRights){
@@ -91,13 +92,18 @@ public class GetFollowSet {
                         continue s1;
                     }
                 }
-
                 if(!lastWord.equals(s))continue;
                 if(productLeft.equals(s))continue;
+                if(cycleRefenrence.keySet().contains(productLeft)
+                        &&cycleRefenrence.get(productLeft).equals(lastWord)){
+                    followSet.get(lastWord).addAll(followSet.get(productLeft));
+                    continue;
+                }
                 if(getFollowFlag.get(productLeft)){
+                    cycleRefenrence.put(lastWord,productLeft);
                     followSet.get(lastWord).addAll(followSet.get(productLeft));
                 }else {
-
+                    cycleRefenrence.put(lastWord,productLeft);
                     getFollowlast(productLeft);
                     followSet.get(lastWord).addAll(followSet.get(productLeft));
                 }
@@ -125,9 +131,7 @@ public class GetFollowSet {
         lastWordSet = GetFirstSet.lastWordSet;
         followSet = GetFirstSet.followSet;
         getFollowFlag = GetFirstSet.getFollowFlag;
-
         getAllFollowSet();
-
     }
 
     public static void main(String[] args) {

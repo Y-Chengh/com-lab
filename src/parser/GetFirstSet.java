@@ -58,7 +58,7 @@ public class GetFirstSet {
         for(int k=0;k<rights.length;k++) {
             String productRight = rights[k].trim();
             String[] words = productRight.split("\\s+");
-            for (int i = 0; i < productRight.length(); i++) {
+            for (int i = 0; i < words.length; i++) {
                 String nextString = words[i];
                 if (isTerminal(nextString)) { // 终结符直接添加
                     firstSet.get(productLeft).add(nextString);
@@ -221,8 +221,6 @@ public class GetFirstSet {
         readProduct(filePath);
         getAllFisrtSet();
         printFisrtSet();
-
-
     }
 
 

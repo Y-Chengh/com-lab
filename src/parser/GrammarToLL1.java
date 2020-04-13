@@ -8,7 +8,7 @@ import java.util.*;
 // 将文法改造成LL1文法
 public class GrammarToLL1 {
     public static HashMap<String,String> product = new HashMap(); // 产生式
-    public static HashMap<String,String> tempProduct = new HashMap<>();
+//    public static HashMap<String,String> tempProduct = new HashMap<>();
 
     public static String startSymbol;
 
@@ -37,13 +37,24 @@ public class GrammarToLL1 {
         }
     }
 
+
+    public static void trans2LL1(String inputFilePath,String outputFilePath){
+        readProduct(inputFilePath);
+        ELR();
+        ELCF();
+        removeSelf();
+        printProduct();
+        write2file(outputFilePath);
+    }
+
     /*
-    *
+    *Eliminate Left Recursion, 消除左递归
     * 左递归如: A → Aα1 | Aα2 | … | Aαn | β1 | β2 | … | βm
     * 转为: A →β1 A′ | β2 A′ | … | βm A′;
     *      A′ →α1 A′ | α2 A′ | … | αn A′ | ε
      * */
-    public static void trans2LL1(){
+    public static void ELR(){
+        HashMap<String,String> tempProduct = new HashMap<>();
         //消除左递归
         for(Map.Entry<String,String> entry : product.entrySet()) {
             String productLeft = entry.getKey();
@@ -87,31 +98,122 @@ public class GrammarToLL1 {
             tempProduct.put(newSymbol,newProductRight2+"ε");
         }
         product.putAll(tempProduct);
-
     }
 
 
-    // Algorithm of extracting left common factor, 提取左公因子
+
+    // Algorithm of extracting left common factor, 提取左公因子, 需要多次执行
     public static void ELCF(){
+        HashMap<String,String> tempProduct = new HashMap<>();
+        for(Map.Entry<String,String> entry : product.entrySet()) {
+            String productLeft = entry.getKey();
+            String productRights = entry.getValue();
+            String[] rights = productRights.split("\\|");
+            if (rights.length == 1) continue;
+            List<String> leftRecursionList = new ArrayList<>();
+            List<String> nonleftRecursionList = new ArrayList<>();
+            HashMap<String,Set<String>> prefixMap = new HashMap<>(); // 前缀相同的放到一起
+            for (int k = 0; k < rights.length; k++) {
+                String productRight = rights[k].trim();
+                String[] words = productRight.split("\\s+");
+                if(prefixMap.keySet().contains(words[0])){
+                    prefixMap.get(words[0]).add(productRight);
+                }else {
+                    Set<String> tempSet = new HashSet<>();
+                    tempSet.add(productRight);
+                    prefixMap.put(words[0],tempSet);
+                }
+            }
+            if(prefixMap.size() == rights.length)continue;
+            String newProductRights = "";
+            for(Set<String> set :prefixMap.values()){
+                if(set.size()==1){
+                        newProductRights = newProductRights + getSamePrefix(set) +"|";
+                }else {
+                    String prefix = getSamePrefix(set);
+                    String newProductLeft = productLeft +"_"+prefix.replace(" ","");
+                    String newProductRight = "";
+                    for(String s:set){
+                        newProductRight = newProductRight + s.substring(prefix.length(),s.length())+"|";
+                    }
+                    tempProduct.put(newProductLeft,newProductRight.substring(0,newProductRight.length()-1));
+                    newProductRights = newProductRights + prefix+" "+newProductLeft +"|";
+                }
+            }
+            tempProduct.put(productLeft,newProductRights.substring(0,newProductRights.length()-1));
+        }
+        product.putAll(tempProduct);
 
     }
+
+
+    public static String getSamePrefix(Set<String> set){
+        String prefix ="";
+        int minLen=100;
+        for(int i=0;i<minLen;i++){
+            boolean firstFlag = true;
+            String nextString = "";
+            for(String s:set){
+                String[] words = s.split("\\s+");
+                if(words.length<minLen){
+                    minLen = words.length;
+                }
+                if(firstFlag){
+                    firstFlag = false;
+                    nextString = words[i];
+                }else {
+                    if(!words[i].equals(nextString))return prefix.trim();
+                }
+            }
+            prefix = prefix + " "+ nextString;
+        }
+        return prefix.trim();
+    }
+
+
     public static void printProduct(){
         for(Map.Entry<String,String>entry:product.entrySet()){
             System.out.printf(entry.getKey()+" → "+entry.getValue()+"\n");
         }
     }
 
-    public static void write2file(){
-        // TODO
+    // 消除 类似于A==>A的无用产生式
+    public static void removeSelf(){
+        HashMap<String,String> tempProduct = new HashMap<>();
+        for(Map.Entry<String,String>entry:product.entrySet()){
+            String productLeft = entry.getKey();
+            String productRights = entry.getValue();
+            String[] rights = productRights.split("\\|");
+            String newProducyRight = "";
+            for(String s:rights){
+                if(!productLeft.equals(s.trim())){
+                    newProducyRight = newProducyRight + s +"|";
+                }
+            }
+            tempProduct.put(productLeft,newProducyRight.substring(0,newProducyRight.length()-1));
+        }
+        product.putAll(tempProduct);
+    }
+
+    public static void write2file(String filePath){
+
+        try {
+
+            File file = new File(filePath);
+            FileWriter fileWritter = new FileWriter(file);
+            for(Map.Entry<String,String> entry: product.entrySet()){
+                fileWritter.write(entry.getKey()+" → "+entry.getValue()+"\n");
+            }
+            fileWritter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
-        String filePath = System.getProperty("user.dir")+"/src/parser/"+"OriginProduct.txt";
-        readProduct(filePath);
-//        String s = "abc";
-//        System.out.println(s.substring(1,s.length()-1));
-        trans2LL1();
-        printProduct();
-
+        String inputFilePath = System.getProperty("user.dir")+"/src/parser/"+"OriginProduct.txt";
+        String outputFilePath = System.getProperty("user.dir")+"/src/parser/"+"Product.txt";
+        trans2LL1(inputFilePath,outputFilePath);
     }
 }
