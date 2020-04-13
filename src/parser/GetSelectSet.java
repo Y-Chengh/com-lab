@@ -1,8 +1,10 @@
 package parser;
 
+import java.io.StreamCorruptedException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class GetSelectSet {
@@ -13,7 +15,9 @@ public class GetSelectSet {
     public static String startSymbol;
     public static  HashMap<String,Boolean> getSelectFlag = new HashMap<>(); // 判断一个非终结符的Fisrt集是否已经计算出
     public static Set<String> symbolSet=new HashSet<>();
-
+    
+    
+    //初始化信息
     public static void initial(){
         String filePath = System.getProperty("user.dir")+"/src/parser/"+"Product.txt";
         GetFollowSet.getFollowSet(filePath);
@@ -58,7 +62,7 @@ public class GetSelectSet {
             	}else {
             		selectSet.get(productLeft+"→"+rights[k]).addAll(firstSet.get(productLeft));
             	}
-            }       
+            }  
         }
     	
     }
@@ -91,11 +95,16 @@ public class GetSelectSet {
             System.out.println(entry.getKey().toString()+": {"+right +" }");
         }
     }
-
+    
     
     public static void printSelectSet(){
         System.out.println("SelectSet of Product:");
         for(Map.Entry<String,Set<String>> entry:selectSet.entrySet()){
+        	for(String aa:entry.getValue()) {
+        		if(!symbolSet.contains(aa)) {
+        			symbolSet.add(aa);
+        		}
+        	}
             String right = "";
             for(String s:entry.getValue()){
                 right = right+ " "+s;
@@ -103,11 +112,50 @@ public class GetSelectSet {
             System.out.println(entry.getKey().toString()+": {"+right +" }");
         }
     }
+    
+    
     public static void main(String[] args) {
         initial();
         getAllSelectSet();
         printFisrtSet();
         printFollowSet();
         printSelectSet();
+        int c=symbolSet.size()+1;
+        //System.out.println(c);
+        int count=0;
+        for(Map.Entry<String,String> entry : product.entrySet()){
+            count++;
+        }
+        //System.out.println(count);
+        String aStrings[][]=new String[count+1][c];
+        int i=1;
+        for(String aa:symbolSet) {
+        	aStrings[0][i]=aa;
+        	i++;
+        }
+        int j=1;
+        for(Map.Entry<String,String> entry : product.entrySet()){
+            aStrings[j][0]=entry.getKey();
+            j++;
+        }
+        for(Entry<String, Set<String>> entry : selectSet.entrySet()){
+        	String[] tempStrings=entry.getKey().split("→");
+        	for(String aa:entry.getValue()) {
+        		for(int m=0;m<j;m++) {
+        			for(int n=0;n<i;n++) {
+        				if(tempStrings[0].equals(aStrings[m][0])&&aa.equals(aStrings[0][n])) {
+        					aStrings[m][n]=entry.getKey();
+        				}
+        			}
+        		}
+        	}
+        }
+        for(int m=0;m<j;m++) {
+			for(int n=0;n<i;n++) {
+				System.out.print(aStrings[m][n]+"     ");
+			}
+			System.out.println();
+		}
+    
     }
 }
