@@ -13,10 +13,11 @@ public class GetFollowSet {
     public static HashMap<String, Set<String>> firstSet = new HashMap<>(); // first集
     public static HashMap<String, Set<String>> followSet = new HashMap<>(); // follow集
     public static HashMap<String,Boolean> getFollowFlag = new HashMap<>();
-    public static Set<String> lastWordSet = new HashSet<>();
+    public static Set<String> lastWordSet = new HashSet<>();    // 产生式右部的最后一个非终结符需记录,稍后后处理.
     public static HashMap<String,String> cycleRefenrence = new HashMap(); // 循环引用
     public static String startSymbol;
 
+    // 求一个非终结符的follow集合.
     public static void getOneFollowSet( String productRights){
         String[] rights = productRights.split("\\|");
         for(int k=0;k<rights.length;k++) {
@@ -57,6 +58,7 @@ public class GetFollowSet {
         }
     }
 
+    // 求所有非终结符的follow集.
     public static void getAllFollowSet(){
         for(String productRight:product.values()){
             getOneFollowSet(productRight);
@@ -123,6 +125,7 @@ public class GetFollowSet {
         }
     }
 
+    // 启动程序,总程序.
     public static void getFollowSet(String filePath){
         readProduct(filePath);
         getAllFisrtSet();
