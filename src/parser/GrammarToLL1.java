@@ -5,7 +5,14 @@ import com.sun.xml.internal.bind.v2.TODO;
 import java.io.*;
 import java.util.*;
 
-// 将文法改造成LL1文法
+/*
+* 将文法改造成LL1文法:
+* 1.将左部相同的产生式合为一个, 用 | 来间隔产生式的右部. 如: A → B C D | E F G
+* 2.消除直接左递归.
+* 3.提取左公因子.
+* 4.消除无用的产生式.
+* */
+
 public class GrammarToLL1 {
     public static HashMap<String,String> product = new HashMap(); // 产生式
 //    public static HashMap<String,String> tempProduct = new HashMap<>();
@@ -146,7 +153,7 @@ public class GrammarToLL1 {
 
     }
 
-
+    // 求一个集合总所有字符串的最长公共前缀.
     public static String getSamePrefix(Set<String> set){
         String prefix ="";
         int minLen=100;
