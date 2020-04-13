@@ -25,6 +25,10 @@ public class Path {
             "table/keyword/false.txt",
             "table/keyword/return.txt",
 
+            "table/keyword/_call.txt",
+            "table/keyword/_record.txt",
+            "table/keyword/_while.txt",
+
             "table/operator/arithmetic_divide.txt",
             "table/operator/arithmetic_minus.txt",
             "table/operator/arithmetic_multiply.txt",
@@ -38,6 +42,10 @@ public class Path {
             "table/operator/relational_less.txt",
             "table/operator/relational_lessEqual.txt",
             "table/operator/relational_notEqual.txt",
+
+            "table/operator/_or.txt",
+            "table/operator/_and.txt",
+            "table/operator/_not.txt",
 
             "table/delimiters/dot.txt",
             "table/delimiters/equal.txt",

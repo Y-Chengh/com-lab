@@ -1,5 +1,28 @@
-E → T E'
-E' → + T E' |ε
-T → F T'
-T' → * F T' |ε
-F → ( E ) | id
+G' → * F G'|ε
+A → = F A | , id A | ε
+B → H B'
+E' → + G E'|ε
+C → [ num ] C | ε
+D → proc X id ( M ) { P } | record id { P } | T id A ;
+Start → P
+E → G E'
+Elist' → , E Elist'|ε
+F → ( E ) | num | id | real | string
+G → F G'
+H → I H'
+I → not I | ( B ) | E Relop E | true | false
+L → id L'
+M → X id M'
+P → D P | S P | ε
+S → MachedS | OpenS
+T → X C
+X → int | float | bool | char
+L' → [ num ] L'|ε
+Elist → E Elist'
+H' → and I H'|ε
+OpenS → if ( B ) { OpenS_if(B){
+B' → or H B'|ε
+Relop → < | <= | > | >= | == | !=
+OpenS_if(B){ →  MachedS } else { Opens }| S }
+MachedS → if ( B ) { MachedS } else { MachedS } | L = E ; | do S while ( B ) ; | call id ( Elist ) ; | return E ;
+M' → , X id M'|ε

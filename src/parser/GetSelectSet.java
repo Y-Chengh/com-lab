@@ -91,7 +91,7 @@ public class GetSelectSet {
             System.out.println(entry.getKey().toString()+": {"+right +" }");
         }
     }
-    
+
     
     public static void printSelectSet(){
         System.out.println("SelectSet of Product:");

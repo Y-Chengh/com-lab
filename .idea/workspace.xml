@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c8f89d82-1ed6-41e2-90eb-038101c1e23c" name="Default Changelist" comment="" />
+    <list default="true" id="b4925be7-22f2-4193-bcf2-faa8b4377067" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1Zw6ix2u3oMJEoFEfoGCaOx2Jp6" />
+  <component name="ProjectId" id="1aTftIrt9gpIiN8ZdF5BUoJx5LK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -27,7 +27,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DataBase_2019_Spring" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Compiler_2019Spring" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -37,7 +37,6 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Application.Frame">
     <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -53,12 +52,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lexer.Lexer" />
+    <configuration name="GetSelectSet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parser.GetSelectSet" />
       <module name="compiler" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lexer.*" />
+          <option name="PATTERN" value="parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,12 +65,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tool" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="tool.Tool" />
+    <configuration name="GrammarToLL1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parser.GrammarToLL1" />
       <module name="compiler" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tool.*" />
+          <option name="PATTERN" value="parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -79,30 +78,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DreamHome_ER" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
-      <texify>
-        <compiler>PDFLATEX</compiler>
-        <compiler-path />
-        <sumatra-path />
-        <viewer-command />
-        <compiler-arguments />
-        <main-file>$PROJECT_DIR$/../DataBase_2019_Spring/lab_3/DreamHome_ER.tex</main-file>
-        <aux-dir>false</aux-dir>
-        <out-dir>true</out-dir>
-        <compile-twice>false</compile-twice>
-        <output-format>PDF</output-format>
-        <has-been-run>false</has-been-run>
-        <bib-run-config />
-        <makeindex-run-config />
-      </texify>
-      <method v="2" />
+    <configuration name="PredictiveAnalysis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parser.PredictiveAnalysis" />
+      <module name="compiler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Frame" />
-        <item itemvalue="Application.Lexer" />
-        <item itemvalue="Application.Tool" />
-        <item itemvalue="LaTeX.DreamHome_ER" />
+        <item itemvalue="Application.GrammarToLL1" />
+        <item itemvalue="Application.PredictiveAnalysis" />
+        <item itemvalue="Application.GetSelectSet" />
       </list>
     </recent_temporary>
   </component>
@@ -111,97 +105,46 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c8f89d82-1ed6-41e2-90eb-038101c1e23c" name="Default Changelist" comment="" />
-      <created>1585737939972</created>
+      <changelist id="b4925be7-22f2-4193-bcf2-faa8b4377067" name="Default Changelist" comment="" />
+      <created>1586764717400</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1585737939972</updated>
-      <workItem from="1585737942819" duration="7019000" />
-      <workItem from="1585825240345" duration="2524000" />
-      <workItem from="1585830324591" duration="116000" />
-      <workItem from="1585830793862" duration="5198000" />
-      <workItem from="1585836537065" duration="535000" />
-      <workItem from="1585839258231" duration="284000" />
-      <workItem from="1585894012179" duration="1354000" />
-      <workItem from="1585963177369" duration="15835000" />
-      <workItem from="1585983550186" duration="6064000" />
-      <workItem from="1586001221125" duration="3667000" />
-      <workItem from="1586007535444" duration="5878000" />
-      <workItem from="1586050412365" duration="973000" />
-      <workItem from="1586051433748" duration="171000" />
+      <updated>1586764717400</updated>
+      <workItem from="1586764721315" duration="6386000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="WindowStateProjectService">
-    <state x="580" y="122" key="FileChooserDialogImpl" timestamp="1585830504050">
+    <state x="578" y="173" key="FileChooserDialogImpl" timestamp="1586768752127">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="580" y="122" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585830504050" />
-    <state width="1431" height="372" key="GridCell.Tab.0.bottom" timestamp="1586051604136">
+    <state x="578" y="173" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586768752127" />
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1586786879258">
+      <screen x="1982" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
+    <state width="1431" height="179" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551284" />
+    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1586786879257">
+      <screen x="1982" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
+    <state width="1431" height="179" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551283" />
+    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1586786879257">
+      <screen x="1982" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
+    <state width="1431" height="179" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551283" />
+    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1586786879258">
+      <screen x="1982" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
+    <state width="1431" height="179" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551283" />
+    <state x="280" y="7" key="SettingsEditor" timestamp="1586785244269">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1493" height="176" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586008137748" />
-    <state width="1431" height="372" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586051604136" />
-    <state width="1431" height="372" key="GridCell.Tab.0.center" timestamp="1586051604136">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="176" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586008137747" />
-    <state width="1431" height="372" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586051604136" />
-    <state width="1431" height="372" key="GridCell.Tab.0.left" timestamp="1586051604136">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="176" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586008137747" />
-    <state width="1431" height="372" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586051604136" />
-    <state width="1431" height="372" key="GridCell.Tab.0.right" timestamp="1586051604136">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="176" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586008137748" />
-    <state width="1431" height="372" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586051604136" />
-    <state width="1431" height="277" key="GridCell.Tab.1.bottom" timestamp="1585982911715">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1431" height="277" key="GridCell.Tab.1.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585982911715" />
-    <state width="1431" height="277" key="GridCell.Tab.1.center" timestamp="1585982911715">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1431" height="277" key="GridCell.Tab.1.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585982911715" />
-    <state width="1431" height="277" key="GridCell.Tab.1.left" timestamp="1585982911715">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1431" height="277" key="GridCell.Tab.1.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585982911715" />
-    <state width="1431" height="277" key="GridCell.Tab.1.right" timestamp="1585982911715">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1431" height="277" key="GridCell.Tab.1.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585982911715" />
-    <state x="280" y="7" key="SettingsEditor" timestamp="1585832057241">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state x="280" y="7" key="SettingsEditor/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1585832057241" />
-    <state x="93" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1586051304029">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state x="2013" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586007252194" />
-    <state x="93" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586051304029" />
-    <state x="480" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1586051433934">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state x="2400" y="256" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586007535934" />
-    <state x="480" y="256" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586051433934" />
+    <state x="280" y="7" key="SettingsEditor/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785244269" />
   </component>
 </project>
