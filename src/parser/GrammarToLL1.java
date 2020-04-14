@@ -19,6 +19,11 @@ public class GrammarToLL1 {
 
     public static String startSymbol;
 
+    public static Boolean isTerminal(String s){
+        return !product.keySet().contains(s);
+    }
+
+
     public static void readProduct(String filePath)  {
         File file = new File(filePath);
         try{
@@ -47,6 +52,7 @@ public class GrammarToLL1 {
 
     public static void trans2LL1(String inputFilePath,String outputFilePath){
         readProduct(inputFilePath);
+        EILR();
         ELR();
         ELCF();
         removeSelf();
@@ -54,8 +60,43 @@ public class GrammarToLL1 {
         write2file(outputFilePath);
     }
 
+    // Eliminate indirect left recursion, 消除间接左递归
+    public static void  EILR(){
+        HashMap<String,String> tempProduct = new HashMap<>();
+        for(Map.Entry<String,String> entry : product.entrySet()) {
+            String productLeft = entry.getKey();
+            String productRights = entry.getValue();
+            String[] rights = productRights.split("\\|");
+            if(rights.length==1)continue;
+            for (int k = 0; k < rights.length; k++) {
+                String productRight = rights[k].trim();
+                String[] words = productRight.split("\\s+");
+                if(words[0].equals(productLeft)|| isTerminal(words[0]))continue;
+                String[] targetRights = product.get(words[0]).split("\\|");
+                Boolean flag = false;
+                for(int j=0;j<targetRights.length;j++){
+                    String[] targetWords = targetRights[j].trim().split("\\s+");
+                    if(targetWords[0].equals(productLeft)){
+                        targetRights[j] = productRight +
+                                targetRights[j].substring(productLeft.length(),targetRights[j].length());
+                        flag = true;
+                    }
+                }
+                if(flag){
+                    String newRight = "";
+                    for(String s:targetRights){
+                        newRight = newRight + s +"|";
+                    }
+                    tempProduct.put(words[0],newRight.substring(0,newRight.length()-1));
+                }
+            }
+        }
+        product.putAll(tempProduct);
+
+    }
+
     /*
-    *Eliminate Left Recursion, 消除左递归
+    *Eliminate Left Recursion, 消除直接左递归
     * 左递归如: A → Aα1 | Aα2 | … | Aαn | β1 | β2 | … | βm
     * 转为: A →β1 A′ | β2 A′ | … | βm A′;
     *      A′ →α1 A′ | α2 A′ | … | αn A′ | ε
