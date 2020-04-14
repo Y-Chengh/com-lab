@@ -36,11 +36,12 @@ public class GetSelectSet {
         		selectSet.put(a1+"→"+words[i],aa);
         	}
         	String[] wwStrings=a2.split(" |\\|");
-        	for(int i=0;i<words.length;i++) {
-        		if(!symbolSet.contains(wwStrings[i])) {
+        	for(int i=0;i<wwStrings.length;i++) {
+        		if(!symbolSet.contains(wwStrings[i]) && !wwStrings[i].equals("ε")) {
         			symbolSet.add(wwStrings[i]);
         		}
         	}
+        	symbolSet.add("$");
         }
         
         getAllSelectSet();
