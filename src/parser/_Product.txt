@@ -1,18 +1,29 @@
-B → not B B'|( B ) B'|E relop E B'|true B'|false B'
-E' → + E E'|* E E'|ε
-C → [ num ] C | ε
-D' → ε
-D → proc id ; D S D'|T id ; D'
-E → - E E'|( E ) E'|id E'|digit E'|L E'
-B' → or B B'|and B B'|ε
-Elist' → , E Elist'|ε
+Start → P
+P → D P | S P | ε
+D → proc Y id ( M ) { P } | record id { P } | T id A ;
+A → = E A | , id A | ε
+M → X id M'
+M' → , X id M' | ε
+T → X C
+X → int | float | boolean | char
+Y → void | int | float | boolean | char
+C → [ number ] C | ε
+S → id = E ; | L = E ;
+E → G E'
+E' → + G E' | - G E' | ε
+G → F G'
+G' → * F G' | / F G' | ε
+F → id | number | real | ( E ) | L
 L → id [ E ] L'
+L' → [ E ] L' | ε
+S → if ( B ) { S } | if ( B ) { S } else { S }
+S → while ( B ) { S }
+B → H B'
+B' → or H B' | ε
+H → I H'
+H' → and I H' | ε
+I → ! I | ( B ) | E relop E | true | false
 relop → < | <= | == | != | > | >=
-P → D|S
-S_ifBthenS1 →  else S2 S'| S'
-S → call id ( Elist ) S'|id = E ; S'|L = E ; S'|while B do S1 S'|if B then S1 S_ifBthenS1
-T → X C | record D
-S' → ε
-X → integer | real
-L' → [ E ] L'|ε
+S → call id ( Elist ) ; | return E ;
 Elist → E Elist'
+Elist' → , E Elist' | ε

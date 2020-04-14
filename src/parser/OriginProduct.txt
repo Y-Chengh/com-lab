@@ -7,7 +7,7 @@ T → X C
 X → int | float | bool | char
 C → [ num ] C | ε
 S → MachedS | OpenS
-MachedS → if ( B ) { MachedS } else { MachedS } | L = E ; | do S while ( B ) ; | call id ( Elist ) ; | return E ;
+MachedS → if ( B ) { MachedS } else { MachedS } | L = E ; | do S while ( B ) ; | call id ( Elist ) ; | return E ; | if ( B ) { MachedS }
 OpenS → if ( B ) { S } | if ( B ) { MachedS } else { Opens }
 L → L [ num ] | id
 E → E + G | G

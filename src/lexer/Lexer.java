@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import lexer.Lexer.Pack;
 
 
 
@@ -318,21 +317,7 @@ public class Lexer {
 
     }
 
-    class Pack {
-        String type = null;
-        String value = null;
-        int length = -1;
-        String token = null;
-        String parse;
-        public Pack(String type, String value, int length, String parse) {
-            this.type = type;
-            this.value = value;
-            this.length = length;
-            this.parse = parse;
-        }
 
-
-    }
 
     private String tokenToTableInput(char s, int flag) {
     	if(flag==9) {//用于识别16进制
