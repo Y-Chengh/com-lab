@@ -3,38 +3,40 @@
 
 
 
-
-
-
-
-
-
-while
-
-record
+if
+else
+not
+bool
+true
+false
+float
+do
+return
+string：字符串
 call
-
-
-
+record
+while
+char
+and
+int
+id：标识符
 {}
 ()
 []
 ;
++ - * / (减和除暂时没有)
+
 
 real：实数
-string：字符串
-char
-+ - * / (减和除暂时没有)
+
+
+
 num：正整数
-id：标识符
-not
-false
-int
-if
-else
-true
-bool
-and
-float
-do
-return
+
+
+
+
+
+
+
+

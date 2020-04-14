@@ -21,6 +21,8 @@ public class Lexer {
     private List<Integer> flagList = new ArrayList<>();
     private static String[] tablePaths = Path.tablePaths;
 
+    public List<Pack> acceptTokens = new ArrayList<>();// copy acceptStateList from scan method
+
     private JTable jtable1;
 	private JTable jtable2;
 	private String text;
@@ -51,6 +53,9 @@ public class Lexer {
 //        lexer.scan("test", System.getProperty("user.dir") + "/src/lexer/" + "test.c");
     }
 
+    /**
+     * 用于gui
+     */
     public void scan(){
         List<Pack> acceptTokenList = new ArrayList<>();
         List<String> errorTokenList = new ArrayList<>();
@@ -120,12 +125,14 @@ public class Lexer {
             }
         }
         acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+        acceptTokens = acceptTokenList;
         errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
         for (Pack pp:acceptTokenList) {
         	DefaultTableModel tableModel = (DefaultTableModel) jtable1.getModel();
             tableModel.addRow(new Object[] {pp.token, "  <" + pp.type + "," + pp.value + ">",pp.parse});
             jtable1.invalidate();
         }
+
         System.out.println(errorTokenList);
         System.out.println(indicesOfErrors);
 //        System.out.println(indicesOfLines);
@@ -134,6 +141,86 @@ public class Lexer {
             tableModel2.addRow(new Object[] {""+aa.line,aa.errorString+":"+aa.errorInfo});
             jtable2.invalidate();
         }
+    }
+
+    /**
+     * 另一个scan方法用于在gui中调用，没法改了，直接复制一个过来，删掉gui部分
+     * @param flag
+     */
+    public void scan(int flag){
+        List<Pack> acceptTokenList = new ArrayList<>();
+        List<String> errorTokenList = new ArrayList<>();
+        List<Integer> indicesOfLines = getIndexOfLinesFromText(text);
+        List<Integer> indicesOfErrors = new ArrayList<>();
+        List<Error> errorList = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        sb = new StringBuilder(text);
+//        sb = new StringBuilder(("" + text).trim());
+        int count = 0;// 用于记录当前字符的index
+        boolean isLastCharAccept = true;//记录上一个字符是否被接收，如果没有被接收的同时，下一个字符也没有被接收，那么就将这两个字符合并
+        while(sb.length() != 0){
+            Pack acceptPack = null; // 最终被接受的pack，可能会有很多的table都有接受的串，但是选最长的串接受
+            for(int i = 0; i < tableList.size(); i++){
+                List<Map<String, Integer>> table = tableList.get(i);
+                List<State> state = statesList.get(i);
+                Pack pack = check(sb, statesList.get(i), tableList.get(i), flagList.get(i));
+                if (pack == null) {
+                    continue;
+                }
+                if(acceptPack == null || acceptPack.length < pack.length){ // 这里没有等于的情况，因此一定要先比较“while”之类的关键字，然后在比较id
+                    acceptPack = pack;
+                }
+            }
+            if (acceptPack == null) {
+                // 没有识别出任何的可接受的串
+//                System.out.println("pass");
+                String errString = "" + sb.charAt(0);
+                if (errString.trim().length() == 0) {
+                    sb.deleteCharAt(0);
+                    count++;
+                    isLastCharAccept = true;
+                    continue;
+                }
+                if (!isLastCharAccept) {
+                    if ((allWordsValid.contains(errString) && errorList.get(errorList.size()-1).errorInfo.equals("未进入接受状态"))
+                            || (!allWordsValid.contains(errString) && errorList.get(errorList.size()-1).errorInfo.equals("非法字符"))) {
+                        errorList.get(errorList.size()-1).errorString += errString;
+                    }  else{
+                        String errorInfo = "非法字符";
+                        if (allWordsValid.contains(errString)) {
+                            errorInfo = "未进入接受状态";
+                        }
+                        errorList.add(new Error(findIndexOfLine(count, indicesOfLines), errString, errorInfo));
+                    }
+                    errString = errorTokenList.get(errorTokenList.size() - 1) + errString;
+                    errorTokenList.set(errorTokenList.size() - 1, errString);
+
+                } else {
+                    errorTokenList.add(errString);
+                    indicesOfErrors.add(findIndexOfLine(count, indicesOfLines));
+                    String errorInfo = "非法字符";
+                    if (allWordsValid.contains(errString)) {
+                        errorInfo = "未进入接受状态";
+                    }
+                    errorList.add(new Error(findIndexOfLine(count, indicesOfLines), errString, errorInfo));
+                    isLastCharAccept = false;
+                }
+                count ++;
+                sb.deleteCharAt(0);
+            } else {
+                isLastCharAccept = true;
+                acceptPack.token = "" + sb.substring(0, acceptPack.length);
+                sb.delete(0, acceptPack.length);
+                count += acceptPack.length;
+                acceptTokenList.add(acceptPack);
+            }
+        }
+        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+        acceptTokens = acceptTokenList;
+        errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
+        System.out.println(errorTokenList);
+        System.out.println(indicesOfErrors);
+//        System.out.println(indicesOfLines);
     }
 
     private int findIndexOfLine(int index, List<Integer> indicesOfLines) {

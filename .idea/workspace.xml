@@ -37,8 +37,9 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.Frame">
+  <component name="RunManager" selected="Application.GetSelectSet">
     <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.Frame" />
       <module name="compiler" />
@@ -78,8 +79,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PredictiveAnalysis" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="parser.PredictiveAnalysis" />
+    <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parser.Parser" />
       <module name="compiler" />
       <extension name="coverage">
         <pattern>
@@ -93,10 +94,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GetSelectSet" />
+        <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Frame" />
         <item itemvalue="Application.GrammarToLL1" />
-        <item itemvalue="Application.PredictiveAnalysis" />
-        <item itemvalue="Application.GetSelectSet" />
       </list>
     </recent_temporary>
   </component>
@@ -110,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1586764717400</updated>
-      <workItem from="1586764721315" duration="6386000" />
+      <workItem from="1586764721315" duration="13869000" />
     </task>
     <servers />
   </component>
@@ -122,29 +123,29 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="578" y="173" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586768752127" />
-    <state width="1493" height="184" key="GridCell.Tab.0.bottom" timestamp="1586786879258">
-      <screen x="1982" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
-    <state width="1431" height="179" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551284" />
-    <state width="1493" height="184" key="GridCell.Tab.0.center" timestamp="1586786879257">
-      <screen x="1982" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
-    <state width="1431" height="179" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551283" />
-    <state width="1493" height="184" key="GridCell.Tab.0.left" timestamp="1586786879257">
-      <screen x="1982" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
-    <state width="1431" height="179" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551283" />
-    <state width="1493" height="184" key="GridCell.Tab.0.right" timestamp="1586786879258">
-      <screen x="1982" y="0" width="1474" height="864" />
-    </state>
-    <state width="1493" height="184" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
-    <state width="1431" height="179" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785551283" />
-    <state x="280" y="7" key="SettingsEditor" timestamp="1586785244269">
+    <state width="1423" height="520" key="GridCell.Tab.0.bottom" timestamp="1586853067195">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="280" y="7" key="SettingsEditor/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586785244269" />
+    <state width="1493" height="184" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
+    <state width="1423" height="520" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586853067195" />
+    <state width="1423" height="520" key="GridCell.Tab.0.center" timestamp="1586853067195">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
+    <state width="1423" height="520" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586853067195" />
+    <state width="1423" height="520" key="GridCell.Tab.0.left" timestamp="1586853067195">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
+    <state width="1423" height="520" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586853067195" />
+    <state width="1423" height="520" key="GridCell.Tab.0.right" timestamp="1586853067195">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state width="1493" height="184" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
+    <state width="1423" height="520" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586853067195" />
+    <state x="280" y="7" key="SettingsEditor" timestamp="1586788811093">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="280" y="7" key="SettingsEditor/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586788811093" />
   </component>
 </project>
