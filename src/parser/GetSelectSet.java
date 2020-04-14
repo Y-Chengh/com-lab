@@ -37,7 +37,7 @@ public class GetSelectSet {
         	}
         	String[] wwStrings=a2.split(" |\\|");
         	for(int i=0;i<wwStrings.length;i++) {
-        		if(!symbolSet.contains(wwStrings[i]) && !wwStrings[i].equals("ε") &&!wwStrings[i].equals("")) {
+        		if(!symbolSet.contains(wwStrings[i]) && !wwStrings[i].equals("ε") &&!wwStrings[i].equals("") &&isTerminal(wwStrings[i])) {
         			symbolSet.add(wwStrings[i]);
         		}
         	}
