@@ -35,7 +35,16 @@ public class GetSelectSet {
         		Set<String> aa=new HashSet<>();
         		selectSet.put(a1+"→"+words[i],aa);
         	}
+        	String[] wwStrings=a2.split(" |\\|");
+        	for(int i=0;i<words.length;i++) {
+        		if(!symbolSet.contains(wwStrings[i])) {
+        			symbolSet.add(wwStrings[i]);
+        		}
+        	}
         }
+        
+        getAllSelectSet();
+        createLL1();
     }
     
  // 判断一个字符是否为非终结符.
@@ -103,11 +112,11 @@ public class GetSelectSet {
     public static void printSelectSet(){
         System.out.println("SelectSet of Product:");
         for(Map.Entry<String,Set<String>> entry:selectSet.entrySet()){
-        	for(String aa:entry.getValue()) {
+        	/*for(String aa:entry.getValue()) {
         		if(!symbolSet.contains(aa)) {
         			symbolSet.add(aa);
         		}
-        	}
+        	}*/
             String right = "";
             for(String s:entry.getValue()){
                 right = right+ " "+s;
@@ -147,22 +156,26 @@ public class GetSelectSet {
         		}
         	}
         }
-        for(int m=0;m<j;m++) {
-			for(int n=0;n<i;n++) {
+
+    	
+    }
+    
+    //打印LL1分析表
+    public static void printLL1() {
+    	for(int m=0;m<LL1.length;m++) {
+			for(int n=0;n<LL1[m].length;n++) {
 				System.out.print(LL1[m][n]+"     ");
 			}
 			System.out.println();
 		}
-    	
     }
-    
-    
     public static void main(String[] args) {
         //initial();
-        getAllSelectSet();
+        //getAllSelectSet();
         printFisrtSet();
         printFollowSet();
         printSelectSet();
-        createLL1();
+        //createLL1();
+        printLL1();
     }
 }
