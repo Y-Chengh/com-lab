@@ -33,6 +33,9 @@ public class GetFirstSet {
                 count++;
                 String productLeft = line.split("→")[0].trim();
                 String productRight = line.split("→")[1].trim();
+                if(product.keySet().contains(productLeft)){
+                    productRight = product.get(productLeft) + "|" + productRight;
+                }
                 product.put(productLeft,productRight);
 
                 getFisrtFlag.put(productLeft,false);
