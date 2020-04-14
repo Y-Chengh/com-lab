@@ -27,6 +27,7 @@ public class GetSelectSet {
         product = GetFollowSet.product;
         firstSet = GetFollowSet.firstSet;
         followSet = GetFollowSet.followSet;
+        //System.out.println("...................................");
         for(Map.Entry<String,String> entry:product.entrySet()){
         	String a1=entry.getKey();
         	String a2=entry.getValue();
@@ -36,6 +37,7 @@ public class GetSelectSet {
         		selectSet.put(a1+"→"+words[i],aa);
         	}
         	String[] wwStrings=a2.split(" |\\|");
+        	System.out.println(a2);
         	for(int i=0;i<wwStrings.length;i++) {
         		if(!symbolSet.contains(wwStrings[i]) && !wwStrings[i].equals("ε") &&!wwStrings[i].equals("") &&isTerminal(wwStrings[i])) {
         			symbolSet.add(wwStrings[i]);
@@ -43,7 +45,7 @@ public class GetSelectSet {
         	}
         	symbolSet.add("$");
         }
-        
+        //System.out.println("..............................");
         getAllSelectSet();
         createLL1();
     }
@@ -54,10 +56,16 @@ public class GetSelectSet {
     }
     
     public static void getSelectSet(String productLeft,String productRights){
+    	//System.out.println("............................");
+    	//System.out.println(productRights);
     	String[] rights = productRights.split("\\|");
         for(int k=0;k<rights.length;k++) {
             String productRight = rights[k].trim();
             String[] words = productRight.split("\\s+");
+            //if(words[0])
+            if(words[0]==" ") {
+            	words[0]=words[1];
+            }
             if(isTerminal(words[0]) && !words[0].equals("ε")) {
             	//System.out.println(words[0]);
             	selectSet.get(productLeft+"→"+rights[k]).add(words[0]);
@@ -73,11 +81,11 @@ public class GetSelectSet {
             		selectSet.get(productLeft+"→"+rights[k]).addAll(bb);
             		selectSet.get(productLeft+"→"+rights[k]).addAll(followSet.get(productLeft));
             	}else {
-            		selectSet.get(productLeft+"→"+rights[k]).addAll(firstSet.get(productLeft));
+            		selectSet.get(productLeft+"→"+rights[k]).addAll(firstSet.get(words[0]));
             	}
             }  
         }
-    	
+    	//System.out.println(".............................");
     }
     
  // 处理所有产生式
