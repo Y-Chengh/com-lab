@@ -28,6 +28,7 @@ public class Path {
             "table/keyword/_call.txt",
             "table/keyword/_record.txt",
             "table/keyword/_while.txt",
+            "table/keyword/proc.txt",
 
             "table/operator/arithmetic_divide.txt",
             "table/operator/arithmetic_minus.txt",

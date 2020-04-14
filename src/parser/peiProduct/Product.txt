@@ -1,0 +1,29 @@
+Start → P
+P → D P | S P | ε
+D → proc Y id ( M ) { P } | record id { P } | T id A ;
+A → = E A | , id A | ε
+M → X id M'
+M' → , X id M' | ε
+T → X C
+X → int | float | boolean | char
+Y → void | int | float | boolean | char
+C → [ number ] C | ε
+S → id = E ; | L = E ;
+E → G E'
+E' → + G E' | - G E' | ε
+G → F G'
+G' → * F G' | / F G' | ε
+F → id | number | real | ( E ) | L
+L → id [ E ] L'
+L' → [ E ] L' | ε
+S → if ( B ) { S } | if ( B ) { S } else { S }
+S → while ( B ) { S }
+B → H B'
+B' → or H B' | ε
+H → I H'
+H' → and I H' | ε
+I → ! I | ( B ) | E relop E | true | false
+relop → < | <= | == | != | > | >=
+S → call id ( Elist ) ; | return E ;
+Elist → E Elist'
+Elist' → , E Elist' | ε

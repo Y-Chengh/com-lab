@@ -17,6 +17,7 @@ public class Parser {
         {
             put("identifier", "id");
             put("semicolon", ";");
+            put("comma", ",");
             put("right_middle_parentheses", "]");
             put("left_middle_parentheses", "[");
             put("right_small_parentheses", ")");
@@ -67,7 +68,7 @@ public class Parser {
                 assert topSymbol.equals(pack.type);
                 index++;
                 String pop = stack.pop();
-                System.out.println("recognize: " + pack.type + " " + pack.value);
+                System.out.println("recognize: " + pack.type + " " + pack.value + " " + typeToInput.getOrDefault(pack.type, pack.type));
                 System.out.println("pop: " + pop);
                 System.out.println(stack);
                 continue;
