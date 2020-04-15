@@ -1,9 +1,5 @@
-if (a == c){
-	d = 1;
+
+proc int function(int x, int y){
+ y = x + 1;
+ return y;
 }
- 
- 
-else{
-	d = 2;
-}
- 

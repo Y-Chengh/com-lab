@@ -3,7 +3,7 @@ A → = F A | , id A | ε
 B → H B'
 E' → + G E'|ε
 C → [ num ] C | ε
-D → proc X id ( M ) { P } | record id { P } | T id A ;
+D → proc X id ( M ) { P } | record id { P } | T id A ; | id A ;
 Start → P
 E → G E'
 Elist' → , E Elist'|ε
@@ -14,15 +14,14 @@ I → ! I | ( B ) | E Relop E | true | false
 L → id L'
 M → X id M'
 P → D P | S P | ε
-S → MachedS | OpenS
+S → MachedS
 T → X C
 X → int | float | bool | char
 L' → [ num ] L'|ε
 Elist → E Elist'
 H' → and I H'|ε
-OpenS → if ( B ) { OpenS_if(B){
 B' → or H B'|ε
 Relop → < | <= | > | >= | == | !=
-OpenS_if(B){ →  MachedS } else { Opens }| S }
-MachedS → if ( B ) { MachedS } else { MachedS } | L = E ; | do { S } while ( B ) ; | call id ( Elist ) ; | return E ;
+MachedS → call id ( Elist ) ;|T id A|do { S } while ( B ) ;|L = E ;|if ( B ) { MachedS } MachedS_if(B){MachedS}|return E ;
 M' → , X id M'|ε
+MachedS_if(B){MachedS} →  else { MachedS }

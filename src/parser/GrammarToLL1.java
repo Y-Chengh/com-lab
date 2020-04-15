@@ -260,8 +260,8 @@ public class GrammarToLL1 {
     }
 
     public static void main(String[] args) {
-        String inputFilePath = System.getProperty("user.dir")+"/src/parser/"+"OriginProduct.txt";
-        String outputFilePath = System.getProperty("user.dir")+"/src/parser/"+"Product.txt";
+        String inputFilePath = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammarOrigin.txt";
+        String outputFilePath = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
         trans2LL1(inputFilePath,outputFilePath);
     }
 }

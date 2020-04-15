@@ -1,0 +1,17 @@
+program → block
+block → { decls stmts }
+decls → decls delc | ε
+delc → type id ;
+type → type [ num ] | basic
+basic → int | char | float | String
+stmts → stmts stmt | ε 
+stmt → loc = bool ; | if ( bool ) stmt | if ( bool ) stmt else stmt | while ( bool ) stmt | do stmt while ( bool ) ; | break; | bolck
+loc → loc [ bool ] | id
+bool → bool or join | join
+join → join and equality | equality
+equality → equality == rel | equality != rel |
+ rel
+expr → expr + term | expr - term | term
+term → term * unary | term / unary | unary
+unary → ! unary | factor
+factor → ( bool ) | loc | num | real | true | false

@@ -28,6 +28,11 @@ public class Parser {
             put("arithmetic_minus", "-");
             put("arithmetic_multiply", "*");
             put("arithmetic_divide", "/");
+            put("relational_less", "<");
+            put("relational_larger", ">");
+            put("relational_largerEqual", ">=");
+            put("relational_lessEqual", "<=");
+            put("relational_notEqual", "!=");
             put("integer", "num");
             put("num", "number");
             put("equal", "=");
