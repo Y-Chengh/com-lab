@@ -117,7 +117,8 @@ public class GrammarToLL1 {
                 if(words[0].equals(productLeft)){
                     String temp = productRight;
                     while (temp.length()>=productLeft.length()){
-                        if(temp.substring(0,productLeft.length()).equals(productLeft)){
+                        String firstWord = temp.split("\\s+")[0];
+                        if(firstWord.equals(productLeft)){
                             temp = temp.substring(productLeft.length(),temp.length()).trim();
                         }else {
                             break;

@@ -1,7 +1,7 @@
 stmt_if(bool)stmt → ε|else stmt
 loc → id loc'
 bool → join bool'
-parameter' → WithComma parameter'|ε
+parameter' → parameterWithComma parameter'|ε
 rel_expr → <= expr|> expr|ε|>= expr|< expr
 program → function function | ε
 unary → ! unary | factor
