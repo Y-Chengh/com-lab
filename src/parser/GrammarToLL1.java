@@ -192,7 +192,11 @@ public class GrammarToLL1 {
                     String newProductLeft = productLeft +"_"+prefix.replace(" ","");
                     String newProductRight = "";
                     for(String s:set){
-                        newProductRight = newProductRight + s.substring(prefix.length(),s.length())+"|";
+                        String _right =  s.substring(prefix.length(),s.length()).trim();
+                        if(_right.equals("")) {
+                            _right = "ε";
+                        }
+                        newProductRight = newProductRight + _right+"|";
                     }
                     tempProduct.put(newProductLeft,newProductRight.substring(0,newProductRight.length()-1));
                     newProductRights = newProductRights + prefix+" "+newProductLeft +"|";

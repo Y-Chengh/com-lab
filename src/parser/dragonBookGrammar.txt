@@ -1,7 +1,7 @@
-stmt_if(bool)stmt → | else stmt
+stmt_if(bool)stmt → ε|else stmt
 loc → id loc'
 bool → join bool'
-rel_expr →  <= expr| > expr|| >= expr| < expr
+rel_expr → <= expr|> expr|ε|>= expr|< expr
 program → block
 unary → ! unary | factor
 type → basic type'
