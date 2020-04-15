@@ -29,6 +29,8 @@ public class Path {
             "table/keyword/_record.txt",
             "table/keyword/_while.txt",
             "table/keyword/proc.txt",
+            "table/keyword/String_type.txt",
+
 
             "table/operator/arithmetic_divide.txt",
             "table/operator/arithmetic_minus.txt",

@@ -1,14 +1,18 @@
 stmt_if(bool)stmt → ε|else stmt
 loc → id loc'
 bool → join bool'
+parameter' → WithComma parameter'|ε
 rel_expr → <= expr|> expr|ε|>= expr|< expr
-program → block
+program → function function | ε
 unary → ! unary | factor
 type → basic type'
 stmts' → stmt stmts'|ε
+param → type id
 loc' → [ bool ] loc'|ε
 expr' → + term expr'|- term expr'|ε
 delc → type id ;
+function → basic id ( parameters ) block | ε
+parameter → param parameter'
 rel → expr rel_expr
 block → { decls stmts }
 expr → term expr'
@@ -18,6 +22,7 @@ factor → ( bool ) | loc | num | real | true | false
 decls' → delc decls'|ε
 equality → rel equality'
 stmts → stmts'
+parameterWithComma → , type id
 bool' → or join bool'|ε
 term' → * unary term'|/ unary term'|ε
 equality' → == rel equality'|!= rel equality'|ε
@@ -25,4 +30,5 @@ join' → and equality join'|ε
 type' → [ num ] type'|ε
 decls → decls'
 basic → int | char | float | String
-stmt → loc = bool ;|break ;|do stmt while ( bool ) ;|while ( bool ) stmt|if ( bool ) stmt stmt_if(bool)stmt|bolck
+parameters → parameter | ε
+stmt → loc = bool ;|return;|break ;|block|do stmt while ( bool ) ;|while ( bool ) stmt|if ( bool ) stmt stmt_if(bool)stmt
