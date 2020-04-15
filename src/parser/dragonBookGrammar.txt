@@ -1,9 +1,12 @@
 stmt_if(bool)stmt → ε|else stmt
 loc → id loc'
+functions → functions'
 bool → join bool'
+callParam → id
+callParameter → callParam callParameter'
 parameter' → parameterWithComma parameter'|ε
 rel_expr → <= expr|> expr|ε|>= expr|< expr
-program → function function | ε
+program → functions | ε
 unary → ! unary | factor
 type → basic type'
 stmts' → stmt stmts'|ε
@@ -11,7 +14,7 @@ param → type id
 loc' → [ bool ] loc'|ε
 expr' → + term expr'|- term expr'|ε
 delc → type id ;
-function → basic id ( parameters ) block | ε
+function → basic id ( parameters ) block | record id { decls stmts }
 parameter → param parameter'
 rel → expr rel_expr
 block → { decls stmts }
@@ -21,14 +24,18 @@ join → equality join'
 factor → ( bool ) | loc | num | real | true | false
 decls' → delc decls'|ε
 equality → rel equality'
+callParameter' → callParameterWithComma callParameter'|ε
 stmts → stmts'
 parameterWithComma → , type id
 bool' → or join bool'|ε
+callParameters → callParameter | ε
 term' → * unary term'|/ unary term'|ε
 equality' → == rel equality'|!= rel equality'|ε
+functions' → function functions'|ε
 join' → and equality join'|ε
 type' → [ num ] type'|ε
 decls → decls'
 basic → int | char | float | String
 parameters → parameter | ε
-stmt → loc = bool ;|return;|break ;|block|do stmt while ( bool ) ;|while ( bool ) stmt|if ( bool ) stmt stmt_if(bool)stmt
+callParameterWithComma → , id
+stmt → call id ( callParameters ) ;|loc = bool ;|break ;|record id { decls stmts }|block|do stmt while ( bool ) ;|while ( bool ) stmt|if ( bool ) stmt stmt_if(bool)stmt|return ;

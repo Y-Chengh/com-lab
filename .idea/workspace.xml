@@ -42,7 +42,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
-  <component name="RunManager" selected="Application.Parser">
+  <component name="RunManager" selected="Application.GetSelectSet">
     <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.Frame" />
       <module name="compiler" />
@@ -85,6 +85,7 @@
     <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="parser.Parser" />
       <module name="compiler" />
+      <option name="VM_PARAMETERS" value="-ea" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="parser.*" />
@@ -117,10 +118,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Frame" />
+      <item itemvalue="Application.GetSelectSet" />
+      <item itemvalue="Application.GrammarToLL1" />
+      <item itemvalue="Application.Parser" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GrammarToLL1" />
         <item itemvalue="Application.Parser" />
+        <item itemvalue="Application.GrammarToLL1" />
+        <item itemvalue="Application.GetSelectSet" />
       </list>
     </recent_temporary>
   </component>
@@ -142,7 +150,7 @@
       <workItem from="1586925473394" duration="997000" />
       <workItem from="1586926495407" duration="3751000" />
       <workItem from="1586936557371" duration="296000" />
-      <workItem from="1586936879683" duration="1468000" />
+      <workItem from="1586936879683" duration="5696000" />
     </task>
     <servers />
   </component>
@@ -167,6 +175,10 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="292" y="8" key="#Project_Structure/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586936844053" />
+    <state x="254" y="81" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586941106576">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="254" y="81" key="#com.intellij.execution.impl.EditConfigurationsDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586941106576" />
     <state x="561" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1586855415942">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
@@ -179,26 +191,26 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="578" y="134" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586936841920" />
-    <state width="1421" height="435" key="GridCell.Tab.0.bottom" timestamp="1586938548090">
+    <state width="1421" height="472" key="GridCell.Tab.0.bottom" timestamp="1586942009389">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
-    <state width="1421" height="435" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586938548090" />
-    <state width="1421" height="435" key="GridCell.Tab.0.center" timestamp="1586938548090">
+    <state width="1421" height="472" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586942009389" />
+    <state width="1421" height="472" key="GridCell.Tab.0.center" timestamp="1586942009389">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
-    <state width="1421" height="435" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586938548090" />
-    <state width="1421" height="435" key="GridCell.Tab.0.left" timestamp="1586938548090">
+    <state width="1421" height="472" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586942009389" />
+    <state width="1421" height="472" key="GridCell.Tab.0.left" timestamp="1586942009389">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879257" />
-    <state width="1421" height="435" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586938548090" />
-    <state width="1421" height="435" key="GridCell.Tab.0.right" timestamp="1586938548090">
+    <state width="1421" height="472" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586942009389" />
+    <state width="1421" height="472" key="GridCell.Tab.0.right" timestamp="1586942009389">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1493" height="184" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@1982.0.1474.864" timestamp="1586786879258" />
-    <state width="1421" height="435" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586938548090" />
+    <state width="1421" height="472" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1586942009389" />
     <state x="108" y="0" key="SettingsEditor" timestamp="1586870998903">
       <screen x="62" y="0" width="1474" height="864" />
     </state>

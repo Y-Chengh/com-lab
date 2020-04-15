@@ -37,6 +37,8 @@ public class Parser {
             put("num", "number");
             put("equal", "=");
             put("relational_equal", "==");
+
+            put("string", "charArray");
         }
     };
     public String startSymbol = "program";
@@ -59,6 +61,7 @@ public class Parser {
         stack.push("$");
         stack.push(startSymbol);
 
+
         int index = 0;
 
         while (true) {
@@ -70,7 +73,10 @@ public class Parser {
             Pack pack = packList.get(index);
 
             if (GetSelectSet.isTerminal(topSymbol)) {
-                assert topSymbol.equals(pack.type);
+                if (!topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type))) {
+                    System.out.println(pack.type + "  " + topSymbol);
+                }
+                assert topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type));
                 index++;
                 String pop = stack.pop();
                 System.out.println("recognize: " + pack.type + " " + pack.value + " " + typeToInput.getOrDefault(pack.type, pack.type));

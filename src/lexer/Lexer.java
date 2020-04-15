@@ -456,7 +456,7 @@ public class Lexer {
                 if(state.contains("<")){
                     int indexOfState = state.indexOf("<");// 状态号的最后一个字符的index
                     int tableState = Integer.parseInt(state.substring(0, indexOfState));
-                    assert tableState == count;
+//                    assert tableState == count;
                     String subString = state.substring(indexOfState + 1, state.length() - 1);
                     String type = subString.split(",")[0];
                     String value = subString.split(",")[1];

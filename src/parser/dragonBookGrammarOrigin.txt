@@ -1,16 +1,21 @@
-program → function function | ε
-function → basic id ( parameters ) block | ε
+program → functions | ε
+functions → functions function | ε
+function → basic id ( parameters ) block | record id { decls stmts }
 parameters → parameter | ε
 parameter → parameter parameterWithComma | param
-parameterWithComma → , type id
 param → type id
+parameterWithComma → , type id
+callParameters → callParameter | ε
+callParameter → callParameter callParameterWithComma | callParam
+callParameterWithComma → , id
+callParam → id
 block → { decls stmts }
 decls → decls delc | ε
 delc → type id ;
 type → type [ num ] | basic
 basic → int | char | float | String
 stmts → stmts stmt | ε 
-stmt → loc = bool ; | if ( bool ) stmt | if ( bool ) stmt else stmt | while ( bool ) stmt | do stmt while ( bool ) ; | break ; | block | return;
+stmt → loc = bool ; | if ( bool ) stmt | if ( bool ) stmt else stmt | while ( bool ) stmt | do stmt while ( bool ) ; | break ; | block | return ; | call id ( callParameters ) ; | record id { decls stmts }
 loc → loc [ bool ] | id
 bool → bool or join | join
 join → join and equality | equality

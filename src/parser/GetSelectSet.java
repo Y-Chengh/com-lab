@@ -159,7 +159,12 @@ public class GetSelectSet {
         		for(int m=0;m<j;m++) {
         			for(int n=0;n<i;n++) {
         				if(tempStrings[0].equals(LL1[m][0])&&aa.equals(LL1[0][n])) {
-        					assert LL1[m][n]==null;
+                            if (LL1[m][n] != null) {
+                                System.out.println("assert error!");
+                                System.out.println(LL1[m][0]);
+                                System.out.println(LL1[0][n]);
+                            }
+//        					assert LL1[m][n]==null;
         					LL1[m][n]=entry.getKey();
         				}
         			}
