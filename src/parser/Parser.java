@@ -43,6 +43,8 @@ public class Parser {
     };
     public String startSymbol = "program";
     public List<String> productList = new ArrayList<>();
+    public List<String> errorList = new ArrayList<>();
+
 
     public void predict(String filePath) {
         GetSelectSet.initial();
@@ -54,7 +56,7 @@ public class Parser {
 
         List<Pack> packList = new ArrayList<>();
         packList.addAll(lexer.acceptTokens);
-        packList.add(new Pack("$", null, -1, null));
+        packList.add(new Pack("$", "-", -1, null));
 
 
         Stack<String> stack = new Stack<>();
@@ -74,8 +76,13 @@ public class Parser {
 
             if (GetSelectSet.isTerminal(topSymbol)) {
                 if (!topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type))) {
-                    System.out.println(pack.type + "  " + topSymbol);
+                    System.out.println("not equal " + pack.type + "  " + topSymbol);
+                    System.out.println("栈顶终结符与输入不同");
+                    errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "栈顶终结符与输入不同" + "--" + (pack.lineNumber-1));
+                    stack.pop();
+                    continue;
                 }
+
                 assert topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type));
                 index++;
                 String pop = stack.pop();
@@ -88,6 +95,15 @@ public class Parser {
             String inputToken = typeToInput.getOrDefault(pack.type, pack.type);
             System.out.println("stack: " + stack);
             System.out.println("inputToken " + inputToken);
+
+            if (LL1Map.getOrDefault(topSymbol, null) == null || LL1Map.get(topSymbol).getOrDefault(inputToken, null) == null) {
+                System.out.println("LL1表中对应表项为null");
+                errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "LL1表中对应表项为null" + "--" + (pack.lineNumber-1));
+//                index ++;
+                stack.pop();
+                continue;
+            }
+
             System.out.println("LL1Map.get(topSymbol): " + LL1Map.get(topSymbol));
             System.out.println("LL1Map.get(topSymbol).get(inputToken).trim(): " + LL1Map.get(topSymbol).get(inputToken).trim());
             String product = LL1Map.get(topSymbol).get(inputToken).trim();
@@ -108,6 +124,7 @@ public class Parser {
             }
         }
     }
+
 
 
     private Map<String, Map<String, String>> convertLL1ArrayToMap(String[][] LL1) {
@@ -157,6 +174,7 @@ public class Parser {
         Parser parser = new Parser();
         parser.predict(filePath);
         parser.productList.forEach(x -> System.out.println(x));
+        parser.errorList.forEach(x -> System.out.println(x));
 //
 //        GetSelectSet.printSelectSet();
 

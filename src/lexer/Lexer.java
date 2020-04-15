@@ -211,6 +211,8 @@ public class Lexer {
                 acceptPack.token = "" + sb.substring(0, acceptPack.length);
                 sb.delete(0, acceptPack.length);
                 count += acceptPack.length;
+                int indexOfAcceptToken = findIndexOfLine(count, indicesOfLines);
+                acceptPack.lineNumber = indexOfAcceptToken;
                 acceptTokenList.add(acceptPack);
             }
         }
