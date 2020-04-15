@@ -123,7 +123,10 @@ public class GrammarToLL1 {
                             break;
                         }
                     }
-                    leftRecursionList.add(temp);
+                    if(!temp.equals("")){
+                        leftRecursionList.add(temp);
+                    }
+
 //                    leftRecursionList.add(
 //                            productRight.substring(productLeft.length()-1,productRight.length()));
                 }else {
@@ -137,7 +140,10 @@ public class GrammarToLL1 {
             for(String s:nonleftRecursionList){
                 newProductRight1 = newProductRight1 + s +" " + newSymbol + "|";
             }
-            tempProduct.put(productLeft, newProductRight1.substring(0,newProductRight1.length()-1));
+            if(nonleftRecursionList.size() !=0){
+                tempProduct.put(productLeft, newProductRight1.substring(0,newProductRight1.length()-1));
+            }
+
             String newProductRight2 = "";
             for(String s:leftRecursionList){
                 if(s.equals("ε"))continue;
