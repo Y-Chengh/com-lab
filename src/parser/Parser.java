@@ -78,7 +78,15 @@ public class Parser {
                 if (!topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type))) {
                     System.out.println("not equal " + pack.type + "  " + topSymbol);
                     System.out.println("栈顶终结符与输入不同");
-                    errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "栈顶终结符与输入不同" + "--" + (pack.lineNumber-1));
+                    int flag = 0;
+                    if(errorList.size() >= 1
+                        && errorList.get(errorList.size()-1).contains("<" + pack.type + "," + pack.value + ">")
+                        && errorList.get(errorList.size()-1).contains("" + (pack.lineNumber-1)))
+                        flag = 1;
+                    if (flag == 0) {
+                        errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "栈顶终结符与输入不同" + "--" + (pack.lineNumber - 1));
+                    }
+
                     stack.pop();
                     continue;
                 }
@@ -98,7 +106,15 @@ public class Parser {
 
             if (LL1Map.getOrDefault(topSymbol, null) == null || LL1Map.get(topSymbol).getOrDefault(inputToken, null) == null) {
                 System.out.println("LL1表中对应表项为null");
-                errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "LL1表中对应表项为null" + "--" + (pack.lineNumber-1));
+                int flag = 0;
+                if(errorList.size() >= 1
+                        && errorList.get(errorList.size()-1).contains("<" + pack.type + "," + pack.value + ">")
+                        && errorList.get(errorList.size()-1).contains("" + (pack.lineNumber-1)))
+                    flag = 1;
+                if (flag == 0) {
+                    errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "LL1表中对应表项为null" + "--" + (pack.lineNumber-1));
+                }
+
 //                index ++;
                 stack.pop();
                 continue;
@@ -169,14 +185,10 @@ public class Parser {
 
     public static void main(String[] args) {
         String filePath = System.getProperty("user.dir") + "/src/parser/" + "test.txt";
-//        GetSelectSet.initial();
-
         Parser parser = new Parser();
         parser.predict(filePath);
         parser.productList.forEach(x -> System.out.println(x));
         parser.errorList.forEach(x -> System.out.println(x));
-//
-//        GetSelectSet.printSelectSet();
 
 
     }
