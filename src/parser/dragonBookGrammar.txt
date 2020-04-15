@@ -15,12 +15,12 @@ join → equality join'
 factor → ( bool ) | loc | num | real | true | false
 decls' → delc decls'|ε
 equality → rel equality'
-stmts → ε stmts'
+stmts → stmts'
 bool' → or join bool'|ε
 term' → * unary term'|/ unary term'|ε
 equality' → == rel equality'|!= rel equality'|ε
 join' → and equality join'|ε
 type' → [ num ] type'|ε
-decls → ε decls'
+decls → decls'
 basic → int | char | float | String
 stmt → loc = bool ;|do stmt while ( bool ) ;|while ( bool ) stmt|break;|if ( bool ) stmt stmt_if(bool)stmt|bolck

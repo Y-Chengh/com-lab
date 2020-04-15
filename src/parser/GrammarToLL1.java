@@ -138,7 +138,11 @@ public class GrammarToLL1 {
             String newSymbol = productLeft+"'";
             String newProductRight1 = "";
             for(String s:nonleftRecursionList){
-                newProductRight1 = newProductRight1 + s +" " + newSymbol + "|";
+                if(s.trim().equals("ε")){
+                    newProductRight1 = newProductRight1 + newSymbol + "|";
+                }else {
+                    newProductRight1 = newProductRight1 + s +" " + newSymbol + "|";
+                }
             }
             if(nonleftRecursionList.size() !=0){
                 tempProduct.put(productLeft, newProductRight1.substring(0,newProductRight1.length()-1));
