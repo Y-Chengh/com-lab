@@ -1,5 +1,1 @@
-
-proc int function(int x, int y){
- y = x + 1;
- return y;
-}
+{a = 10;}

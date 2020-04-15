@@ -22,7 +22,7 @@ public class GetSelectSet {
     }
     //初始化信息
     public static void initial(){
-        String filePath = System.getProperty("user.dir")+"/src/parser/"+"Product.txt";
+        String filePath = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
         GetFollowSet.getFollowSet(filePath);
         product = GetFollowSet.product;
         firstSet = GetFollowSet.firstSet;

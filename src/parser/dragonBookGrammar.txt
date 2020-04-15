@@ -1,6 +1,7 @@
 stmt_if(bool)stmt → | else stmt
 loc → id loc'
 bool → join bool'
+rel_expr →  <= expr| > expr|| >= expr| < expr
 program → block
 unary → ! unary | factor
 type → basic type'
@@ -8,6 +9,7 @@ stmts' → stmt stmts'|ε
 loc' → [ bool ] loc'|ε
 expr' → + term expr'|- term expr'|ε
 delc → type id ;
+rel → expr rel_expr
 block → { decls stmts }
 expr → term expr'
 term → unary term'
@@ -23,4 +25,4 @@ join' → and equality join'|ε
 type' → [ num ] type'|ε
 decls → decls'
 basic → int | char | float | String
-stmt → loc = bool ;|do stmt while ( bool ) ;|while ( bool ) stmt|break;|if ( bool ) stmt stmt_if(bool)stmt|bolck
+stmt → loc = bool ;|break ;|do stmt while ( bool ) ;|while ( bool ) stmt|if ( bool ) stmt stmt_if(bool)stmt|bolck

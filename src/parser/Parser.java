@@ -39,7 +39,7 @@ public class Parser {
             put("relational_equal", "==");
         }
     };
-    public String startSymbol = "Start";
+    public String startSymbol = "program";
     public List<String> productList = new ArrayList<>();
 
     public void predict(String filePath) {
