@@ -299,7 +299,7 @@ public class Lexer {
                 String string = sb.substring(0, i+1);
                 String type = currentState.generateType(string);
                 String value = currentState.generateValue(string);
-                return new Pack(type, value, string.length(), parse);
+                return new Pack(type, value, string.length(), parse, string);
             }
         }
 

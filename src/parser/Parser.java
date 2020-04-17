@@ -12,7 +12,9 @@ import parser.GetSelectSet;
 
 public class Parser {
 	private static String filepath;
-	
+    public List<Integer> lineNumbers = new ArrayList<>();
+    public List<String> infoList = new ArrayList<>();
+
 	public Parser(String filepath) {
 		Parser.filepath=filepath;
 	}
@@ -61,7 +63,7 @@ public class Parser {
 
         List<Pack> packList = new ArrayList<>();
         packList.addAll(lexer.acceptTokens);
-        packList.add(new Pack("$", "-", -1, null));
+        packList.add(new Pack("$", "-", -1, null, "$"));
 
 
         Stack<String> stack = new Stack<>();
@@ -85,11 +87,11 @@ public class Parser {
                     System.out.println("栈顶终结符与输入不同");
                     int flag = 0;
                     if(errorList.size() >= 1
-                        && errorList.get(errorList.size()-1).contains("<" + pack.type + "," + pack.value + ">")
+                        && errorList.get(errorList.size()-1).contains(pack.orginString)
                         && errorList.get(errorList.size()-1).contains("" + (pack.lineNumber-1)))
                         flag = 1;
                     if (flag == 0) {
-                        errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "栈顶终结符与输入不同" + "--" + (pack.lineNumber - 1));
+                        errorList.add(pack.orginString + "--" + "栈顶终结符与输入不同" + "--" + (pack.lineNumber - 1));
                     }
 
                     stack.pop();
@@ -99,6 +101,8 @@ public class Parser {
                 assert topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type));
                 index++;
                 String pop = stack.pop();
+                productList.add(pop + "→" + pack.orginString + "#");
+                lineNumbers.add(pack.lineNumber);
                 System.out.println("recognize: " + pack.type + " " + pack.value + " " + typeToInput.getOrDefault(pack.type, pack.type));
                 System.out.println("pop: " + pop);
                 System.out.println(stack);
@@ -113,11 +117,11 @@ public class Parser {
                 System.out.println("LL1表中对应表项为null");
                 int flag = 0;
                 if(errorList.size() >= 1
-                        && errorList.get(errorList.size()-1).contains("<" + pack.type + "," + pack.value + ">")
+                        && errorList.get(errorList.size()-1).contains(pack.orginString)
                         && errorList.get(errorList.size()-1).contains("" + (pack.lineNumber-1)))
                     flag = 1;
                 if (flag == 0) {
-                    errorList.add("<" + pack.type + "," + pack.value + ">" + "--" + "LL1表中对应表项为null" + "--" + (pack.lineNumber-1));
+                    errorList.add(pack.orginString + "--" + "LL1表中对应表项为null" + "--" + (pack.lineNumber-1));
                 }
 
 //                index ++;
@@ -129,6 +133,7 @@ public class Parser {
             System.out.println("LL1Map.get(topSymbol).get(inputToken).trim(): " + LL1Map.get(topSymbol).get(inputToken).trim());
             String product = LL1Map.get(topSymbol).get(inputToken).trim();
             productList.add(product);
+            lineNumbers.add(pack.lineNumber);
             System.out.println("product: "+ product);
             String rightSideOfProduct = product.substring(product.indexOf("→") + 1).trim();
             if (rightSideOfProduct.contains("ε")) {
@@ -195,7 +200,8 @@ public class Parser {
         parser.predict(filePath);
         parser.productList.forEach(x -> System.out.println(x));
         parser.errorList.forEach(x -> System.out.println(x));
-
+        System.out.println(parser.productList.size());
+        System.out.println(parser.lineNumbers.size());
 
     }
 }
