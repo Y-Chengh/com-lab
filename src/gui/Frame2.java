@@ -6,6 +6,7 @@ package gui;
 import lexer.*;
 import parser.GetSelectSet;
 import parser.Parser;
+import parser.packer;
 
 import java.awt.*;
 import java.io.*;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
@@ -115,7 +117,7 @@ public class Frame2 extends javax.swing.JFrame {
 		jTable2.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] {
 
-				}, new String[] { "Error at Line 以及说明" }) {
+				}, new String[] { "出错的符号","Error at Line","说明" }) {
 			boolean[] canEdit = new boolean[] { false, false };
 
 			public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -421,13 +423,69 @@ public class Frame2 extends javax.swing.JFrame {
 		Parser parser=new Parser(filePath);
 		parser.predict(filePath2);
 		for(String temp1:parser.errorList) {
+			String[] aaStrings=temp1.split("--");
 			DefaultTableModel tableModel22 = (DefaultTableModel) jTable2.getModel();
-	        tableModel22.addRow(new Object[] {temp1});
+	        tableModel22.addRow(new Object[] {aaStrings[0],aaStrings[2],aaStrings[1]});
 	        jTable2.invalidate();
 		}
+		
+		
 		jTextArea2.setText("");
+		Stack<packer> stack=new Stack<packer>();
 		for(String temp2:parser.productList) {
-			jTextArea2.append(temp2 + "\r\n");
+			String[] aaStrings=temp2.split("→");
+			String[] bbStrings=aaStrings[1].trim().split(" ");
+			if(temp2.contains("program")) {
+				packer aa1=new packer("program", 0);
+				//System.out.print("program" + "\r\n");
+				jTextArea2.append("program" + "\r\n");
+				for(int i=bbStrings.length-1;i>=0;i--) {
+					packer aa2=new packer(bbStrings[i], 1);
+					stack.push(aa2);
+				}
+			}else {
+				if(stack.isEmpty()) {
+					break;
+				}
+				if(aaStrings[1].contains("ε")) {
+					stack.pop();
+					continue;
+				}
+				while(!stack.peek().getValue().equals(aaStrings[0])) {
+					stack.pop();
+				}
+				//System.out.println(stack.peek().getValue());
+				if(stack.peek().getValue().equals(aaStrings[0])) {
+					
+					if(aaStrings[1].contains("#")) {
+						String[] ccStrings1=aaStrings[1].split("#");
+						int len=stack.peek().getLength();
+						for(int j=0;j<len;j++) {
+							//System.out.print("  ");
+							jTextArea2.append("  ");
+							//jTextArea2.append("  ");
+						}
+						//System.out.print(aaStrings[0]+" :"+ccStrings1[0]+"\r\n");
+						jTextArea2.append(aaStrings[0]+" :"+ccStrings1[0]+"\r\n");
+						stack.pop();
+						continue;
+					}
+					
+					int len=stack.peek().getLength();
+					for(int j=0;j<stack.peek().getLength();j++) {
+						//System.out.print("  ");
+						jTextArea2.append("  ");
+					}
+					//System.out.print(aaStrings[0]+"\r\n");
+					jTextArea2.append(aaStrings[0]+"\r\n");
+					
+					stack.pop();
+					for(int i=bbStrings.length-1;i>=0;i--) {
+						packer aa2=new packer(bbStrings[i], len+1);
+						stack.push(aa2);
+					}
+				}
+			}
 		}
         //parser.productList.forEach(x -> System.out.println(x));
         //parser.errorList.forEach(x -> System.out.println(x));
