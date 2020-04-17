@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class Frame2 extends javax.swing.JFrame {
 		//private static String[] tablePaths = Path.tablePaths;
 	    public static String filePath=null;
+	    public static String filePath2=null;
 	//GEN-BEGIN:variables
 		// Variables declaration - do not modify
 		private javax.swing.JMenu jMenu1;
@@ -36,6 +37,7 @@ public class Frame2 extends javax.swing.JFrame {
 		private javax.swing.JMenuItem jMenuItem1;
 		private javax.swing.JMenuItem jMenuItem2;
 		private javax.swing.JMenuItem jMenuItem3;
+		private javax.swing.JMenuItem jMenuItem4;
 		private javax.swing.JScrollPane jScrollPane1;
 		private javax.swing.JScrollPane jScrollPane2;
 		private javax.swing.JScrollPane jScrollPane3;
@@ -102,6 +104,7 @@ public class Frame2 extends javax.swing.JFrame {
 		jMenuItem3 = new javax.swing.JMenuItem();
 		jMenu2 = new javax.swing.JMenu();
 		jMenuItem2 = new javax.swing.JMenuItem();
+		jMenuItem4 = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setFocusable(false);
@@ -172,13 +175,21 @@ public class Frame2 extends javax.swing.JFrame {
 		
 		jMenu1.setText("文件");
 
-		jMenuItem1.setText("打开文件");
+		jMenuItem1.setText("打开测试文件");
 		jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jMenuItem1ActionPerformed(evt);
 			}
 		});
+		
+		jMenuItem4.setText("打开文法文件");
+		jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jMenuItem5ActionPerformed(evt);
+			}
+		});
 		jMenu1.add(jMenuItem1);
+		jMenu1.add(jMenuItem4);
 
 		jMenuItem3.setText("清除文件");
 		jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -195,9 +206,16 @@ public class Frame2 extends javax.swing.JFrame {
 		jMenuItem2.setText("\u8bcd\u6cd5\u5206\u6790");
 		jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jMenuItem2ActionPerformed(evt);
+				try {
+					jMenuItem2ActionPerformed(evt);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
+		
+		
 		jMenu2.add(jMenuItem2);
 
 		jMenuBar1.add(jMenu2);
@@ -345,7 +363,7 @@ public class Frame2 extends javax.swing.JFrame {
 	}// </editor-fold>
 	//GEN-END:initComponents
 
-	private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {
+	private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
 		// TODO add your handling code here:
 		String program = jTextArea1.getText();
 		//program = program.replaceAll("\r|\n", "");
@@ -358,7 +376,7 @@ public class Frame2 extends javax.swing.JFrame {
 		jTable2.invalidate();
 		//创建词法分析类
 		//GetSelectSet.filePath=this.filePath;
-		GetSelectSet.initial(filePath);
+		GetSelectSet.initial(filePath2);
 		int aa=GetSelectSet.LL1[0].length;
 		String[] ccStrings=new String[aa];
 		for(int i=0;i<aa;i++) {
@@ -419,9 +437,9 @@ public class Frame2 extends javax.swing.JFrame {
             //System.out.println(entry.getKey().toString()+": {"+right +" }");
         }
 		
-		String filePath2 = System.getProperty("user.dir") + "/src/parser/" + "test.txt";
-		Parser parser=new Parser(filePath);
-		parser.predict(filePath2);
+		//String filePath2 = System.getProperty("user.dir") + "/src/parser/" + "test.txt";
+		Parser parser=new Parser(filePath2);
+		parser.predict(filePath);
 		for(String temp1:parser.errorList) {
 			String[] aaStrings=temp1.split("--");
 			DefaultTableModel tableModel22 = (DefaultTableModel) jTable2.getModel();
@@ -432,13 +450,16 @@ public class Frame2 extends javax.swing.JFrame {
 		
 		jTextArea2.setText("");
 		Stack<packer> stack=new Stack<packer>();
-		for(String temp2:parser.productList) {
+		//for(String temp2:parser.productList) {
+		for(int k=0;k<parser.productList.size();k++) {
+			String temp2=parser.productList.get(k);
+			int count=parser.lineNumbers.get(k);
 			String[] aaStrings=temp2.split("→");
 			String[] bbStrings=aaStrings[1].trim().split(" ");
 			if(temp2.contains("program")) {
 				packer aa1=new packer("program", 0);
 				//System.out.print("program" + "\r\n");
-				jTextArea2.append("program" + "\r\n");
+				jTextArea2.append("program" +"("+count+")" +"\r\n");
 				for(int i=bbStrings.length-1;i>=0;i--) {
 					packer aa2=new packer(bbStrings[i], 1);
 					stack.push(aa2);
@@ -466,7 +487,7 @@ public class Frame2 extends javax.swing.JFrame {
 							//jTextArea2.append("  ");
 						}
 						//System.out.print(aaStrings[0]+" :"+ccStrings1[0]+"\r\n");
-						jTextArea2.append(aaStrings[0]+" :"+ccStrings1[0]+"\r\n");
+						jTextArea2.append(aaStrings[0]+" :"+ccStrings1[0]+"("+count+")" +"\r\n");
 						stack.pop();
 						continue;
 					}
@@ -477,7 +498,7 @@ public class Frame2 extends javax.swing.JFrame {
 						jTextArea2.append("  ");
 					}
 					//System.out.print(aaStrings[0]+"\r\n");
-					jTextArea2.append(aaStrings[0]+"\r\n");
+					jTextArea2.append(aaStrings[0]+"("+count+")" +"\r\n");
 					
 					stack.pop();
 					for(int i=bbStrings.length-1;i>=0;i--) {
@@ -487,6 +508,28 @@ public class Frame2 extends javax.swing.JFrame {
 				}
 			}
 		}
+		
+		String filePath3 = System.getProperty("user.dir") + "/src/parser/" + "final.txt";
+	    File dir = new File(filePath3);
+	    // 一、检查放置文件的文件夹路径是否存在，不存在则创建
+	    File checkFile = new File(filePath3);
+	    FileWriter writer = null;
+	    try {
+	        // 二、检查目标文件是否存在，不存在则创建
+	        if (!checkFile.exists()) {
+	            checkFile.createNewFile();// 创建目标文件
+	        }
+	        // 三、向目标文件中写入内容
+	        // FileWriter(File file, boolean append)，append为true时为追加模式，false或缺省则为覆盖模式
+	        writer = new FileWriter(checkFile, true);
+	        writer.append(jTextArea2.getText());
+	        writer.flush();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (null != writer)
+	            writer.close();
+	    }
         //parser.productList.forEach(x -> System.out.println(x));
         //parser.errorList.forEach(x -> System.out.println(x));
 		//Lexer latex = new Lexer(program, jTable1, jTable2);
@@ -527,7 +570,19 @@ public class Frame2 extends javax.swing.JFrame {
 		}
 	}
 	
-	
+	private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+
+		FileDialog fileDialog; //{@code FileDialog}类显示一个对话框窗口用户可以从中选择文件。
+		File file = null;
+		Frame frame = null;
+		fileDialog = new FileDialog(frame, "Open", FileDialog.LOAD);
+		fileDialog.setVisible(true);
+
+		file = new File(fileDialog.getDirectory(), fileDialog.getFile());
+		System.out.println(fileDialog.getDirectory()+fileDialog.getFile());
+		filePath2=fileDialog.getDirectory()+ fileDialog.getFile();
+	}
 	
 	/**
 	 * @param args the command line arguments
