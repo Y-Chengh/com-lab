@@ -16,13 +16,15 @@ public class GetSelectSet {
     public static  HashMap<String,Boolean> getSelectFlag = new HashMap<>(); // 判断一个非终结符的Fisrt集是否已经计算出
     public static Set<String> symbolSet=new HashSet<>();//所有的非终结符
     public static String LL1[][];//LL1分析表
+    public static String files;
     
-    static {
-    	initial();
-    }
+    //static {
+    //	initial(filePath);
+    //}
     //初始化信息
-    public static void initial(){
-        String filePath = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
+    public static void initial(String filePath){
+        //String filePath = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
+        System.out.println(filePath);
         GetFollowSet.getFollowSet(filePath);
         product = GetFollowSet.product;
         firstSet = GetFollowSet.firstSet;
@@ -183,7 +185,8 @@ public class GetSelectSet {
 		}
     }
     public static void main(String[] args) {
-        //initial();
+    	String filePath = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
+        initial(filePath);
         //getAllSelectSet();
         printFisrtSet();
         printFollowSet();

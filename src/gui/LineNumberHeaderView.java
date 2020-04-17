@@ -17,7 +17,7 @@ public class LineNumberHeaderView extends javax.swing.JComponent {
     public final Color DEFAULT_FOREGROUD = Color.BLACK;
     public final int nHEIGHT = Integer.MAX_VALUE - 1000000;
     public final int MARGIN = 5;
-    private int lineHeight=28;
+    private int lineHeight=29;
     private int fontLineHeight;
     private int currentRowWidth;
     private FontMetrics fontMetrics;

@@ -1,7 +1,7 @@
 package parser;
 
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
+//import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import lexer.Lexer;
 import lexer.Pack;
 
@@ -11,6 +11,11 @@ import java.util.*;
 import parser.GetSelectSet;
 
 public class Parser {
+	private static String filepath;
+	
+	public Parser(String filepath) {
+		Parser.filepath=filepath;
+	}
 
     // 用于将种别码映射为文法的输入
     private static HashMap<String, String> typeToInput = new HashMap<String, String>() {
@@ -47,7 +52,7 @@ public class Parser {
 
 
     public void predict(String filePath) {
-        GetSelectSet.initial();
+        GetSelectSet.initial(filepath);
         Map<String, Map<String, String>> LL1Map = convertLL1ArrayToMap(GetSelectSet.LL1);
 
         String text = readFile(filePath);
@@ -185,7 +190,8 @@ public class Parser {
 
     public static void main(String[] args) {
         String filePath = System.getProperty("user.dir") + "/src/parser/" + "test.txt";
-        Parser parser = new Parser();
+        String filePath2 = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
+        Parser parser = new Parser(filePath2);
         parser.predict(filePath);
         parser.productList.forEach(x -> System.out.println(x));
         parser.errorList.forEach(x -> System.out.println(x));
