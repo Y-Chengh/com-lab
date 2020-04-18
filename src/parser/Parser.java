@@ -14,6 +14,7 @@ public class Parser {
 	private static String filepath;
     public List<Integer> lineNumbers = new ArrayList<>();
     public List<String> infoList = new ArrayList<>();
+    //public static String text;
 
 	public Parser(String filepath) {
 		Parser.filepath=filepath;
@@ -53,14 +54,13 @@ public class Parser {
     public List<String> errorList = new ArrayList<>();
 
 
-    public void predict(String filePath) {
+    public void predict(String text) {
         GetSelectSet.initial(filepath);
         Map<String, Map<String, String>> LL1Map = convertLL1ArrayToMap(GetSelectSet.LL1);
 
-        String text = readFile(filePath);
+        //String text = readFile(filePath);
         Lexer lexer = new Lexer(text, null, null);
         lexer.scan(1);
-        lexer.acceptTokens.forEach(x->System.out.println(x.lineNumber + "  " + x.orginString));
 
         List<Pack> packList = new ArrayList<>();
         packList.addAll(lexer.acceptTokens);
@@ -104,7 +104,6 @@ public class Parser {
                 String pop = stack.pop();
                 productList.add(pop + "→" + pack.orginString + "#");
                 lineNumbers.add(pack.lineNumber);
-                System.out.println("add line number: " + pack.orginString + "  " + pack.lineNumber);
                 System.out.println("recognize: " + pack.type + " " + pack.value + " " + typeToInput.getOrDefault(pack.type, pack.type));
                 System.out.println("pop: " + pop);
                 System.out.println(stack);
@@ -186,7 +185,7 @@ public class Parser {
             String line = null;
 
             while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line + " \n");
+                sb.append(line + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -200,13 +199,12 @@ public class Parser {
         String filePath2 = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
         Parser parser = new Parser(filePath2);
         parser.predict(filePath);
-//        parser.productList.forEach(x -> System.out.println(x));
-        parser.errorList.forEach(x -> System.out.println(x));
-//        System.out.println(parser.productList.size());
-//        System.out.println(parser.lineNumbers.size());
-        for (int i = 0; i < parser.productList.size(); i++) {
-            System.out.println(parser.productList.get(i) + parser.lineNumbers.get(i));
-        }
-//        for (int i = 0; i < parser.)
+        parser.productList.forEach(x -> System.out.println(x));
+        parser.lineNumbers.forEach(x -> System.out.println(x));
+        //parser.errorList.forEach(x -> System.out.println(x));
+        System.out.println(parser.productList.size());
+        System.out.println(parser.lineNumbers.size());
+        
+		
     }
 }

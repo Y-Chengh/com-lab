@@ -443,7 +443,7 @@ public class Frame2 extends javax.swing.JFrame {
 		
 		//String filePath2 = System.getProperty("user.dir") + "/src/parser/" + "test.txt";
 		Parser parser=new Parser(filePath2);
-		parser.predict(filePath);
+		parser.predict(jTextArea1.getText());
 		for(String temp1:parser.errorList) {
 			String[] aaStrings=temp1.split("--");
 			DefaultTableModel tableModel22 = (DefaultTableModel) jTable2.getModel();
@@ -455,6 +455,7 @@ public class Frame2 extends javax.swing.JFrame {
 		jTextArea2.setText("");
 		Stack<packer> stack=new Stack<packer>();
 		Stack<DefaultMutableTreeNode> tree=new Stack<DefaultMutableTreeNode>();
+		parser.productList.forEach(x -> System.out.println(x));
 		//for(String temp2:parser.productList) {
 		for(int k=0;k<parser.productList.size();k++) {
 			String temp2=parser.productList.get(k);
@@ -467,13 +468,13 @@ public class Frame2 extends javax.swing.JFrame {
 				jTextArea2.append("program" +"("+count+")" +"\r\n");
 				for(int i=bbStrings.length-1;i>=0;i--) {
 					packer aa2=new packer(bbStrings[i], 1);
-					DefaultMutableTreeNode node2 = new DefaultMutableTreeNode(bbStrings[i]);
+					DefaultMutableTreeNode node2 = new DefaultMutableTreeNode(bbStrings[i]+"("+count+")");
 					stack.push(aa2);
 					node1.add(node2);
 					tree.push(node2);
 				}
 			}else {
-				if(stack.isEmpty()) {
+				if(stack.isEmpty()|tree.isEmpty()) {
 					break;
 				}
 				if(aaStrings[1].contains("ε")) {
@@ -499,7 +500,7 @@ public class Frame2 extends javax.swing.JFrame {
 						//System.out.print(aaStrings[0]+" :"+ccStrings1[0]+"\r\n");
 						jTextArea2.append(aaStrings[0]+" :"+ccStrings1[0]+"("+count+")" +"\r\n");
 						DefaultMutableTreeNode tempDefaultMutableTreeNode=tree.peek();
-						DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(ccStrings1[0]);
+						DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(ccStrings1[0]+"("+count+")");
 						tempDefaultMutableTreeNode.add(node3);
 						tree.pop();
 						stack.pop();
@@ -521,7 +522,7 @@ public class Frame2 extends javax.swing.JFrame {
 					for(int i=bbStrings.length-1;i>=0;i--) {
 						packer aa2=new packer(bbStrings[i], len+1);
 						stack.push(aa2);
-						DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(bbStrings[i]);
+						DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(bbStrings[i]+"("+count+")");
 						//DefaultMutableTreeNode node4 = new DefaultMutableTreeNode(bbStrings[bbStrings.length-1-i]);
 						tempDefaultMutableTreeNode.add(node3);
 						tree.push(node3);
@@ -592,7 +593,7 @@ public class Frame2 extends javax.swing.JFrame {
 			String aline;
 			while ((aline = bufferreader.readLine()) != null)
 
-				jTextArea1.append(aline + "\r\n");
+				jTextArea1.append(aline + " \n");
 			filereader.close();
 			bufferreader.close();
 
