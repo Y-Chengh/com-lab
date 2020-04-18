@@ -120,10 +120,12 @@ public class Lexer {
                 acceptPack.token = "" + sb.substring(0, acceptPack.length);
                 sb.delete(0, acceptPack.length);
                 count += acceptPack.length;
+                int indexOfAcceptToken = findIndexOfLine(count, indicesOfLines);
+                acceptPack.lineNumber = indexOfAcceptToken;
                 acceptTokenList.add(acceptPack);
             }
         }
-        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse + "  " + x.lineNumber));
         acceptTokens = acceptTokenList;
         errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
         for (Pack pp:acceptTokenList) {
@@ -216,7 +218,7 @@ public class Lexer {
                 acceptTokenList.add(acceptPack);
             }
         }
-        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse));
+        acceptTokenList.forEach(x-> System.out.println("acc:" + x.token + "  <" + x.type + "," + x.value + "> " + x.parse + "  " + x.lineNumber));
         acceptTokens = acceptTokenList;
         errorList.forEach(x -> System.out.println(x.errorInfo + " " + x.errorString + " " + x.line));
         System.out.println(errorTokenList);
