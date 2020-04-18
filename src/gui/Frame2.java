@@ -17,9 +17,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.JTree;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -45,6 +48,7 @@ public class Frame2 extends javax.swing.JFrame {
 		private javax.swing.JScrollPane jScrollPane6;
 		private javax.swing.JScrollPane jScrollPane10;
 		private javax.swing.JScrollPane jScrollPane11;
+		private javax.swing.JScrollPane jScrollPane21;
 		private javax.swing.JTable jTable1;
 		private javax.swing.JTable jTable2;
 		private javax.swing.JTable jTable3;
@@ -447,9 +451,10 @@ public class Frame2 extends javax.swing.JFrame {
 	        jTable2.invalidate();
 		}
 		
-		
+		DefaultMutableTreeNode node1 = new DefaultMutableTreeNode("program");
 		jTextArea2.setText("");
 		Stack<packer> stack=new Stack<packer>();
+		Stack<DefaultMutableTreeNode> tree=new Stack<DefaultMutableTreeNode>();
 		//for(String temp2:parser.productList) {
 		for(int k=0;k<parser.productList.size();k++) {
 			String temp2=parser.productList.get(k);
@@ -462,7 +467,10 @@ public class Frame2 extends javax.swing.JFrame {
 				jTextArea2.append("program" +"("+count+")" +"\r\n");
 				for(int i=bbStrings.length-1;i>=0;i--) {
 					packer aa2=new packer(bbStrings[i], 1);
+					DefaultMutableTreeNode node2 = new DefaultMutableTreeNode(bbStrings[i]);
 					stack.push(aa2);
+					node1.add(node2);
+					tree.push(node2);
 				}
 			}else {
 				if(stack.isEmpty()) {
@@ -470,10 +478,12 @@ public class Frame2 extends javax.swing.JFrame {
 				}
 				if(aaStrings[1].contains("ε")) {
 					stack.pop();
+					tree.pop();
 					continue;
 				}
 				while(!stack.peek().getValue().equals(aaStrings[0])) {
 					stack.pop();
+					tree.pop();
 				}
 				//System.out.println(stack.peek().getValue());
 				if(stack.peek().getValue().equals(aaStrings[0])) {
@@ -488,6 +498,10 @@ public class Frame2 extends javax.swing.JFrame {
 						}
 						//System.out.print(aaStrings[0]+" :"+ccStrings1[0]+"\r\n");
 						jTextArea2.append(aaStrings[0]+" :"+ccStrings1[0]+"("+count+")" +"\r\n");
+						DefaultMutableTreeNode tempDefaultMutableTreeNode=tree.peek();
+						DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(ccStrings1[0]);
+						tempDefaultMutableTreeNode.add(node3);
+						tree.pop();
 						stack.pop();
 						continue;
 					}
@@ -499,15 +513,32 @@ public class Frame2 extends javax.swing.JFrame {
 					}
 					//System.out.print(aaStrings[0]+"\r\n");
 					jTextArea2.append(aaStrings[0]+"("+count+")" +"\r\n");
-					
+					//DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(aaStrings[0]);
+					//node3.get
+					DefaultMutableTreeNode tempDefaultMutableTreeNode=tree.peek();
 					stack.pop();
+					tree.pop();
 					for(int i=bbStrings.length-1;i>=0;i--) {
 						packer aa2=new packer(bbStrings[i], len+1);
 						stack.push(aa2);
+						DefaultMutableTreeNode node3 = new DefaultMutableTreeNode(bbStrings[i]);
+						//DefaultMutableTreeNode node4 = new DefaultMutableTreeNode(bbStrings[bbStrings.length-1-i]);
+						tempDefaultMutableTreeNode.add(node3);
+						tree.push(node3);
 					}
 				}
 			}
 		}
+		
+		
+		final JTree trees = new JTree(node1);
+		jScrollPane21 = new javax.swing.JScrollPane();
+		jScrollPane21.getViewport().add(trees, null);
+        JFrame f = new JFrame("JTreeDemo");
+        f.add(jScrollPane21);
+        f.setSize(300, 300);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		String filePath3 = System.getProperty("user.dir") + "/src/parser/" + "final.txt";
 	    File dir = new File(filePath3);
