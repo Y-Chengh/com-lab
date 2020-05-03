@@ -2,6 +2,7 @@ package semantic;
 
 import lexer.Lexer;
 import lexer.Pack;
+import lexer.State;
 import parser.Parser;
 
 import java.util.ArrayList;
@@ -31,11 +32,14 @@ public class Semantic {
         packList.addAll(lexer.acceptTokens);
         packList.add(new Pack("$", "-", -1, null, "$"));
 
-        for(String product: parser.productList){
+        Statements s1 = new Control();
+        Statements s2 = new Declaration();
+        Statements s3 = new Statement();
 
-
-
-
+        while(parser.productList.size() != 0){
+            s1.analysis(packList, parser.productList, instructs, quadruple);
+            s2.analysis(packList, parser.productList, instructs, quadruple);
+            s3.analysis(packList, parser.productList, instructs, quadruple);
         }
 
 

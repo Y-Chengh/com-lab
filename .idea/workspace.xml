@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="052620e4-82cf-4cca-b339-5bba289a5543" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/semantic/Control.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/final.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/final.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/test.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/semantic/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/semantic/Declaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Declaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/semantic/Semantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Semantic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/semantic/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Statement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/semantic/Statements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Statements.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +115,7 @@
       <workItem from="1587272663658" duration="4237000" />
       <workItem from="1587374399556" duration="2000" />
       <workItem from="1587603608367" duration="2000" />
-      <workItem from="1588501366167" duration="4777000" />
+      <workItem from="1588501366167" duration="5128000" />
     </task>
     <servers />
   </component>
@@ -122,6 +123,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="561" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1588510872422">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="561" y="75" key="#com.intellij.ide.util.MemberChooser/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588510872422" />
     <state width="1421" height="41" key="GridCell.Tab.0.bottom" timestamp="1588509699162">
       <screen x="62" y="0" width="1474" height="864" />
     </state>

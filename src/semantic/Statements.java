@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface Statements {
     /**
+     * 如果productList中的第一条产生式不属于自己管辖的范围，直接返回，不要进行修改
+     *
      * 每次读取产生式和pack都从index=0开始
      * 从packList中每读取一条产生式都要调用remove(0)删除该产生式
      * packList中存放终结符，读取产生式需要的终结符之后也要调用remove(0)把读取过的pack全部删除掉
