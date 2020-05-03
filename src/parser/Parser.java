@@ -66,14 +66,12 @@ public class Parser {
         packList.addAll(lexer.acceptTokens);
         packList.add(new Pack("$", "-", -1, null, "$"));
 
-
         Stack<String> stack = new Stack<>();
         stack.push("$");
         stack.push(startSymbol);
 
 
         int index = 0;
-
         while (true) {
             if (stack.empty()) {
                 break;
@@ -99,7 +97,7 @@ public class Parser {
                     continue;
                 }
 
-                assert topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type));
+//                assert topSymbol.equals(typeToInput.getOrDefault(pack.type, pack.type));
                 index++;
                 String pop = stack.pop();
                 productList.add(pop + "→" + pack.orginString + "#");
@@ -176,7 +174,7 @@ public class Parser {
         return map;
     }
 
-    private String readFile(String filePath) {
+    public String readFile(String filePath) {
         StringBuilder sb = new StringBuilder();
         try {
             InputStream is = new FileInputStream(filePath);
@@ -198,12 +196,14 @@ public class Parser {
         String filePath = System.getProperty("user.dir") + "/src/parser/" + "test.txt";
         String filePath2 = System.getProperty("user.dir")+"/src/parser/"+"dragonBookGrammar.txt";
         Parser parser = new Parser(filePath2);
-        parser.predict(filePath);
+        String test = parser.readFile(filePath);
+        System.out.println(test);
+        parser.predict(test);
         parser.productList.forEach(x -> System.out.println(x));
-        parser.lineNumbers.forEach(x -> System.out.println(x));
-        //parser.errorList.forEach(x -> System.out.println(x));
-        System.out.println(parser.productList.size());
-        System.out.println(parser.lineNumbers.size());
+//        parser.lineNumbers.forEach(x -> System.out.println(x));
+//        parser.errorList.forEach(x -> System.out.println(x));
+//        System.out.println(parser.productList.size());
+//        System.out.println(parser.lineNumbers.size());
         
 		
     }

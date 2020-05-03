@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="052620e4-82cf-4cca-b339-5bba289a5543" name="Default Changelist" comment="" />
+    <list default="true" id="052620e4-82cf-4cca-b339-5bba289a5543" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/semantic/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/final.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/final.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/test.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -20,6 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -71,8 +86,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Frame2" />
-        <item itemvalue="Application.Frame" />
         <item itemvalue="Application.Parser" />
+        <item itemvalue="Application.Frame" />
       </list>
     </recent_temporary>
   </component>
@@ -89,7 +104,17 @@
       <workItem from="1587088322402" duration="3357000" />
       <workItem from="1587110285124" duration="1716000" />
       <workItem from="1587176032256" duration="2138000" />
-      <workItem from="1587178308776" duration="114000" />
+      <workItem from="1587178308776" duration="229000" />
+      <workItem from="1587181336452" duration="2293000" />
+      <workItem from="1587191000072" duration="3000" />
+      <workItem from="1587216851058" duration="807000" />
+      <workItem from="1587221018233" duration="142000" />
+      <workItem from="1587261548897" duration="514000" />
+      <workItem from="1587262272922" duration="138000" />
+      <workItem from="1587272663658" duration="4237000" />
+      <workItem from="1587374399556" duration="2000" />
+      <workItem from="1587603608367" duration="2000" />
+      <workItem from="1588501366167" duration="4777000" />
     </task>
     <servers />
   </component>
@@ -97,25 +122,30 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1421" height="305" key="GridCell.Tab.0.bottom" timestamp="1587178429821">
+    <state width="1421" height="41" key="GridCell.Tab.0.bottom" timestamp="1588509699162">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="305" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587178429821" />
-    <state width="1421" height="305" key="GridCell.Tab.0.center" timestamp="1587178429821">
+    <state width="1483" height="3" key="GridCell.Tab.0.bottom/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770024" />
+    <state width="1421" height="41" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588509699162" />
+    <state width="1421" height="41" key="GridCell.Tab.0.center" timestamp="1588509699162">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="305" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587178429821" />
-    <state width="1421" height="305" key="GridCell.Tab.0.left" timestamp="1587178429821">
+    <state width="1483" height="3" key="GridCell.Tab.0.center/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770022" />
+    <state width="1421" height="41" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588509699162" />
+    <state width="1421" height="41" key="GridCell.Tab.0.left" timestamp="1588509699162">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="305" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587178429821" />
-    <state width="1421" height="305" key="GridCell.Tab.0.right" timestamp="1587178429821">
+    <state width="1483" height="3" key="GridCell.Tab.0.left/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770022" />
+    <state width="1421" height="41" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588509699162" />
+    <state width="1421" height="41" key="GridCell.Tab.0.right" timestamp="1588509699162">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="305" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587178429821" />
-    <state x="422" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1587178314871">
+    <state width="1483" height="3" key="GridCell.Tab.0.right/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770023" />
+    <state width="1421" height="41" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588509699162" />
+    <state x="422" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1587603608684">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="422" y="216" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587178314871" />
+    <state x="422" y="216" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587603608684" />
+    <state x="422" y="216" key="com.intellij.ide.util.TipDialog/62.0.1474.864@62.0.1474.864" timestamp="1587261548646" />
   </component>
 </project>

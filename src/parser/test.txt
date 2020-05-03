@@ -11,51 +11,51 @@ int main (String[10] args) {
 int[10][20] b;
 int a;
 char c;
-	
+ 
 a = 100;
 a = ( (90 * 8) + b ) / 7 + 5;
 if(a == c and c > b or 8 < 9 and a <= 99){
-return;
-break;
-		
-c = c + 10
-call main(a, b, c);
+ return;
+ break;
+  
+ c = c + 10
+ call main(a, b, c);
 }
 
 a[10] = 9
 a[20][30] = 99;
-	
-	
+ 
+ 
 break;
-	
+ 
 return;
-	
+ 
 if(a == 3){
-		return;
-		
-		a = 3;
-	}
-	
-	if(a == 3){
-		return;
-		
-		a = 3;
-	} else {
-		xc = 10;
-	}
-	
-	
-	do{
-		break;
-		a = a + 100;
-		
-	}while(a < 1000);
-	
-	
-	while(c >= 80){
-		return;
-	}
-	
+ return;
+  
+ a = 3;
+}
+ 
+ if(a == 3){
+  return;
+  
+  a = 3;
+ } else {
+  xc = 10;
+ }
+ 
+ 
+ do{
+  break;
+  a = a + 100;
+  
+ }while(a < 1000);
+ 
+ 
+ while(c >= 80){
+  return;
+ }
+ 
 }
 
 
@@ -63,5 +63,5 @@ if(a == 3){
 
 
 char function(int b, int c, int d){
-	return;
+ return;
 }
