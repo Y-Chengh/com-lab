@@ -1,0 +1,13 @@
+0		sum
+1		a
+2		b
+3		quick
+4		c
+5		struct1
+6		d
+7		x
+8		y
+9		z
+10		temp
+11		ta
+12		q

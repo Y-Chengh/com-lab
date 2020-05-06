@@ -1,0 +1,166 @@
+type->int   Line:1
+T->type   Line:1
+M->$   Line:1
+func->T id M (   Line:1
+type->int   Line:1
+T->type   Line:1
+Elist->T id   Line:1
+type->int   Line:1
+T->type   Line:1
+Elist->Elist , T id   Line:1
+type->int   Line:2
+T->type   Line:2
+M->$   Line:2
+func->T id M (   Line:2
+type->int   Line:2
+T->type   Line:2
+Elist->T id   Line:2
+E->id   Line:3
+E->digitInt   Line:3
+E->E + E   Line:3
+S->id = E ;   Line:3
+P->S   Line:3
+E->id   Line:4
+D->func Elist ) { P return E ; }   Line:5
+type->float   Line:6
+T->type   Line:6
+E->id   Line:6
+E->id   Line:6
+E->E + E   Line:6
+D->T id = E ;   Line:6
+D->D D   Line:6
+P->D   Line:6
+E->id   Line:7
+D->func Elist ) { P return E ; }   Line:8
+type->int   Line:10
+T->type   Line:10
+E->digitInt   Line:10
+D->T id = E ;   Line:10
+D->struct id ( D ) ;   Line:10
+D->D D   Line:10
+type->int   Line:12
+T->type   Line:12
+E->digitInt   Line:12
+D->T id = E ;   Line:12
+D->D D   Line:12
+type->int   Line:13
+T->type   Line:13
+E->digitInt   Line:13
+D->T id = E ;   Line:13
+D->D D   Line:13
+type->int   Line:14
+T->type   Line:14
+E->digitInt   Line:14
+D->T id = E ;   Line:14
+D->D D   Line:14
+type->int   Line:15
+T->type   Line:15
+E->digitInt   Line:15
+D->T id = E ;   Line:15
+D->D D   Line:15
+type->int   Line:16
+T->type   Line:16
+E->digitInt   Line:16
+D->T id = E ;   Line:16
+D->D D   Line:16
+type->int   Line:17
+T->type   Line:17
+E->digitInt   Line:17
+D->T id = E ;   Line:17
+D->D D   Line:17
+type->int   Line:18
+T->type   Line:18
+E->digitInt   Line:18
+D->T id = E ;   Line:18
+D->D D   Line:18
+type->int   Line:19
+T->type   Line:19
+E->digitInt   Line:19
+D->T id = E ;   Line:19
+D->D D   Line:19
+type->float   Line:20
+T->type   Line:20
+E->id   Line:20
+D->T id = E ;   Line:20
+D->D D   Line:20
+type->int   Line:21
+T->type   Line:21
+E->id   Line:21
+D->T id = E ;   Line:21
+D->D D   Line:21
+E->id   Line:22
+E->id   Line:22
+E->- E   Line:22
+E->id   Line:22
+E->E + E   Line:22
+E->( E )   Line:22
+E->E * E   Line:22
+S->id = E ;   Line:22
+D->D S   Line:22
+E->id   Line:23
+S->id = E ;   Line:23
+D->D S   Line:23
+E->digitInt   Line:24
+S->id = E ;   Line:24
+D->D S   Line:24
+M->$   Line:25
+E->id   Line:25
+relop-><   Line:25
+E->id   Line:25
+B->E relop E   Line:25
+M->$   Line:25
+E->id   Line:26
+relop-><   Line:26
+E->id   Line:26
+B->E relop E   Line:26
+M->$   Line:26
+E->id   Line:27
+E->id   Line:27
+E->E + E   Line:27
+S->id = E ;   Line:27
+P->S   Line:27
+N->$   Line:28
+M->$   Line:28
+E->id   Line:29
+E->id   Line:29
+E->E * E   Line:29
+S->id = E ;   Line:29
+P->S   Line:29
+S2->if ( B ) { M P } N else { M P }   Line:30
+S->S2   Line:30
+P->S   Line:30
+S->while ( M B ) { M P }   Line:31
+D->D S   Line:31
+E->id   Line:32
+relop->>   Line:32
+E->id   Line:32
+B->E relop E   Line:32
+M->$   Line:32
+E->id   Line:33
+E->digitInt   Line:33
+E->E + E   Line:33
+S->id = E ;   Line:33
+P->S   Line:33
+S1->if ( B ) { M P }   Line:34
+S->S1   Line:34
+D->D S   Line:34
+M->$   Line:35
+E->id   Line:35
+relop-><   Line:35
+E->id   Line:35
+B->E relop E   Line:35
+M->$   Line:35
+E->id   Line:35
+relop->>   Line:35
+E->id   Line:35
+B->E relop E   Line:35
+B->B && M B   Line:35
+M->$   Line:35
+E->id   Line:36
+E->digitInt   Line:36
+E->E + E   Line:36
+S->id = E ;   Line:36
+P->S   Line:36
+S->while ( M B ) { M P }   Line:37
+D->D S   Line:37
+P->D   Line:37
