@@ -1,4 +1,4 @@
-package Syntax.Structure;
+package semantic.Structure;
 
 import java.util.HashSet;
 import java.util.Set;

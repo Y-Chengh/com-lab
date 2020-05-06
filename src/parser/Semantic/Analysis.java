@@ -1,11 +1,11 @@
-package Semantic;
+package parser.Semantic;
 
-import Syntax.Analysis.action;
-import Syntax.Analysis.gotoState;
-import Syntax.Method.Method;
-import Syntax.Structure.Closure;
-import Syntax.Structure.Production;
-import Syntax.Structure.Tuple;
+import semantic.Analysis.action;
+import semantic.Analysis.gotoState;
+import semantic.Method.Method;
+import semantic.Structure.Closure;
+import semantic.Structure.Production;
+import semantic.Structure.Tuple;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-import static Syntax.Analysis.Main.*;
+import static semantic.Analysis.Main.*;
 
 public class Analysis {
 
@@ -32,7 +32,7 @@ public class Analysis {
         Stack<Integer> StatusStack = new Stack<>();
         StatusStack.push(0);
         Stack<String> SymbolStack = new Stack<>();
-        Stack<attribute> SymbolAttributeStack = new Stack<>();
+        Stack<parser.Semantic.attribute> SymbolAttributeStack = new Stack<>();
         while (true) {
             int nowState = StatusStack.peek();
             String input = tuples.get(read).getInput();
@@ -49,7 +49,7 @@ public class Analysis {
                 }
                 StatusStack.push(next);
                 SymbolStack.push(input);
-                SymbolAttributeStack.push(new attribute(input,posInTable));
+                SymbolAttributeStack.push(new parser.Semantic.attribute(input,posInTable));
                 read++;
             }
 
@@ -66,7 +66,7 @@ public class Analysis {
                 String output = p + "  Line:" + LineNum;
                 outputs.add(output);
                 int cnt = p.getRightList().size();
-                List<attribute> attributes = new ArrayList<>();
+                List<parser.Semantic.attribute> attributes = new ArrayList<>();
                 if (p.getRight().equals("$")){cnt=0;};
                 while (cnt-- > 0) {
                     StatusStack.pop();
@@ -76,7 +76,7 @@ public class Analysis {
                 Collections.reverse(attributes);
                 SymbolStack.push(p.getLeft());
 
-                SymbolAttributeStack.push(new attribute(p.getLeft(), p, attributes, productions));
+                SymbolAttributeStack.push(new parser.Semantic.attribute(p.getLeft(), p, attributes, productions));
                 //goto
                 int next = gotoState.nextState(StatusStack.peek(), SymbolStack.peek());
                 StatusStack.push(next);
@@ -102,9 +102,9 @@ public class Analysis {
         GenerateFirst();
         List<Closure> States = cluster();
         ConstructLR1Table(States);
-        semantic.src.Lexical.Analysis.Main.LexicalAnalysis();
-        List<String> token = semantic.src.Lexical.Analysis.Main.WriteList;
-        List<String> table = Method.ReadFile("src/lexical/table.txt");
+        lexer.Analysis.Main.LexicalAnalysis();
+        List<String> token = lexer.Analysis.Main.WriteList;
+        List<String> table = Method.ReadFile("src/lexer/table.txt");
 
         List<Tuple> tuples = new ArrayList<>();
         for (int i = 0; i < token.size(); i++) {
@@ -134,11 +134,11 @@ public class Analysis {
 
 
         String sym="";
-        System.out.println(attribute.global_functionTable);
-        sym+=attribute.global_functionTable;
-        for (int i=0;i<attribute.tables.size();i++){
-            System.out.println(attribute.tables.get(i));
-            sym+=attribute.tables.get(i);
+        System.out.println(parser.Semantic.attribute.global_functionTable);
+        sym+= parser.Semantic.attribute.global_functionTable;
+        for (int i = 0; i< parser.Semantic.attribute.tables.size(); i++){
+            System.out.println(parser.Semantic.attribute.tables.get(i));
+            sym+= parser.Semantic.attribute.tables.get(i);
         }
         bw=new BufferedWriter(new FileWriter("SYMBOL.txt"));
         bw.write(sym);

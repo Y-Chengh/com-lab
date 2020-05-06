@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static semantic.src.Lexical.Tool.Tool.*;
+import static lexer.Tool.Tool.*;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package Semantic;
+package parser.Semantic;
 
 public class fourTuple {
 

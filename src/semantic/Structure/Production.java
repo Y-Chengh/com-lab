@@ -1,8 +1,7 @@
-package Syntax.Structure;
+package semantic.Structure;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Production {
 

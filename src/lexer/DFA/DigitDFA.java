@@ -2,7 +2,7 @@ package lexer.DFA;
 
 import lexer.Analysis.Main;
 
-import static semantic.src.Lexical.Tool.Tool.isdigit;
+import static lexer.Tool.Tool.isdigit;
 
 public class DigitDFA {
 

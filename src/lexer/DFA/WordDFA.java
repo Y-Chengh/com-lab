@@ -2,7 +2,7 @@ package lexer.DFA;
 
 import lexer.Analysis.Main;
 
-import static semantic.src.Lexical.Tool.Tool.*;
+import static lexer.Tool.Tool.*;
 
 public class WordDFA {
 

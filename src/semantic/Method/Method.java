@@ -1,4 +1,4 @@
-package Syntax.Method;
+package semantic.Method;
 
 import java.io.*;
 import java.util.ArrayList;

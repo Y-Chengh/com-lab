@@ -1,10 +1,10 @@
-package Syntax.Analysis;
+package semantic.Analysis;
 
-import Syntax.Method.Method;
-import Syntax.Structure.Closure;
-import Syntax.Structure.Item;
-import Syntax.Structure.Production;
-import Syntax.Structure.Tuple;
+import semantic.Method.Method;
+import semantic.Structure.Closure;
+import semantic.Structure.Item;
+import semantic.Structure.Production;
+import semantic.Structure.Tuple;
 
 import java.io.IOException;
 import java.util.*;
@@ -218,7 +218,7 @@ public class Main {
                     for (int i = 0; i < productions.size(); i++) {
                         Production production = productions.get(i);
                         if (production.getLeft().equals(left) && production.getRight().equals(right)) {
-                            action.add(k, item.getLookahead(), production);
+                            semantic.Analysis.action.add(k, item.getLookahead(), production);
                             break;
                         }
                     }
@@ -227,12 +227,12 @@ public class Main {
                 //action
                 else if (terminals.contains(rightFirst) && next != null) {
                     int j = States.indexOf(next);
-                    action.add(k, rightFirst, j);
+                    semantic.Analysis.action.add(k, rightFirst, j);
                 }
                 //goto
                 if (nonterminals.contains(rightFirst) && next != null) {
                     int j = States.indexOf(next);
-                    gotoState.add(k, rightFirst, j);
+                    semantic.Analysis.gotoState.add(k, rightFirst, j);
                 }
             }
         }
@@ -242,7 +242,7 @@ public class Main {
         for (int i = 0; i < States.size(); i++) {
             Closure c = States.get(i);
             if (c.contains(item)) {
-                action.add(i, "#", -1);
+                semantic.Analysis.action.add(i, "#", -1);
                 return;
             }
 
@@ -261,11 +261,11 @@ public class Main {
             String input = tuples.get(read).getInput();
             Closure now = States.get(nowState);
 
-            int judge = action.jugde(nowState, input);
+            int judge = semantic.Analysis.action.jugde(nowState, input);
             //移进
             if (judge == 1) {
                 num = tuples.get(read).getLine();
-                int next = action.nextState(nowState, input);
+                int next = semantic.Analysis.action.nextState(nowState, input);
                 if (next == -1) {
                     break;
                 }
@@ -276,14 +276,14 @@ public class Main {
             }
             //规约
             else if (judge == 2) {
-                if (action.contain(nowState, input)) {
-                    int next = action.nextState(nowState, input);
+                if (semantic.Analysis.action.contain(nowState, input)) {
+                    int next = semantic.Analysis.action.nextState(nowState, input);
                     if (next == -1) {
                         break;
                     }
                 }
                 //reduce
-                Production p = action.nextProduction(nowState, input);
+                Production p = semantic.Analysis.action.nextProduction(nowState, input);
                 String output = p + "  Line:" + num;
                 outputs.add(output);
                 System.out.println(p + "  Line:" + num);
@@ -297,7 +297,7 @@ public class Main {
                 SymbolStack.push(p.getLeft());
                 System.out.println("reduce:"+p);
                 //goto
-                int next = gotoState.nextState(StatusStack.peek(), SymbolStack.peek());
+                int next = semantic.Analysis.gotoState.nextState(StatusStack.peek(), SymbolStack.peek());
                 StatusStack.push(next);
 //                System.out.println("goto:"+next);
             }
@@ -330,11 +330,11 @@ public class Main {
             String input = tuples.get(read).getInput();
             Closure now = States.get(nowState);
 
-            int judge = action.jugde(nowState, input);
+            int judge = semantic.Analysis.action.jugde(nowState, input);
             //移进
             if (judge == 1) {
                 num = tuples.get(read).getLine();
-                int next = action.nextState(nowState, input);
+                int next = semantic.Analysis.action.nextState(nowState, input);
                 if (next == -1) {
                     break;
                 }
@@ -344,14 +344,14 @@ public class Main {
             }
             //规约
             else if (judge == 2) {
-                if (action.contain(nowState, input)) {
-                    int next = action.nextState(nowState, input);
+                if (semantic.Analysis.action.contain(nowState, input)) {
+                    int next = semantic.Analysis.action.nextState(nowState, input);
                     if (next == -1) {
                         break;
                     }
                 }
                 //reduce
-                Production p = action.nextProduction(nowState, input);
+                Production p = semantic.Analysis.action.nextProduction(nowState, input);
 //                String output=p+"  Line:"+tuples.get(read).getLine();
                 String output = p + "  Line:" + num;
                 outputs.add(output);
@@ -364,7 +364,7 @@ public class Main {
                 }
                 SymbolStack.push(p.getLeft());
                 //goto
-                int next = gotoState.nextState(StatusStack.peek(), SymbolStack.peek());
+                int next = semantic.Analysis.gotoState.nextState(StatusStack.peek(), SymbolStack.peek());
                 StatusStack.push(next);
             } else if (judge == 0) {
 //                int cnt=0;
@@ -396,9 +396,9 @@ public class Main {
         GenerateFirst();
         List<Closure> States = cluster();
         ConstructLR1Table(States);
-        semantic.src.Lexical.Analysis.Main.LexicalAnalysis();
-        List<String> token = semantic.src.Lexical.Analysis.Main.WriteList;
-        List<String> table = Method.ReadFile("src/lexical/table.txt");
+        lexer.Analysis.Main.LexicalAnalysis();
+        List<String> token = lexer.Analysis.Main.WriteList;
+        List<String> table = Method.ReadFile("src/lexer/table.txt");
 
         List<Tuple> tuples = new ArrayList<>();
         for (int i = 0; i < token.size(); i++) {
@@ -410,8 +410,8 @@ public class Main {
         analysis(tuples, States);
         Method.WriteFile("SyntaxResult.txt", outputs);
         System.out.println("Action_Table");
-        action.write(States);
+        semantic.Analysis.action.write(States);
         System.out.println("Goto_Table");
-        gotoState.write(States);
+        semantic.Analysis.gotoState.write(States);
     }
 }
