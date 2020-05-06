@@ -1,7 +1,7 @@
-package semantic.src.Lexical.Analysis;
+package lexer.Analysis;
 
-import semantic.src.Lexical.Tool.SymbolTable;
-import semantic.src.Lexical.Tool.Tool;
+import lexer.Tool.SymbolTable;
+import lexer.Tool.Tool;
 
 import java.io.IOException;
 import java.util.ArrayList;

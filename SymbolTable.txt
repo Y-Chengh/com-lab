@@ -1,0 +1,9 @@
+0		swap
+1		x
+2		y
+3		t
+4		struct1
+5		a
+6		c
+7		b
+8		d

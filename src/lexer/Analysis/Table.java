@@ -1,6 +1,6 @@
-package semantic.src.Lexical.Analysis;
+package lexer.Analysis;
 
-import semantic.src.Lexical.Tool.Tool;
+import lexer.Tool.Tool;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class Table {
 
     static {
         try {
-            table = Tool.ReadFile("src/lexical/table.txt");
+            table = Tool.ReadFile("src/lexer/table.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,8 +1,8 @@
-package semantic.src.Lexical.Analysis;
+package lexer.Analysis;
 
-import semantic.src.Lexical.DFA.DigitDFA;
-import semantic.src.Lexical.DFA.WordDFA;
-import semantic.src.Lexical.Tool.SymbolTable;
+import lexer.DFA.DigitDFA;
+import lexer.DFA.WordDFA;
+import lexer.Tool.SymbolTable;
 
 public class Token {
 
@@ -14,13 +14,13 @@ public class Token {
         }
         //关键字
         else if (Table.contains(s)){
-            String output=s+"  "+"< "+Table.getPosition(s)+" , "+"_"+" >"+"   Line:"+lineNumber;
-            Main.WriteList.add("< "+Table.getPosition(s)+" , "+"_"+" > "+lineNumber);
+            String output=s+"  "+"< "+ Table.getPosition(s)+" , "+"_"+" >"+"   Line:"+lineNumber;
+            Main.WriteList.add("< "+ Table.getPosition(s)+" , "+"_"+" > "+lineNumber);
             System.out.println(output);
         }
         //标识符
         else{
-            int pos=SymbolTable.addSymbolTable(s);
+            int pos= SymbolTable.addSymbolTable(s);
             String output=s+"  "+"< "+0+" , "+pos+" >"+"   Line:"+lineNumber;
             Main.WriteList.add("< "+0+" , "+pos+" > "+lineNumber);
             System.out.println(output);
@@ -86,15 +86,15 @@ public class Token {
             char y=line.charAt(Main.pos+1);
             String temp=String.valueOf(x)+String.valueOf(y);
             if (Table.contains(temp)){
-                String output=temp+"  "+"< "+Table.getPosition(temp)+" , "+"_"+" >"+"   Line:"+lineNumber;
-                Main.WriteList.add("< "+Table.getPosition(temp)+" , "+"_"+" > "+lineNumber);
+                String output=temp+"  "+"< "+ Table.getPosition(temp)+" , "+"_"+" >"+"   Line:"+lineNumber;
+                Main.WriteList.add("< "+ Table.getPosition(temp)+" , "+"_"+" > "+lineNumber);
                 System.out.println(output);
                 Main.pos+=2;
                 return;
             }
         }
         if (Table.contains(x)){
-            int tpos=Main.pos;
+            int tpos= Main.pos;
             if (x=='"'){
                 Main.pos++;
                 StringBuilder string=new StringBuilder();
@@ -117,9 +117,9 @@ public class Token {
                     return;
                 }
             }
-            String output=x+"  "+"< "+Table.getPosition(x)+" , "+"_"+" >"+"   Line:"+lineNumber;;
+            String output=x+"  "+"< "+ Table.getPosition(x)+" , "+"_"+" >"+"   Line:"+lineNumber;;
             System.out.println(output);
-            Main.WriteList.add("< "+Table.getPosition(x)+" , "+"_"+" > "+lineNumber);
+            Main.WriteList.add("< "+ Table.getPosition(x)+" , "+"_"+" > "+lineNumber);
             Main.pos++;
         }
         else {

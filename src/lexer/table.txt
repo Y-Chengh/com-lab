@@ -1,7 +1,46 @@
-flag:1
-0 w:1
-1 h:2
-2 i:3
-3 l:4
-4 e:5
-5<type,value>
+_id
+_digitInt
+_digitFloat
+_constString
+for
+do
+if
+else
+int
+char
+float
+String
+while
+struct
+boolean
+true
+false
+"
++
+-
+*
+/
+=
+++
+--
+!=
+==
+&&
+||
+!
+<
+>
+<=
+>=
+(
+)
+{
+}
+;
+[
+]
+,
+call
+read
+print
+return

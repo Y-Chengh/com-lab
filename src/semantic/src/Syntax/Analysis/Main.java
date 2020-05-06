@@ -396,8 +396,8 @@ public class Main {
         GenerateFirst();
         List<Closure> States = cluster();
         ConstructLR1Table(States);
-        Lexical.Analysis.Main.LexicalAnalysis();
-        List<String> token = Lexical.Analysis.Main.WriteList;
+        semantic.src.Lexical.Analysis.Main.LexicalAnalysis();
+        List<String> token = semantic.src.Lexical.Analysis.Main.WriteList;
         List<String> table = Method.ReadFile("src/lexical/table.txt");
 
         List<Tuple> tuples = new ArrayList<>();
