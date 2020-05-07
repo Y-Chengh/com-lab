@@ -1,13 +1,15 @@
-package semantic.src.Lexical.Analysis;
+package Lexical.Analysis;
 
-import semantic.src.Lexical.Tool.SymbolTable;
-import semantic.src.Lexical.Tool.Tool;
+import Lexical.Tool.SymbolTable;
+import Lexical.Tool.Tool;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static semantic.src.Lexical.Tool.Tool.*;
+import static Lexical.Tool.Tool.isdigit;
+import static Lexical.Tool.Tool.isletter;
+import static Lexical.Tool.Tool.isunderline;
 
 public class Main {
 

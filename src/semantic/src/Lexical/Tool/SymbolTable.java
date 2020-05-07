@@ -1,4 +1,4 @@
-package semantic.src.Lexical.Tool;
+package Lexical.Tool;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

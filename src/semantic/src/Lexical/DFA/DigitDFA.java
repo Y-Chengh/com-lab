@@ -1,8 +1,8 @@
-package semantic.src.Lexical.DFA;
+package Lexical.DFA;
 
-import semantic.src.Lexical.Analysis.Main;
+import Lexical.Analysis.Main;
 
-import static semantic.src.Lexical.Tool.Tool.isdigit;
+import static Lexical.Tool.Tool.isdigit;
 
 public class DigitDFA {
 

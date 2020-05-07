@@ -1,8 +1,8 @@
-package semantic.src.Lexical.Analysis;
+package Lexical.Analysis;
 
-import semantic.src.Lexical.DFA.DigitDFA;
-import semantic.src.Lexical.DFA.WordDFA;
-import semantic.src.Lexical.Tool.SymbolTable;
+import Lexical.DFA.DigitDFA;
+import Lexical.DFA.WordDFA;
+import Lexical.Tool.SymbolTable;
 
 public class Token {
 

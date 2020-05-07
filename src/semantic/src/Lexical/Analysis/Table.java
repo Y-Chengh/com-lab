@@ -1,6 +1,6 @@
-package semantic.src.Lexical.Analysis;
+package Lexical.Analysis;
 
-import semantic.src.Lexical.Tool.Tool;
+import Lexical.Tool.Tool;
 
 import java.io.IOException;
 import java.util.ArrayList;

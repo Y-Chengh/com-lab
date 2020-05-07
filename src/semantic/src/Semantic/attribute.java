@@ -1,6 +1,6 @@
 package Semantic;
 
-import semantic.src.Lexical.Tool.SymbolTable;
+import Lexical.Tool.SymbolTable;
 import Syntax.Structure.Production;
 
 import java.util.ArrayList;
