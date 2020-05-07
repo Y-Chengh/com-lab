@@ -1,4 +1,0 @@
-flag:1
-		<
-0		1
-1<relational_less,->		-

@@ -1,4 +1,0 @@
-flag:0
-		[a-zA-Z]		_		[0-9]
-0		1		1		-
-1<identifier,#>		1		1		1
