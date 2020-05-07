@@ -1,7 +1,7 @@
-package parser.Semantic;
+package Semantic;
 
-import lexer.Tool.SymbolTable;
-import semantic.Structure.Production;
+import semantic.src.Lexical.Tool.SymbolTable;
+import Syntax.Structure.Production;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +13,15 @@ public class attribute {
     private String var;
     private String relop;
     private int quad;
-    public static parser.Semantic.functionTable global_functionTable=new parser.Semantic.functionTable();
-    private static parser.Semantic.functionTable func_functionTable=new parser.Semantic.functionTable();
-    private static parser.Semantic.functionTable last=global_functionTable;
+    public static functionTable global_functionTable=new functionTable();
+    private static functionTable func_functionTable=new functionTable();
+    private static functionTable last=global_functionTable;
     private static boolean func=false;
     private static boolean error=false;
     private static String returnType=null;
     private static String funcName;
-    public static List<parser.Semantic.functionTable> tables=new ArrayList<>();
-    private static List<parser.Semantic.fourTuple> funcTuples=new ArrayList<>();
+    public static List<functionTable> tables=new ArrayList<>();
+    private static List<fourTuple> funcTuples=new ArrayList<>();
     private static int t_temp=0;
     private List<Integer> boolTrueList=new ArrayList<>();
     private List<Integer> boolFalseList=new ArrayList<>();
@@ -61,7 +61,7 @@ public class attribute {
         String type1;
         String type2;
         String var;
-        parser.Semantic.functionTable functemp=global_functionTable;
+        functionTable functemp=global_functionTable;
         int quad1;
         int quad2;
         List<Integer> list;
@@ -85,7 +85,7 @@ public class attribute {
                 }
                 if (functemp.hasType(var)){
                     //使用之前的声明类型
-                    System.err.println("ERROR at Line:"+ Analysis.LineNum+"  重复声明变量");
+                    System.err.println("ERROR at Line:"+Analysis.LineNum+"  重复声明变量");
                 }
                 else {
                     functemp.add(var,type);
@@ -109,7 +109,7 @@ public class attribute {
                 if (type.equals(attributes.get(3).type)||type.equals("float")){
                     if (!func) {
 //                        System.out.println(func);
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("=", attributes.get(3).var, "", var));
+                        Analysis.fourTuples.add(new fourTuple("=", attributes.get(3).var, "", var));
 //                        System.out.println(Analysis.fourTuples);
                         Analysis.mid++;
                     }
@@ -147,7 +147,7 @@ public class attribute {
                     returnType=attributes.get(6).type;
                 }
                 tables.add(func_functionTable);
-                func_functionTable=new parser.Semantic.functionTable();
+                func_functionTable=new functionTable();
 //                global_functionTable.add(funcName,"func");
 //                returnType=attributes.get(6).type;
 //                int returnPos=call.pop();
@@ -207,7 +207,7 @@ public class attribute {
                 String idtype=functemp.getType(var);
                 if (idtype.equals("int")&&Etype.equals("int")){
                     if (!func){
-                    Analysis.fourTuples.add(new parser.Semantic.fourTuple("=",attributes.get(2).var,"",var));
+                    Analysis.fourTuples.add(new fourTuple("=",attributes.get(2).var,"",var));
                     Analysis.mid++;
                     }
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
@@ -219,14 +219,14 @@ public class attribute {
                 else if (idtype.equals("float")&&Etype.equals("int")){
 //                    System.out.println("Error 类型转换");
                     if (!func){
-                    Analysis.fourTuples.add(new parser.Semantic.fourTuple("=",attributes.get(2).var,"",var));
+                    Analysis.fourTuples.add(new fourTuple("=",attributes.get(2).var,"",var));
                     Analysis.mid++;}
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                    System.out.println(Analysis.mid);
                 }
                 else if (idtype.equals("float")&&Etype.equals("float")){
                     if (!func) {
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("=", attributes.get(2).var, "", var));
+                        Analysis.fourTuples.add(new fourTuple("=", attributes.get(2).var, "", var));
                         Analysis.mid++;
                     }
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
@@ -244,13 +244,13 @@ public class attribute {
                 quad1=attributes.get(2).quad;
                 if (global_functionTable.map.containsKey(attributes.get(1).var)){
                     call.push(quad1);
-                    parser.Semantic.functionTable notuse=new parser.Semantic.functionTable();
+                    functionTable notuse=new functionTable();
                     notuse.table=attributes.get(1).var;
                     int temppos=tables.indexOf(notuse);
                     Analysis.fourTuples.addAll(tables.get(temppos).fourTuples);
                     Analysis.mid+=tables.get(temppos).fourTuples.size();
-                    Analysis.fourTuples.set(Analysis.fourTuples.size()-1,new parser.Semantic.fourTuple("j","","",quad1+""));
-                    Analysis.fourTuples.add(new parser.Semantic.fourTuple("j","","",global_functionTable.map.get(attributes.get(1).var)+""));
+                    Analysis.fourTuples.set(Analysis.fourTuples.size()-1,new fourTuple("j","","",quad1+""));
+                    Analysis.fourTuples.add(new fourTuple("j","","",global_functionTable.map.get(attributes.get(1).var)+""));
                     Analysis.mid++;
                 }
                 else {
@@ -278,7 +278,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                    System.out.println(Analysis.mid);
@@ -288,7 +288,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    Analysis.mid++;
 //                    Analysis.fourTuples.add(new fourTuple("+",attributes.get(0).var,attributes.get(2).var,this.var));
@@ -300,7 +300,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    Analysis.mid++;
 //                    Analysis.fourTuples.add(new fourTuple("+",attributes.get(0).var,attributes.get(2).var,this.var));
@@ -312,7 +312,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("+", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    Analysis.mid++;
 //                    Analysis.fourTuples.add(new fourTuple("+",attributes.get(0).var,attributes.get(2).var,this.var));
@@ -326,7 +326,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                    System.out.println(Analysis.mid);
@@ -336,7 +336,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
                 }
                 else if (type1.equals("float")&&type2.equals("int")){
@@ -344,7 +344,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                    System.out.println(Analysis.mid);
@@ -354,7 +354,7 @@ public class attribute {
                     this.var="t"+t_temp++;
                     if (!func) {
                         Analysis.mid++;
-                        Analysis.fourTuples.add(new parser.Semantic.fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
+                        Analysis.fourTuples.add(new fourTuple("*", attributes.get(0).var, attributes.get(2).var, this.var));
                     }
 //                    System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                    System.out.println(Analysis.mid);
@@ -365,7 +365,7 @@ public class attribute {
                 this.var="t"+t_temp++;
                 if (!func) {
                     Analysis.mid++;
-                    Analysis.fourTuples.add(new parser.Semantic.fourTuple("minus", attributes.get(1).var, "", this.var));
+                    Analysis.fourTuples.add(new fourTuple("minus", attributes.get(1).var, "", this.var));
                 }
                 break;
             case 30:
@@ -373,7 +373,7 @@ public class attribute {
                 this.var="t"+t_temp++;
                 if (!func) {
                     Analysis.mid++;
-                    Analysis.fourTuples.add(new parser.Semantic.fourTuple("( )", attributes.get(1).var, "", this.var));
+                    Analysis.fourTuples.add(new fourTuple("( )", attributes.get(1).var, "", this.var));
                 }
 //                System.out.println(Analysis   .fourTuples.get(Analysis.fourTuples.size()-1));
 //                System.out.println(Analysis.mid);
@@ -472,7 +472,7 @@ public class attribute {
 //                    System.out.println(Analysis.fourTuples.get(list.get(i)));
                 }
                 this.S_nextList=attributes.get(3).boolFalseList;
-                Analysis.fourTuples.add(new parser.Semantic.fourTuple("j","","",quad1+""));
+                Analysis.fourTuples.add(new fourTuple("j","","",quad1+""));
                 Analysis.mid++;
 //                int t=attributes.get(3).boolFalseList.get(0);
                 list=attributes.get(3).boolFalseList;
@@ -511,9 +511,9 @@ public class attribute {
                 this.boolTrueList.add(Analysis.mid);
                 this.boolFalseList.add(Analysis.mid+1);
                 relop=attributes.get(1).relop;
-                Analysis.fourTuples.add(new parser.Semantic.fourTuple("j"+relop,attributes.get(0).var,attributes.get(2).var,""));
+                Analysis.fourTuples.add(new fourTuple("j"+relop,attributes.get(0).var,attributes.get(2).var,""));
 //                System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
-                Analysis.fourTuples.add(new parser.Semantic.fourTuple("j","","",""));
+                Analysis.fourTuples.add(new fourTuple("j","","",""));
 //                System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
                 Analysis.mid+=2;
 //                System.out.println(Analysis.mid);
@@ -522,7 +522,7 @@ public class attribute {
             case 47:
                 this.type="boolean";
                 this.boolTrueList.add(Analysis.mid);
-                Analysis.fourTuples.add(new parser.Semantic.fourTuple("j","","",Analysis.mid+""));
+                Analysis.fourTuples.add(new fourTuple("j","","",Analysis.mid+""));
 //                System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                System.out.println(Analysis.mid);
                 Analysis.mid++;
@@ -530,7 +530,7 @@ public class attribute {
             case 48:
                 this.type="boolean";
                 this.boolFalseList.add(Analysis.mid);
-                Analysis.fourTuples.add(new parser.Semantic.fourTuple("j","","",Analysis.mid+""));
+                Analysis.fourTuples.add(new fourTuple("j","","",Analysis.mid+""));
 //                System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                System.out.println(Analysis.mid);
                 Analysis.mid++;
@@ -563,7 +563,7 @@ public class attribute {
                 break;
             case 57:
                 this.N_nextList.add(Analysis.mid);
-                Analysis.fourTuples.add(new parser.Semantic.fourTuple("j","","",""));
+                Analysis.fourTuples.add(new fourTuple("j","","",""));
                 Analysis.mid++;
 //                System.out.println(Analysis.fourTuples.get(Analysis.fourTuples.size()-1));
 //                System.out.println(Analysis.mid);

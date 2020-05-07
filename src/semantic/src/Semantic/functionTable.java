@@ -1,6 +1,4 @@
-package parser.Semantic;
-
-import parser.Semantic.fourTuple;
+package Semantic;
 
 import java.util.ArrayList;
 import java.util.HashMap;

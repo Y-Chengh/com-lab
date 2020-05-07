@@ -1,4 +1,4 @@
-package semantic.Structure;
+package Syntax.Structure;
 
 public class Tuple {
 

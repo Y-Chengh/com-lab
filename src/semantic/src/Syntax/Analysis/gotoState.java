@@ -1,7 +1,7 @@
-package semantic.Analysis;
+package Syntax.Analysis;
 
-import semantic.Method.Method;
-import semantic.Structure.Closure;
+import Syntax.Method.Method;
+import Syntax.Structure.Closure;
 
 import java.io.IOException;
 import java.util.ArrayList;

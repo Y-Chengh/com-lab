@@ -1,6 +1,6 @@
-package lexer.DFA;
+package semantic.src.Lexical.DFA;
 
-import lexer.Analysis.Main;
+import semantic.src.Lexical.Analysis.Main;
 
 import static semantic.src.Lexical.Tool.Tool.*;
 
