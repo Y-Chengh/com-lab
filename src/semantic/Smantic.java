@@ -11,14 +11,41 @@ import grammar.TreeNode;
 
 public class Smantic
 {
+	static boolean flagOfDeclaration = true;
+	static boolean flagOfAddedStatement = true;
+	static int location = 0;
+
+	static void declare(){
+		flagOfDeclaration = false;
+		flagOfAddedStatement = true;
+	}
+
+	static void statement(){
+		if(!flagOfDeclaration){
+			flagOfAddedStatement = false;
+			System.out.println("statement");
+		}
+	}
+
+	static void check(int loc){
+		if(!flagOfAddedStatement && !flagOfDeclaration){
+			Smantic.location = loc;
+			flagOfDeclaration = true;
+			flagOfAddedStatement = true;
+			System.out.println("check");
+		}
+	}
+
+
 	private static ArrayList<Tree> tree =  new ArrayList<Tree>();  // 语法树
 	static List<Properties> tree_pro;  // 语法树节点属性
 	
 	static List<Stack<Symbol>> table = new ArrayList<Stack<Symbol>>();  // 符号表  
 	static List<Integer> tablesize = new ArrayList<Integer>();  // 记录各个符号表大小
 	
-	static List<String> three_addr = new ArrayList<String>();  // 三地址指令序列
-	static List<FourAddr> four_addr = new ArrayList<FourAddr>();  // 四元式指令序列
+	static List<String> three_addr = new myList<>();  // 三地址指令序列
+
+	static List<FourAddr> four_addr = new myList<FourAddr>();  // 四元式指令序列
 	static List<String> errors = new ArrayList<String>();  // 错误报告序列
 	
     static String t;  // 类型
@@ -46,7 +73,9 @@ public class Smantic
 		Smantic.four_addr = four_addr;
 		Smantic.table = table;
 		Smantic.errors = errors;
-		
+
+		System.out.println("tree:");
+		System.out.println(tree);
 		if (treeSize==0)
 			return;
 		dfs(tree.get(treeSize-1));
@@ -54,21 +83,31 @@ public class Smantic
 		util.print_ins(three_addr, four_addr);
 		util.print_table(table);
 		util.print_errors(errors);
+
+		System.out.println(location);
     }
     
     
 	public static void main(String[] args)
 	{
+		long startTime = System.currentTimeMillis();
+		List<Stack<Symbol>> table = new ArrayList<Stack<Symbol>>();  // 符号表
+		List<String> three_addr = new ArrayList<String>();  // 三地址指令序列
+		List<FourAddr> four_addr = new ArrayList<FourAddr>();  // 三地址指令序列
+		List<String> errors = new ArrayList<String>();  // 错误序列
+		String fileString = "test1.txt";
+		Smantic se = new Smantic(fileString,table,three_addr,four_addr,errors);
+		System.out.println((System.currentTimeMillis() - startTime));
 		//SyntaxParser parser = new SyntaxParser("test1.txt");
 		//parser.analyze();
 		//System.out.println(tree_pro.size());
-		if (treeSize==0)
-			return;
-		dfs(tree.get(treeSize-1));
-		
-		util.print_ins(three_addr, four_addr);
-		util.print_table(table);
-		util.print_errors(errors);
+//		if (treeSize==0)
+//			return;
+//		dfs(tree.get(treeSize-1));
+//
+//		util.print_ins(three_addr, four_addr);
+//		util.print_table(table);
+//		util.print_errors(errors);
 	}
     
 	/**
@@ -159,6 +198,7 @@ public class Smantic
     		int x = list.get(i) - initial;
     		three_addr.set(x, three_addr.get(x)+quad);
     		four_addr.get(x).setToaddr(String.valueOf(quad));
+    		System.out.println("backPatch: " + three_addr.get(x) + "||" + quad);
     	}
     }
 
@@ -384,6 +424,9 @@ public class Smantic
     	
     	String code = id + " = " + tree_pro.get(E).getAddr();
     	three_addr.add(code);
+
+    	check(three_addr.size());
+
     	four_addr.add(new FourAddr("=",tree_pro.get(E).getAddr(),"-",id));
     	//System.out.println(code); 		 
     	
@@ -402,6 +445,8 @@ public class Smantic
     	String code = tree_pro.get(L).getName() + "[" +tree_pro.get(L).getOffset() 
     			+ "] = " + tree_pro.get(E).getAddr();
     	three_addr.add(code);
+		check(three_addr.size());
+
     	four_addr.add(new FourAddr("=",tree_pro.get(E).getAddr(),"-",
     			tree_pro.get(L).getName() + "[" +tree_pro.get(L).getOffset() + "]"));
     	//System.out.println(code); 		
@@ -432,6 +477,8 @@ public class Smantic
 	    	String code = newtemp1 + " = " + tree_pro.get(E1).getAddr() + 
 	    			"+" + tree_pro.get(E2).getAddr();
 	    	three_addr.add(code);
+			check(three_addr.size());
+
 	    	four_addr.add(new FourAddr("+",tree_pro.get(E1).getAddr(),
 	    			tree_pro.get(E2).getAddr(),newtemp1));
 	    	//System.out.println(code); 
@@ -449,6 +496,7 @@ public class Smantic
 	    	String code1 = newtemp1 + " = intTOreal " + tree_pro.get(E2).getAddr();
 	    	String code2 = newtemp2 + " = " + tree_pro.get(E1).getAddr() + "+" + newtemp1;
 	    	three_addr.add(code1);
+			check(three_addr.size());
 	    	three_addr.add(code2);
 	    	four_addr.add(new FourAddr("=","intTOreal" + tree_pro.get(E2).getAddr(),"-",newtemp1));
 	    	four_addr.add(new FourAddr("+",tree_pro.get(E1).getAddr(),newtemp1,newtemp2));
@@ -465,6 +513,7 @@ public class Smantic
 	    	String code1 = newtemp1 + " = intTOreal " + tree_pro.get(E1).getAddr();
 	    	String code2 = newtemp2 + " = " + newtemp1 + "+" + tree_pro.get(E2).getAddr();
 	    	three_addr.add(code1);
+			check(three_addr.size());
 	    	three_addr.add(code2);
 	    	four_addr.add(new FourAddr("=","intTOreal" + tree_pro.get(E1).getAddr(),"-",newtemp1));
 	    	four_addr.add(new FourAddr("+",newtemp1,tree_pro.get(E2).getAddr(),newtemp2));
@@ -481,6 +530,7 @@ public class Smantic
 	    	String code1 = newtemp1 + " = " + x;
 	    	String code2 = newtemp2 + " = " + newtemp1 + "+" + tree_pro.get(E2).getAddr();
 	    	three_addr.add(code1);
+			check(three_addr.size());
 	    	three_addr.add(code2);
 	    	four_addr.add(new FourAddr("=",String.valueOf(x),"-",newtemp1));
 	    	four_addr.add(new FourAddr("+",newtemp1,tree_pro.get(E2).getAddr(),newtemp2));
@@ -502,6 +552,7 @@ public class Smantic
 	    	String code1 = newtemp1 + " = " + x;
 	    	String code2 = newtemp2 + " = " + tree_pro.get(E1).getAddr() + "+" + newtemp1;
 	    	three_addr.add(code1);
+			check(three_addr.size());
 	    	three_addr.add(code2);
 	    	four_addr.add(new FourAddr("=",String.valueOf(x),"-",newtemp1));
 	    	four_addr.add(new FourAddr("+",tree_pro.get(E1).getAddr(),newtemp1,newtemp2));
@@ -541,6 +592,7 @@ public class Smantic
     	String code = newtemp + " = " + tree_pro.get(E1).getAddr() + 
     			"*" + tree_pro.get(E2).getAddr();
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("*",tree_pro.get(E1).getAddr(),
     			tree_pro.get(E2).getAddr(),newtemp));		
     }
@@ -573,6 +625,7 @@ public class Smantic
     	
     	String code = newtemp + " = -" + tree_pro.get(E1).getAddr();
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("=","-" + tree_pro.get(E1).getAddr(),
     			"-",newtemp));
     	//System.out.println(code); 	
@@ -645,6 +698,7 @@ public class Smantic
     	String code = newtemp + " = " + tree_pro.get(L).getName() +
     			"[" +tree_pro.get(L).getOffset() + "] ";
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("=",
     			tree_pro.get(L).getName() +"[" +tree_pro.get(L).getOffset() + "]","-",newtemp));
     	//System.out.println(code); 		
@@ -680,6 +734,7 @@ public class Smantic
             four_addr.add(new FourAddr("=",String.valueOf(4),"-",newtemp));
         	
         	three_addr.add(code);
+			check(three_addr.size());
         	//System.out.println(code); 
         	return;
     	}	
@@ -713,6 +768,7 @@ public class Smantic
         	four_addr.add(new FourAddr("=",tree_pro.get(E).getAddr(),"-",newtemp));
     	}
     	three_addr.add(code);
+		check(three_addr.size());
     	//System.out.println(code); 
     	
     }
@@ -750,6 +806,7 @@ public class Smantic
         			String.valueOf(w),newtemp1));
     	}
     	three_addr.add(code1);
+		check(three_addr.size());
     	//System.out.println(code1); 	
     	
     	String code2 = newtemp2 + " = " + tree_pro.get(L1).getOffset() +
@@ -852,6 +909,7 @@ public class Smantic
     	String code1 = "if " + tree_pro.get(E1).getAddr() + tree_pro.get(R).getName()
     			+ tree_pro.get(E2).getAddr() + " goto ";
     	three_addr.add(code1);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("j" + tree_pro.get(R).getName(),
     			tree_pro.get(E1).getAddr(),tree_pro.get(E2).getAddr(),"-"));
     	
@@ -873,6 +931,7 @@ public class Smantic
 
     	String code = "goto ";
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("j","-","-","-"));
     	//System.out.println(code); 
     }
@@ -888,6 +947,7 @@ public class Smantic
 
     	String code = "goto ";
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("j","-","-","-"));
     	//System.out.println(code); 
     }
@@ -956,6 +1016,7 @@ public class Smantic
     	
     	String code = "goto " + tree_pro.get(M1).getQuad();
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("j","-","-",String.valueOf(tree_pro.get(M1).getQuad())));
     	//System.out.println(code); 
     }
@@ -1035,6 +1096,7 @@ public class Smantic
     	
     	String code = "goto ";
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("j","-","-","-"));
     	//System.out.println(code); 
     }
@@ -1066,10 +1128,12 @@ public class Smantic
     	{
         	String code = "param " + queue.get(i);
         	three_addr.add(code);
+			check(three_addr.size());
         	four_addr.add(new FourAddr("param","-","-",queue.get(i)));
     	}
     	String code = "call " + id + " " + size;
     	three_addr.add(code);
+		check(three_addr.size());
     	four_addr.add(new FourAddr("call",String.valueOf(size),"-",id));
     	
     	Properties a1 = new Properties();    	
@@ -1105,8 +1169,9 @@ public class Smantic
     	//tablesize.add(off.peek());
     	tblptr.pop();
     	off.pop();
-    	
+
     	enter(tblptr.peek(), id, "函数", t);
+
     }
     
     //  N1 -> ε {t:= mktable(top(tblptr)); push(t, tblptr); push(0, offset)}
@@ -1132,190 +1197,172 @@ public class Smantic
     	String s = util.treeToPro(tree);
     	//System.out.println(s);
 
-    	
-    	if (s.equals("P -> proc id ; M0 begin D S end"))
-    	{
-    		semantic_1(tree);
-    	}
-    	else if (s.equals("S -> S M S"))
-    	{
-    		semantic_3(tree);
-    	}
-    	else if (s.equals("D -> T id ;"))
-    	{
-    		semantic_5(tree);
-    	}
-    	else if (s.equals("T -> X C"))
-    	{
-    		semantic_6(tree);
-    	}
-    	else if (s.equals("T -> record N2 D end"))
-    	{
-    		semantic_7(tree);
-    	}
-    	else if (s.equals("X -> integer"))
-    	{
-    		semantic_8(tree);
-    	}
-    	else if (s.equals("X -> real"))
-    	{
-    		semantic_9(tree);
-    	}
-    	else if (s.equals("C -> [ num ] C"))
-    	{
-    		semantic_10(tree);
-    	}
-    	else if (s.equals("C ->"))
-    	{
-    		semantic_11(tree);
-    	}
-    	else if (s.equals("S -> id = E ;"))
-    	{
-    		semantic_12(tree);
-    	}
-    	else if (s.equals("S -> L = E ;"))
-    	{
-    		semantic_13(tree);
-    	}
-    	else if (s.equals("E -> E + E1"))
-    	{
-    		semantic_14(tree);
-    	}
-    	else if (s.equals("E -> E1") || s.equals("E1 -> E2"))
-    	{
-    		semantic_15_17(tree);
-    	}
-    	else if (s.equals("E1 -> E1 * E2"))
-    	{
-    		semantic_16(tree);
-    	}
-    	else if (s.equals("E2 -> ( E )"))
-    	{
-    		semantic_18(tree);
-    	}
-    	else if (s.equals("E2 -> - E"))
-    	{
-    		semantic_19(tree);
-    	}
-    	else if (s.equals("E2 -> id"))
-    	{
-    		semantic_20(tree);
-    	}
-    	else if (s.equals("E2 -> num"))
-    	{
-    		semantic_21(tree);
-    	}
-    	else if (s.equals("E2 -> L"))
-    	{
-    		semantic_22(tree);
-    	}
-    	else if (s.equals("L -> id [ E ]"))
-    	{
-    		semantic_23(tree);
-    	}
-    	else if (s.equals("L -> L [ E ]"))
-    	{
-    		semantic_24(tree);
-    	}
-    	else if (s.equals("B -> B or M B1"))
-    	{
-    		semantic_25(tree);
-    	}
-    	else if (s.equals("B -> B1") || s.equals("B1 -> B2"))
-    	{
-    		semantic_26_28(tree);
-    	}
-    	else if (s.equals("B1 -> B1 and M B2"))
-    	{
-    		semantic_27(tree);
-    	}
-    	else if (s.equals("B2 -> not B"))
-    	{
-    		semantic_29(tree);
-    	}
-    	else if (s.equals("B2 -> ( B )"))
-    	{
-    		semantic_30(tree);
-    	}
-    	else if (s.equals("B2 -> E R E"))
-    	{
-    		//System.out.println(s);
-    		semantic_31(tree);
-    	}
-    	else if (s.equals("B2 -> true"))
-    	{
-    		semantic_32(tree);
-    	}
-    	else if (s.equals("B2 -> false"))
-    	{
-    		semantic_33(tree);
-    	}
-    	else if (s.equals("R -> <") || s.equals("R -> <=") || s.equals("R -> ==") 
-    			|| s.equals("R -> !=") || s.equals("R -> >") || s.equals("R -> >="))
-    	{
-    		semantic_34to39(tree);
-    	}
-    	else if (s.equals("S -> S1") || s.equals("S -> S2") || s.equals("S3 -> S"))
-    	{
-    		semantic_40_41_50(tree);
-    	}
-    	else if (s.equals("S1 -> if B then M S1 N else M S1") || 
-    			s.equals("S2 -> if B then M S1 N else M S2"))
-    	{
-    		semantic_42_44(tree);
-    	}
-    	else if (s.equals("S1 -> while M B do M S0"))
-    	{
-    		semantic_43(tree);
-    	}
-    	else if (s.equals("S2 -> if B then M S0"))
-    	{
-    		semantic_45(tree);
-    	}
-    	else if (s.equals("S0 -> begin S3 end") || s.equals("S1 -> begin S3 end") ||
-    			s.equals("S2 -> begin S3 end"))
-    	{
-    		semantic_46_47_48(tree);
-    	}
-    	else if (s.equals("S3 -> S3 ; M S"))
-    	{
-    		semantic_49(tree);
-    	}
-    	else if (s.equals("M0 ->"))
-    	{
-    		semantic_51();
-    	}
-    	else if (s.equals("M ->"))
-    	{
-    		semantic_52(tree);
-    	}
-    	else if (s.equals("N ->"))
-    	{
-    		semantic_53(tree);
-    	}
-    	else if (s.equals("S -> call id ( EL ) ;"))
-    	{
-    		semantic_54(tree);
-    	}
-    	else if (s.equals("EL -> EL , E"))
-    	{
-    		semantic_55(tree);
-    	}
-    	else if (s.equals("EL -> E"))
-    	{
-    		semantic_56(tree);
-    	}
-    	else if (s.equals("D -> proc id ; N1 begin D S end"))
-    	{
-    		semantic_57(tree);
-    	}
-    	else if (s.equals("N1 ->"))
-    	{
-    		semantic_58(tree);
-    	}
-    	else if (s.equals("N2 ->"))
-    	{
-    		semantic_59(tree);
-    	}
+    	if(s.equals("P1 -> P1 P1")){
+			semantic_1(tree);
+		}
+    	if(s.equals("P1 -> ε")){
+			semantic_1(tree);
+		}
+
+
+		switch (s) {
+			case "P -> proc id ; M0 begin D S end":
+				semantic_1(tree);
+				declare();
+				break;
+			case "S -> S M S":
+				semantic_3(tree);
+				statement();
+				break;
+			case "D -> T id ;":
+				semantic_5(tree);
+				break;
+			case "T -> X C":
+				semantic_6(tree);
+				break;
+			case "T -> record N2 D end":
+				semantic_7(tree);
+				break;
+			case "X -> integer":
+				semantic_8(tree);
+				break;
+			case "X -> real":
+				semantic_9(tree);
+				break;
+			case "C -> [ num ] C":
+				semantic_10(tree);
+				break;
+			case "C ->":
+				semantic_11(tree);
+				break;
+			case "S -> id = E ;":
+				semantic_12(tree);
+				statement();
+				break;
+			case "S -> L = E ;":
+				semantic_13(tree);
+				statement();
+				break;
+			case "E -> E + E1":
+				semantic_14(tree);
+				break;
+			case "E -> E1":
+			case "E1 -> E2":
+				semantic_15_17(tree);
+				break;
+			case "E1 -> E1 * E2":
+				semantic_16(tree);
+				break;
+			case "E2 -> ( E )":
+				semantic_18(tree);
+				break;
+			case "E2 -> - E":
+				semantic_19(tree);
+				break;
+			case "E2 -> id":
+				semantic_20(tree);
+				break;
+			case "E2 -> num":
+				semantic_21(tree);
+				break;
+			case "E2 -> L":
+				semantic_22(tree);
+				break;
+			case "L -> id [ E ]":
+				semantic_23(tree);
+				break;
+			case "L -> L [ E ]":
+				semantic_24(tree);
+				break;
+			case "B -> B or M B1":
+				semantic_25(tree);
+				break;
+			case "B -> B1":
+			case "B1 -> B2":
+				semantic_26_28(tree);
+				break;
+			case "B1 -> B1 and M B2":
+				semantic_27(tree);
+				break;
+			case "B2 -> not B":
+				semantic_29(tree);
+				break;
+			case "B2 -> ( B )":
+				semantic_30(tree);
+				break;
+			case "B2 -> E R E":
+				//System.out.println(s);
+				semantic_31(tree);
+				break;
+			case "B2 -> true":
+				semantic_32(tree);
+				break;
+			case "B2 -> false":
+				semantic_33(tree);
+				break;
+			case "R -> <":
+			case "R -> <=":
+			case "R -> ==":
+			case "R -> !=":
+			case "R -> >":
+			case "R -> >=":
+				semantic_34to39(tree);
+				break;
+			case "S -> S1":
+			case "S -> S2":
+				statement();
+				semantic_40_41_50(tree);
+				break;
+			case "S3 -> S":
+				semantic_40_41_50(tree);
+				break;
+			case "S1 -> if B then M S1 N else M S1":
+			case "S2 -> if B then M S1 N else M S2":
+				semantic_42_44(tree);
+				break;
+			case "S1 -> while M B do M S0":
+				semantic_43(tree);
+				break;
+			case "S2 -> if B then M S0":
+				semantic_45(tree);
+				break;
+			case "S0 -> begin S3 end":
+			case "S1 -> begin S3 end":
+			case "S2 -> begin S3 end":
+				semantic_46_47_48(tree);
+				break;
+			case "S3 -> S3 ; M S":
+				semantic_49(tree);
+				break;
+			case "M0 ->":
+				semantic_51();
+				break;
+			case "M ->":
+				semantic_52(tree);
+				break;
+			case "N ->":
+				semantic_53(tree);
+				break;
+			case "S -> call id ( EL ) ;":
+				semantic_54(tree);
+				statement();
+				break;
+			case "EL -> EL , E":
+				semantic_55(tree);
+				break;
+			case "EL -> E":
+				semantic_56(tree);
+				break;
+			case "D -> proc id ; N1 begin D S end":
+				semantic_57(tree);
+				declare();
+				break;
+			case "N1 ->":
+				semantic_58(tree);
+				break;
+			case "N2 ->":
+				semantic_59(tree);
+				break;
+		}
     }
 }
