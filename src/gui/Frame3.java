@@ -257,9 +257,19 @@ public class Frame3 extends javax.swing.JFrame {
 		Object[][] gui_table = util.gui_table(table);
 		Object[][] gui_errors = util.gui_errors(errors);
 		
-	
-		DefaultTableModel model1 = new DefaultTableModel(gui_ins,new String[] { "序号", "四元式","三地址指令"});
-		jTable1.setModel(model1);
+		
+		DefaultTableModel tableModel21 = (DefaultTableModel) jTable1.getModel();
+		String string=(se.getlocation()-1)+"";
+		tableModel21.addRow(new Object[] {"0", " " , "goto  "+string});
+		jTable1.invalidate();
+		
+		for(int i=0;i<gui_ins.length;i++) {
+			DefaultTableModel tableModel2 = (DefaultTableModel) jTable1.getModel();
+			tableModel2.addRow(gui_ins[i]);
+			jTable1.invalidate();
+		}
+		//DefaultTableModel model1 = new DefaultTableModel(gui_ins,new String[] { "序号", "四元式","三地址指令"});
+		//jTable1.setModel(model1);
 		
 		DefaultTableModel model2 = new DefaultTableModel(gui_table,new String[] { "表号","符号","类型","offset" });
 		jTable3.setModel(model2);

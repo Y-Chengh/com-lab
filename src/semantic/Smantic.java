@@ -14,6 +14,10 @@ public class Smantic
 	static boolean flagOfDeclaration = true;
 	static boolean flagOfAddedStatement = true;
 	static int location = 0;
+	
+	public int getlocation() {
+		return location;
+	}
 
 	static void declare(){
 		flagOfDeclaration = false;
@@ -84,7 +88,7 @@ public class Smantic
 		util.print_table(table);
 		util.print_errors(errors);
 
-		System.out.println(location);
+		//System.out.println(location);
     }
     
     
