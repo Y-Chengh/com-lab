@@ -88,7 +88,7 @@ public class Smantic
 		util.print_table(table);
 		util.print_errors(errors);
 
-		//System.out.println(location);
+		System.out.println(location);
     }
     
     

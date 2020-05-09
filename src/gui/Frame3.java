@@ -260,7 +260,7 @@ public class Frame3 extends javax.swing.JFrame {
 		
 		DefaultTableModel tableModel21 = (DefaultTableModel) jTable1.getModel();
 		String string=(se.getlocation()-1)+"";
-		tableModel21.addRow(new Object[] {"0", " " , "goto  "+string});
+		tableModel21.addRow(new Object[] {"0", "(j,-,-,"+string+")" , "goto "+string});
 		jTable1.invalidate();
 		
 		for(int i=0;i<gui_ins.length;i++) {
