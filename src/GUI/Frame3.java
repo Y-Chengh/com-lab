@@ -296,12 +296,12 @@ public class Frame3 extends javax.swing.JFrame {
         }
 
 
-        semanticErrorArea.setStyle(errorCSS);
-        StringBuilder parserError = new StringBuilder();
-        for (String error : parser.getErrorMessages())
-            parserError.append(error).append("\n");
-        semanticErrorArea.setText(parserError.toString());
-        semanticErrorArea.setEditable(false);
+//        semanticErrorArea.setStyle(errorCSS);
+//        StringBuilder parserError = new StringBuilder();
+//        for (String error : parser.getErrorMessages())
+//            parserError.append(error).append("\n");
+//        semanticErrorArea.setText(parserError.toString());
+//        semanticErrorArea.setEditable(false);
     }
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {

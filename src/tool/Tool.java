@@ -12,44 +12,54 @@ public class Tool {
     public List<List<String>> listOfTempCodes = new ArrayList<>(); // 在测试文件中添加的临时代码
     public List<List<String>> listOfParamCodes = new ArrayList<>();// 最后向3地址指令添加的代码
 
+    public void pre(){
+        ana("lexer/program/test.c");
+    }
+
+    public void post(){
+        List<String> list = readFile("parser/interCode.txt");
+        addCallFunctionCode(list);
+        writeFileWith("parser/interCodeOut.txt", list);
+    }
+
     public static void main(String[] args) {
-        String table = "<a, int, 1, 0>\n" +
-                "<b, int, 3, 4>\n" +
-                "<c, int, 4, 8>\n" +
-                "<d, int, 7, 12>\n" +
-                "<e, int, 9, 16>\n" +
-                "<h, float, 34, 64>\n" +
-                "<i, int, 31, 56>\n" +
-                "<j, int, 32, 60>\n" +
-                "<list, int[2][3], 29, 32>\n" +
-                "<PARAM1temp, int, 37, 72>\n" +
-                "<PARAM22, int, 47, 88>\n" +
-                "<PARAM21, int, 45, 84>\n" +
-                "<PARAM20, int, 43, 80>\n" +
-                "<function, proc, 51, 92>\n" +
-                "function Table:\n" +
-                "{\n" +
-                "<a, int, 51, 0>\n" +
-                "<c, int, 51, 4>\n" +
-                "<d, int, 53, 8>\n" +
-                "}\n" +
-                "<x, int, 11, 20>\n" +
-                "<y, int, 12, 24>\n" +
-                "<z, int, 14, 28>\n" +
-                "<PARAM2temp, int, 41, 76>\n";
+//        String table = "<a, int, 1, 0>\n" +
+//                "<b, int, 3, 4>\n" +
+//                "<c, int, 4, 8>\n" +
+//                "<d, int, 7, 12>\n" +
+//                "<e, int, 9, 16>\n" +
+//                "<h, float, 34, 64>\n" +
+//                "<i, int, 31, 56>\n" +
+//                "<j, int, 32, 60>\n" +
+//                "<list, int[2][3], 29, 32>\n" +
+//                "<PARAM1temp, int, 37, 72>\n" +
+//                "<PARAM22, int, 47, 88>\n" +
+//                "<PARAM21, int, 45, 84>\n" +
+//                "<PARAM20, int, 43, 80>\n" +
+//                "<function, proc, 51, 92>\n" +
+//                "function Table:\n" +
+//                "{\n" +
+//                "<a, int, 51, 0>\n" +
+//                "<c, int, 51, 4>\n" +
+//                "<d, int, 53, 8>\n" +
+//                "}\n" +
+//                "<x, int, 11, 20>\n" +
+//                "<y, int, 12, 24>\n" +
+//                "<z, int, 14, 28>\n" +
+//                "<PARAM2temp, int, 41, 76>\n";
 
         Tool tool = new Tool();
-        tool.ana("testCall.txt");//输入的测试文件
-//        System.out.println(tool.listOfTempNames.get(0));
-//        System.out.println(tool.listOfTempCodes.get(0));
-//        System.out.println(tool.listOfParamCodes.get(0));
+        tool.pre();
+        tool.post();
 
-
-
-        List<String> list = tool.readFile("interCodeTest.txt");
-        tool.addCallFunctionCode(list);
-        tool.writeFile("interCodeTestOut.txt", list);
-        System.out.println(tool.toStringRemoveUnusedToken(table, tool.listOfTempNames));
+//        tool.ana("testCall.txt");//输入的测试文件
+//
+//
+//
+//        List<String> list = tool.readFile("parser/interCode.txt");
+//        tool.addCallFunctionCode(list);
+//        tool.writeFileWith("parser/interCodeOut.txt", list);
+//        System.out.println(tool.toStringRemoveUnusedToken(table, tool.listOfTempNames));
     }
 
     // 去掉符号表中的临时变量
@@ -77,7 +87,7 @@ public class Tool {
                 processCall(lines, i, "PARAM"+(++index));
             }
         }
-        writeFile("testCallOut.txt", lines);
+        writeFile("lexer/program/testout.c", lines);
     }
 
     //向指令中添加调用函数的指令
@@ -141,10 +151,10 @@ public class Tool {
                 tempNames.add(tempName);
                 tempCodes.add("int " + tempName + ";");
                 tempCodes.add(tempName + " = " + p + ";");
-                paramCodes.add("param " + tempName);
+                paramCodes.add(" param " + tempName);
             }
         }
-        paramCodes.add("call " + id);
+        paramCodes.add(" call " + id);
 
         lines.remove(index);
         lines.addAll(index, tempCodes);
@@ -168,6 +178,9 @@ public class Tool {
             // 一次读入一行，直到读入null为文件结束
             while ((tempString = reader.readLine()) != null) {
                 // 显示行号
+                if(tempString.contains(":")){
+                    tempString = tempString.substring(tempString.indexOf(":") + 1);
+                }
                 res.add(tempString);
 //                System.out.println("line " + line + ": " + tempString);
                 line++;
@@ -198,6 +211,27 @@ public class Tool {
             BufferedWriter bw = new BufferedWriter(fw);
             for(String line: lines)
                 bw.write(line + "\n");
+            bw.close();
+            System.out.println("Done");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeFileWith(String fileName, List<String> lines){
+        fileName = System.getProperty("user.dir") + "/src/" + fileName;
+        try {
+            File file = new File(fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for(int i = 0; i < lines.size(); i++)
+                bw.write(i + " : " + lines.get(i) + "\n");
+//            for(String line: lines)
+//                bw.write(line + "\n");
             bw.close();
             System.out.println("Done");
 

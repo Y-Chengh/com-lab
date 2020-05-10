@@ -134,6 +134,20 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+    <configuration name="Frame3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.Frame3" />
+      <module name="Compiler" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="lexer.Lexer" />
       <module name="Compiler" />
@@ -243,12 +257,14 @@
       <item itemvalue="Application.Main (1)" />
       <item itemvalue="Application.Parser" />
       <item itemvalue="Application.Tool" />
+      <item itemvalue="Application.Frame3" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Tool" />
-        <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Frame3" />
+        <item itemvalue="Application.Parser" />
         <item itemvalue="Application.Lexer" />
       </list>
     </recent_temporary>
@@ -267,7 +283,7 @@
       <workItem from="1554984498957" duration="10798000" />
       <workItem from="1589069035518" duration="874000" />
       <workItem from="1589070320396" duration="1071000" />
-      <workItem from="1589071771740" duration="8923000" />
+      <workItem from="1589071771740" duration="10086000" />
     </task>
     <servers />
   </component>
@@ -279,22 +295,22 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1421" height="197" key="GridCell.Tab.0.bottom" timestamp="1589080855911">
+    <state width="1421" height="179" key="GridCell.Tab.0.bottom" timestamp="1589082017440">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="197" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589080855911" />
-    <state width="1421" height="197" key="GridCell.Tab.0.center" timestamp="1589080855911">
+    <state width="1421" height="179" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589082017440" />
+    <state width="1421" height="179" key="GridCell.Tab.0.center" timestamp="1589082017439">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="197" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589080855911" />
-    <state width="1421" height="197" key="GridCell.Tab.0.left" timestamp="1589080855911">
+    <state width="1421" height="179" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589082017439" />
+    <state width="1421" height="179" key="GridCell.Tab.0.left" timestamp="1589082017439">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="197" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589080855911" />
-    <state width="1421" height="197" key="GridCell.Tab.0.right" timestamp="1589080855911">
+    <state width="1421" height="179" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589082017439" />
+    <state width="1421" height="179" key="GridCell.Tab.0.right" timestamp="1589082017439">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1421" height="197" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589080855911" />
+    <state width="1421" height="179" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589082017439" />
     <state width="1421" height="263" key="GridCell.Tab.1.bottom" timestamp="1589078721550">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
@@ -311,6 +327,10 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1421" height="263" key="GridCell.Tab.1.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589078721549" />
+    <state x="378" y="-1" width="840" height="1034" key="search.everywhere.popup" timestamp="1589081872737">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="378" y="-1" width="840" height="1034" key="search.everywhere.popup/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589081872737" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
