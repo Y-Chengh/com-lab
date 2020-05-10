@@ -23,6 +23,9 @@ public class Parser {
     public static final Item START_ITEM = new Item(Parser.PRODUCE_START_STATE, new String[]{START_STATE}, 0, Parser.STACK_BOTTOM_CHARACTER);
     // 开始项目
 
+    public List<InterCode> interList = new ArrayList<>();
+
+
     private Map<String, Set<String>> first = new HashMap<>();
     private final Map<String, Set<String>> follow = new HashMap<>();
     private final Set<Production> productions = new HashSet<>();
@@ -430,6 +433,8 @@ public class Parser {
 
         // 中间代码
         List<InterCode> interCodeList = new ArrayList<>();
+        interList = interCodeList;//inserted
+
         int nextInstr = 0;
 
         int status = 0;
@@ -1486,5 +1491,6 @@ public class Parser {
         List<Production> productions = parser.reduce(tokens);
         for (Production production : productions)
             System.out.println(production);
+        System.out.println(parser.table);
     }
 }
