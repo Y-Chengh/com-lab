@@ -273,14 +273,14 @@ public class Frame3 extends javax.swing.JFrame {
         parser.outputLRTableToFile();
         lexerReadSourceCode();
         PrintStream origin = System.out;
-        //PrintStream printStream = new PrintStream(new FileOutputStream("src/parser/interCode.txt"));
-        //System.setOut(printStream);
+        PrintStream printStream = new PrintStream(new FileOutputStream("src/parser/interCode.txt"));
+        System.setOut(printStream);
         parser.reduce(lexer.getTokens());
         System.setOut(origin);
         //interCodeArea.setText(readFromFile("src/parser/interCode.txt"));
         //interCodeArea.setEditable(false);
         tool.post();
-        File file=new File("src/parser/interCode.txt");
+        File file=new File("src/parser/interCodeOut.txt");
         //getFourAddrInstruction.getFourAddrInstruction("src/parser/interCode.txt");
         FileReader filereader = new FileReader(file);
         BufferedReader bufferreader = new BufferedReader(filereader);

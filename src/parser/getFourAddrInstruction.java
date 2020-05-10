@@ -64,9 +64,9 @@ public class getFourAddrInstruction {
             fourAddrIns[3] = line.split(" ")[1];
             count++;
         }else if(line.contains("call")){
-            fourAddrIns[0] = line.split(" ")[0];
-            fourAddrIns[1] = line.split(" ")[2];
-            fourAddrIns[3] = line.split(" ")[1];
+            fourAddrIns[0] = line.trim().split(" ")[0];
+            fourAddrIns[1] = line.trim().split(" ")[2];
+            fourAddrIns[3] = line.trim().split(" ")[1];
         }
         else{
             fourAddrIns[3] = line.split("=")[0];
