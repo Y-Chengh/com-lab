@@ -1372,6 +1372,8 @@ public class Parser {
         for (int i = 0; i < optimisedInterCode.size(); i++)
             System.out.println(i + " : " + optimisedInterCode.get(i));
 
+
+
         return ans;
     }
 
@@ -1491,6 +1493,6 @@ public class Parser {
         List<Production> productions = parser.reduce(tokens);
         for (Production production : productions)
             System.out.println(production);
-        System.out.println(parser.table);
+//        System.out.println(parser);
     }
 }

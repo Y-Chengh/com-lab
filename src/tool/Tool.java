@@ -154,7 +154,7 @@ public class Tool {
                 paramCodes.add(" param " + tempName);
             }
         }
-        paramCodes.add(" call " + id);
+        paramCodes.add(" call " + id + " " + param.length());
 
         lines.remove(index);
         lines.addAll(index, tempCodes);
@@ -200,7 +200,7 @@ public class Tool {
         return res;
     }
 
-    public void writeFile(String fileName, List<String> lines){
+    public static void writeFile(String fileName, List<String> lines){
         fileName = System.getProperty("user.dir") + "/src/" + fileName;
         try {
             File file = new File(fileName);
@@ -212,7 +212,7 @@ public class Tool {
             for(String line: lines)
                 bw.write(line + "\n");
             bw.close();
-            System.out.println("Done");
+//            System.out.println("test.c Done");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -232,7 +232,6 @@ public class Tool {
                 bw.write(i + " : " + lines.get(i) + "\n");
 //            for(String line: lines)
 //                bw.write(line + "\n");
-            bw.write("\n");
             bw.close();
             System.out.println("Done");
 

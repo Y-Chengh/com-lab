@@ -1,5 +1,6 @@
+int f;
+f = 1 + 2;
 int a;
-a = 1 + 2;
 int b;
 int c;
 c = 10;
@@ -27,6 +28,11 @@ proc int function(int a, int c){
     int d;
     return a;
 }
+
+int PARAM1temp;
+PARAM1temp = 0;
+int PARAM10;
+PARAM10 = a;
 
 int [2][3] list;
 int c;
