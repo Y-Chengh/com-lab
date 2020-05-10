@@ -63,7 +63,7 @@ public class Tool {
     }
 
     // 去掉符号表中的临时变量
-    public String toStringRemoveUnusedToken(String tokenTable, List<List<String>> listOfTempNames){
+    public String toStringRemoveUnusedToken(String tokenTable){
         String[] s = tokenTable.split("\n");
 //        List<String> stringList = Arrays.asList(s);
         List<String> stringList = new ArrayList<>();

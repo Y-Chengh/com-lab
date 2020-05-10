@@ -36,18 +36,15 @@
 35 :  t15 = j * 4
 36 :  t16 = t14 + t15
 37 :  list [ t16 ] = c
-38 :  call identifier
+38 :  PARAM1temp = 0
 39 :  t17 = h * (float) c
 40 :  d = t17
-41 :  PARAM20 = a
-42 :  t18 = 10 * 9
-43 :  PARAM21 = t18
-44 :  t19 = a + b
-45 :  t20 = t19 * c
-46 :  PARAM22 = t20
-47 :  param PARAM20
-48 :  param PARAM21
-49 :  param PARAM22
-50 :  call identifier
-51 :  t21 = c + 10
-52 :  a = t21
+41 :  PARAM2temp = 0
+42 :  PARAM20 = a
+43 :  t18 = 10 * 9
+44 :  PARAM21 = t18
+45 :  t19 = a + b
+46 :  t20 = t19 * c
+47 :  PARAM22 = t20
+48 :  t21 = c + 10
+49 :  a = t21
