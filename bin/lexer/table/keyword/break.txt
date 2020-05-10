@@ -1,7 +1,0 @@
-flag:1
-0 b:1
-1 r:2
-2 e:3
-3 a:4
-4 k:5
-5<type,value>

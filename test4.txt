@@ -1,9 +1,0 @@
-proc fuction1;
-begin
-	
-    f11 = 1;
-end
-      
-       
-        
-        

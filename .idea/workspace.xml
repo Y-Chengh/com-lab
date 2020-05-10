@@ -1,56 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="052620e4-82cf-4cca-b339-5bba289a5543" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/semantic/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Control.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/semantic/Declaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Declaration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/semantic/Semantic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Semantic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/semantic/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Statement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/semantic/Statements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/semantic/Statements.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true" converted="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="JavaFxApplication" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1aeFnWDfE3E12mnBBmSAWoaWLhi" />
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectId" id="1bh0UVQKRiwq60nQqVanJUWy2tc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Compiler_2019Spring/Compiler" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="restartRequiresConfirmation" value="false" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
-  <component name="RunManager" selected="Application.Tool">
-    <configuration name="Frame3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.Frame3" />
-      <module name="compiler" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Norman\Desktop\CODE\Compiler_2019Spring\Compiler\jar" />
+      <recent name="C:\Users\Norman\Desktop\CODE\Compiler_2019Spring\Compiler\src\jar\access-bridge-64.jar\com\sun\java\accessibility" />
+      <recent name="C:\Users\Norman\Desktop\CODE\Compiler_2019Spring\Compiler\src\jar" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="Lexer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lexer.Lexer" />
+      <module name="Compiler" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gui.*" />
+          <option name="PATTERN" value="lexer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -58,12 +142,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Smantic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="semantic.Smantic" />
-      <module name="compiler" />
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Compiler" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <module name="Compiler" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="semantic.*" />
+          <option name="PATTERN" value="lexer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Parser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="parser.Parser" />
+      <module name="Compiler" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -71,52 +180,54 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="semantic.Test1" />
-      <module name="compiler" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="semantic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tool" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="semantic.Tool" />
-      <module name="compiler" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="semantic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test.test" />
-      <module name="compiler" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Lexer" />
+      <item itemvalue="Application.Main (1)" />
+      <item itemvalue="Application.Parser" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Tool" />
-        <item itemvalue="Application.Frame3" />
-        <item itemvalue="Application.Smantic" />
-        <item itemvalue="Application.Test1" />
-        <item itemvalue="Application.test" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Parser" />
+        <item itemvalue="Application.Lexer" />
       </list>
     </recent_temporary>
   </component>
@@ -125,66 +236,45 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="052620e4-82cf-4cca-b339-5bba289a5543" name="Default Changelist" comment="" />
-      <created>1587088319834</created>
+      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <created>1359379246138</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1587088319834</updated>
-      <workItem from="1587088322402" duration="3357000" />
-      <workItem from="1587110285124" duration="1716000" />
-      <workItem from="1587176032256" duration="2138000" />
-      <workItem from="1587178308776" duration="229000" />
-      <workItem from="1587181336452" duration="2293000" />
-      <workItem from="1587191000072" duration="3000" />
-      <workItem from="1587216851058" duration="807000" />
-      <workItem from="1587221018233" duration="142000" />
-      <workItem from="1587261548897" duration="514000" />
-      <workItem from="1587262272922" duration="138000" />
-      <workItem from="1587272663658" duration="4237000" />
-      <workItem from="1587374399556" duration="2000" />
-      <workItem from="1587603608367" duration="2000" />
-      <workItem from="1588501366167" duration="5128000" />
-      <workItem from="1588940327921" duration="12151000" />
-      <workItem from="1589034105245" duration="5140000" />
+      <updated>1359379246138</updated>
+      <workItem from="1359379250712" duration="1302000" />
+      <workItem from="1554984498957" duration="10798000" />
+      <workItem from="1589069035518" duration="874000" />
+      <workItem from="1589070320396" duration="1071000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="561" y="75" key="#com.intellij.ide.util.MemberChooser" timestamp="1588510872422">
+    <state width="1421" height="17" key="GridCell.Tab.0.bottom" timestamp="1589069909631">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="561" y="75" key="#com.intellij.ide.util.MemberChooser/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588510872422" />
-    <state x="530" y="131" key="FileChooserDialogImpl" timestamp="1589067485729">
+    <state width="1421" height="17" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589069909631" />
+    <state width="1421" height="17" key="GridCell.Tab.0.center" timestamp="1589069909631">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state x="530" y="131" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067485729" />
-    <state width="1421" height="382" key="GridCell.Tab.0.bottom" timestamp="1589067487106">
+    <state width="1421" height="17" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589069909631" />
+    <state width="1421" height="17" key="GridCell.Tab.0.left" timestamp="1589069909630">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1483" height="3" key="GridCell.Tab.0.bottom/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770024" />
-    <state width="1421" height="382" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
-    <state width="1421" height="382" key="GridCell.Tab.0.center" timestamp="1589067487106">
+    <state width="1421" height="17" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589069909630" />
+    <state width="1421" height="17" key="GridCell.Tab.0.right" timestamp="1589069909631">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
-    <state width="1483" height="3" key="GridCell.Tab.0.center/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770022" />
-    <state width="1421" height="382" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
-    <state width="1421" height="382" key="GridCell.Tab.0.left" timestamp="1589067487106">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1483" height="3" key="GridCell.Tab.0.left/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770022" />
-    <state width="1421" height="382" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
-    <state width="1421" height="382" key="GridCell.Tab.0.right" timestamp="1589067487106">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state width="1483" height="3" key="GridCell.Tab.0.right/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770023" />
-    <state width="1421" height="382" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
-    <state x="422" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1587603608684">
-      <screen x="62" y="0" width="1474" height="864" />
-    </state>
-    <state x="422" y="216" key="com.intellij.ide.util.TipDialog/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1587603608684" />
-    <state x="422" y="216" key="com.intellij.ide.util.TipDialog/62.0.1474.864@62.0.1474.864" timestamp="1587261548646" />
+    <state width="1421" height="17" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589069909631" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
 </project>
