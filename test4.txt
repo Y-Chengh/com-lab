@@ -1,57 +1,7 @@
 proc fuction1;
 begin
-    integer f11;
-    real f12;
-
-    proc fuction2;
-    begin
-        integer[7][6] arr;
-        integer m;
-        integer n;
-        integer a;
-        integer b;
-        integer c;
-        integer d;
-        real e;
-        record real re1; integer re2; end r1;
-        
-        integer x;
-        integer y;
-        integer z;
-    
-        
-        while a<b do 
-            begin
-                if c<d then 
-                    begin
-                        x=y+z; 
-                    end
-                else 
-                    begin
-                        x=y*z;
-                    end
-            end
-    
-   
-        arr[3][5] = 2;
-        m=(m+n)*9;
-        
-         
-        e = e + a; // real = real + int , Type conversion
-    end
-	
-	proc fuction2;
-    begin
-        integer a;
-        integer b;
-        real e;
-        record real re1; integer re2; end r1;
-
-        e = e + a; // real = real + int , Type conversion
-    end
 	
     f11 = 1;
-    call fuction2(1,2+1,a*b);
 end
       
        

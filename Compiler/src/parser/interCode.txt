@@ -1,0 +1,48 @@
+0 : t1 = 1 + 2
+1 : a = t1
+2 : c = 10
+3 : t2 = c + 1
+4 : b = t2
+5 : t3 = c + c
+6 : d = t3
+7 : e = 0
+8 : y = 999
+9 : t4 = a + null
+10 : t5 = d + c
+11 : t6 = t4 * t5
+12 : y = t6
+13 : z = 100
+14 : if a < b goto 16
+15 : goto 18
+16 : if a > b goto 20
+17 : goto 18
+18 : if a < b goto 20
+19 : goto 28
+20 : if c < d goto 22
+21 : goto 25
+22 : t7 = y + z
+23 : x = t7
+24 : goto 14
+25 : t8 = a + b
+26 : x = t8
+27 : goto 14
+28 : t9 = d + e
+29 : t10 = c * t9
+30 : t11 = b + t10
+31 : a = t11
+32 : if a > b goto 34
+33 : goto 35
+34 : c = d
+35 : t12 = i + 1
+36 : i = t12
+37 : t13 = i * 12
+38 : t14 = j * 4
+39 : t15 = t13 + t14
+40 : t16 = c + list[t15]
+41 : d = t16
+42 : t17 = i * 12
+43 : t18 = j * 4
+44 : t19 = t17 + t18
+45 : list [ t19 ] = c
+46 : t20 = h * (float) c
+47 : d = t20

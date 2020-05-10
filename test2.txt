@@ -18,12 +18,11 @@ begin
         integer x;
         integer y;
         integer z;
-        integer z;  // Duplicate definition
     
         
-        while a<b do 
+        while (a>b) and not c do 
             begin
-                if c<d then 
+                if (c<d and a>c) then 
                     begin
                         x=y+z; 
                     end
@@ -52,16 +51,8 @@ begin
         arr[3][5] = 2;
         m=(m+n)*9;
         
-         
-        e = e + a; // real = real + int , Type conversion
-        
-        call a(1,2+1,a*b);   //Common variable with call
-        e1 = 7;  // e1 Undefined
-        a = e2;  // e2 Undefined
-        a[0] = 1;  // Non-array using array operators
-        e3[9] = 1;  // e3 Undefined
-        a = a + arr; // int = int + array, Integer variables are added to array variables 
-    
+       
+		b=(m+9)*6*20;
     end
     f11 = 1;
     call fuction2(1,2+1,a*b);

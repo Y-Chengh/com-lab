@@ -35,7 +35,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Compiler_2019Spring/Compiler" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -44,20 +44,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
-  <component name="RunManager" selected="Application.Smantic">
-    <configuration name="Frame2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.Frame2" />
-      <module name="compiler" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Tool">
     <configuration name="Frame3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gui.Frame3" />
       <module name="compiler" />
@@ -97,6 +84,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Tool" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="semantic.Tool" />
+      <module name="compiler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="semantic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test.test" />
       <module name="compiler" />
@@ -112,11 +112,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Tool" />
+        <item itemvalue="Application.Frame3" />
         <item itemvalue="Application.Smantic" />
         <item itemvalue="Application.Test1" />
         <item itemvalue="Application.test" />
-        <item itemvalue="Application.Frame3" />
-        <item itemvalue="Application.Frame2" />
       </list>
     </recent_temporary>
   </component>
@@ -144,7 +144,8 @@
       <workItem from="1587374399556" duration="2000" />
       <workItem from="1587603608367" duration="2000" />
       <workItem from="1588501366167" duration="5128000" />
-      <workItem from="1588940327921" duration="8407000" />
+      <workItem from="1588940327921" duration="12151000" />
+      <workItem from="1589034105245" duration="5140000" />
     </task>
     <servers />
   </component>
@@ -156,26 +157,30 @@
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state x="561" y="75" key="#com.intellij.ide.util.MemberChooser/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588510872422" />
-    <state width="1421" height="264" key="GridCell.Tab.0.bottom" timestamp="1588950682519">
+    <state x="530" y="131" key="FileChooserDialogImpl" timestamp="1589067485729">
+      <screen x="62" y="0" width="1474" height="864" />
+    </state>
+    <state x="530" y="131" key="FileChooserDialogImpl/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067485729" />
+    <state width="1421" height="382" key="GridCell.Tab.0.bottom" timestamp="1589067487106">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1483" height="3" key="GridCell.Tab.0.bottom/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770024" />
-    <state width="1421" height="264" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588950682519" />
-    <state width="1421" height="264" key="GridCell.Tab.0.center" timestamp="1588950682519">
+    <state width="1421" height="382" key="GridCell.Tab.0.bottom/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
+    <state width="1421" height="382" key="GridCell.Tab.0.center" timestamp="1589067487106">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1483" height="3" key="GridCell.Tab.0.center/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770022" />
-    <state width="1421" height="264" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588950682519" />
-    <state width="1421" height="264" key="GridCell.Tab.0.left" timestamp="1588950682519">
+    <state width="1421" height="382" key="GridCell.Tab.0.center/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
+    <state width="1421" height="382" key="GridCell.Tab.0.left" timestamp="1589067487106">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1483" height="3" key="GridCell.Tab.0.left/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770022" />
-    <state width="1421" height="264" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588950682519" />
-    <state width="1421" height="264" key="GridCell.Tab.0.right" timestamp="1588950682519">
+    <state width="1421" height="382" key="GridCell.Tab.0.left/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
+    <state width="1421" height="382" key="GridCell.Tab.0.right" timestamp="1589067487106">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
     <state width="1483" height="3" key="GridCell.Tab.0.right/1920.0.1536.834/0.0.1536.834@0.0.1536.834" timestamp="1587275770023" />
-    <state width="1421" height="264" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1588950682519" />
+    <state width="1421" height="382" key="GridCell.Tab.0.right/1982.0.1474.864/62.0.1474.864@62.0.1474.864" timestamp="1589067487106" />
     <state x="422" y="216" key="com.intellij.ide.util.TipDialog" timestamp="1587603608684">
       <screen x="62" y="0" width="1474" height="864" />
     </state>
