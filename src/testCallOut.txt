@@ -34,17 +34,18 @@ int d;
 float h;
 d = c + list[i][j];
 list[i][j] = c;
-
+int PARAM1temp;
+PARAM1temp = 0;
 d = h * c;
 
-int _PARAM1temp;
-int _PARAM1temp = 0;
-int _PARAM10;
-int _PARAM10 = 10;
-int _PARAM11;
-int _PARAM11 =  a+b;
-int _PARAM12;
-int _PARAM12 =  (c*d)+a;
+int PARAM2temp;
+PARAM2temp = 0;
+int PARAM20;
+PARAM20 = a;
+int PARAM21;
+PARAM21 =  10*9;
+int PARAM22;
+PARAM22 =  (a+b)*c;
 
 c[1][2] = d;
 proc int function(int a, int c){
@@ -52,12 +53,3 @@ proc int function(int a, int c){
     int d;
     return a;
 }
-int _PARAM2temp;
-int _PARAM2temp = 0;
-int _PARAM20;
-int _PARAM20 = 10;
-int _PARAM21;
-int _PARAM21 =  a+b;
-int _PARAM22;
-int _PARAM22 =  (c*d)+a;
-

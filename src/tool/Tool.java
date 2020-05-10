@@ -1,7 +1,10 @@
 package tool;
 
+import parser.InterCode;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Tool {
@@ -10,15 +13,60 @@ public class Tool {
     public List<List<String>> listOfParamCodes = new ArrayList<>();// 最后向3地址指令添加的代码
 
     public static void main(String[] args) {
+        String table = "<a, int, 1, 0>\n" +
+                "<b, int, 3, 4>\n" +
+                "<c, int, 4, 8>\n" +
+                "<d, int, 7, 12>\n" +
+                "<e, int, 9, 16>\n" +
+                "<h, float, 34, 64>\n" +
+                "<i, int, 31, 56>\n" +
+                "<j, int, 32, 60>\n" +
+                "<list, int[2][3], 29, 32>\n" +
+                "<PARAM1temp, int, 37, 72>\n" +
+                "<PARAM22, int, 47, 88>\n" +
+                "<PARAM21, int, 45, 84>\n" +
+                "<PARAM20, int, 43, 80>\n" +
+                "<function, proc, 51, 92>\n" +
+                "function Table:\n" +
+                "{\n" +
+                "<a, int, 51, 0>\n" +
+                "<c, int, 51, 4>\n" +
+                "<d, int, 53, 8>\n" +
+                "}\n" +
+                "<x, int, 11, 20>\n" +
+                "<y, int, 12, 24>\n" +
+                "<z, int, 14, 28>\n" +
+                "<PARAM2temp, int, 41, 76>\n";
+
         Tool tool = new Tool();
-        tool.ana("testCall.txt");
-        System.out.println(tool.listOfTempNames.get(0));
-        System.out.println(tool.listOfTempCodes.get(0));
-        System.out.println(tool.listOfParamCodes.get(0));
+        tool.ana("testCall.txt");//输入的测试文件
+//        System.out.println(tool.listOfTempNames.get(0));
+//        System.out.println(tool.listOfTempCodes.get(0));
+//        System.out.println(tool.listOfParamCodes.get(0));
+
+
+
+        List<String> list = tool.readFile("interCodeTest.txt");
+        tool.addCallFunctionCode(list);
+        tool.writeFile("interCodeTestOut.txt", list);
+        System.out.println(tool.toStringRemoveUnusedToken(table, tool.listOfTempNames));
     }
 
-    public void removeUnusedVar(){
+    // 去掉符号表中的临时变量
+    public String toStringRemoveUnusedToken(String tokenTable, List<List<String>> listOfTempNames){
+        String[] s = tokenTable.split("\n");
+//        List<String> stringList = Arrays.asList(s);
+        List<String> stringList = new ArrayList<>();
+        for(String string: s)stringList.add(string);
+        for(List<String> tempNames: listOfTempNames){
+            for(String tempName: tempNames){
+                removeToken(stringList, tempName);
+            }
+        }
 
+        String res = "";
+        for(String string: stringList)res += string + "\n";
+        return res;
     }
 
     public void ana(String filePath){
@@ -26,20 +74,59 @@ public class Tool {
         List<String> lines = readFile(filePath);
         for(int i = 0; i < lines.size(); i++){
             if(lines.get(i).contains("call")){
-                processCall(lines, i, "_PARAM"+(++index));
+                processCall(lines, i, "PARAM"+(++index));
             }
         }
         writeFile("testCallOut.txt", lines);
     }
 
-    public void processCall(List<String> lines, int index, String prefix){
+    //向指令中添加调用函数的指令
+    public void addCallFunctionCode(List<String> interCode){
+        for (int i = 0; i < listOfTempNames.size(); i++) {
+            callFunctionCodeHelper(interCode, i);
+        }
+    }
+
+
+
+    private boolean callFunctionCodeHelper(List<String> interCode, int index){
+        List<String> tempNames = listOfTempNames.get(index);
+        List<String> tempCodes = listOfTempCodes.get(index);
+        List<String> paramCodes = listOfParamCodes.get(index);
+        if(tempNames.size() == 1){
+            for(int i = 0; i < interCode.size(); i++){
+                if(interCode.get(i).contains(tempNames.get(0))){
+                    interCode.remove(i);
+                    interCode.addAll(i, paramCodes);
+                    return true;
+                }
+            }
+        }else{
+            for(int i = 0; i < interCode.size(); i++){
+                if(interCode.get(i).contains(tempNames.get(0))){
+                    interCode.remove(i);
+                    break;
+                }
+            }
+            //goto x中的x可能在修改之后目标位置发生错误
+            for(int i = 0; i < interCode.size(); i++){
+                if(interCode.get(i).contains(tempNames.get(tempNames.size()-1))){
+                    interCode.addAll(i+1, paramCodes);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void processCall(List<String> lines, int index, String prefix){
         List<String> tempNames = new ArrayList<>();  // 表示参数的变量名
         List<String> tempCodes = new ArrayList<>(); // 在测试文件中添加的临时代码
         List<String> paramCodes = new ArrayList<>(); // 最后向3地址指令添加的代码
 
         tempNames.add(prefix + "temp");
         tempCodes.add("int " + prefix + "temp" + ";");
-        tempCodes.add("int " + prefix + "temp" + " = 0"  + ";");
+        tempCodes.add(prefix + "temp" + " = 0"  + ";");
 
         String target = lines.get(index).trim();
         String first = target.substring(0, target.indexOf("(")).trim();
@@ -47,14 +134,15 @@ public class Tool {
 
         String id = first.substring(5).trim();
         String[] params = param.split(",");
-
-        int sort = 0;
-        for(String p: params){
-            String tempName = prefix + sort++;
-            tempNames.add(tempName);
-            tempCodes.add("int " + tempName + ";");
-            tempCodes.add("int " + tempName + " = " + p + ";");
-            paramCodes.add("param " + tempName);
+        if(param.length() != 0){
+            int sort = 0;
+            for(String p: params){
+                String tempName = prefix + sort++;
+                tempNames.add(tempName);
+                tempCodes.add("int " + tempName + ";");
+                tempCodes.add(tempName + " = " + p + ";");
+                paramCodes.add("param " + tempName);
+            }
         }
         paramCodes.add("call " + id);
 
@@ -116,5 +204,16 @@ public class Tool {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean removeToken(List<String> stringList, String tempName){
+        for(int i = 0; i < stringList.size(); i++){
+            if(stringList.get(i).contains(tempName)){
+                stringList.remove(i);
+                return true;
+            }
+        }
+        System.out.println("error in removeToken!");
+        return false;
     }
 }

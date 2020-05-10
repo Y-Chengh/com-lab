@@ -7,42 +7,44 @@
 6 : d = t3
 7 : e = 0
 8 : y = 999
-9 : t4 = a + null
-10 : t5 = d + c
-11 : t6 = t4 * t5
-12 : y = t6
-13 : z = 100
-14 : if a < b goto 16
-15 : goto 18
-16 : if a > b goto 20
-17 : goto 18
-18 : if a < b goto 20
-19 : goto 28
-20 : if c < d goto 22
-21 : goto 25
-22 : t7 = y + z
-23 : x = t7
-24 : goto 14
-25 : t8 = a + b
-26 : x = t8
-27 : goto 14
-28 : t9 = d + e
-29 : t10 = c * t9
-30 : t11 = b + t10
-31 : a = t11
-32 : if a > b goto 34
-33 : goto 35
-34 : c = d
-35 : t12 = i + 1
-36 : i = t12
-37 : t13 = i * 12
-38 : t14 = j * 4
-39 : t15 = t13 + t14
-40 : t16 = c + list[t15]
-41 : d = t16
-42 : t17 = i * 12
-43 : t18 = j * 4
-44 : t19 = t17 + t18
-45 : list [ t19 ] = c
-46 : t20 = h * (float) c
-47 : d = t20
+9 : z = 100
+10 : if a < b goto 12
+11 : goto 20
+12 : if c < d goto 14
+13 : goto 17
+14 : t4 = y + z
+15 : x = t4
+16 : goto 10
+17 : t5 = a + b
+18 : x = t5
+19 : goto 10
+20 : t6 = d + e
+21 : t7 = c * t6
+22 : t8 = b + t7
+23 : a = t8
+24 : if a > b goto 26
+25 : goto 27
+26 : c = d
+27 : t9 = i + 1
+28 : i = t9
+29 : t10 = i * 12
+30 : t11 = j * 4
+31 : t12 = t10 + t11
+32 : t13 = c + list[t12]
+33 : d = t13
+34 : t14 = i * 12
+35 : t15 = j * 4
+36 : t16 = t14 + t15
+37 : list [ t16 ] = c
+38 : PARAM1temp = 0
+39 : t17 = h * (float) c
+40 : d = t17
+41 : PARAM2temp = 0
+42 : PARAM20 = a
+43 : t18 = 10 * 9
+44 : PARAM21 = t18
+45 : t19 = a + b
+46 : t20 = t19 * c
+47 : PARAM22 = t20
+48 : t21 = c + 10
+49 : a = t21

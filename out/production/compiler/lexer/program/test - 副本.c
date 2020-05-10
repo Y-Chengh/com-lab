@@ -11,9 +11,11 @@ e = 0;
 int x;
 int y;
 y = 999;
+y = (a + b * c) * (d + c);
+record rec{int re;}
 int z;
 z = 100;
-while (a < b)
+while (a < b && a > b || a < b)
     if (c < d) x = y + z; else x = a + b;
 
 a = b + c * (d + e);
@@ -34,14 +36,7 @@ int d;
 float h;
 d = c + list[i][j];
 list[i][j] = c;
-call identifier();
+
 d = h * c;
 
-call identifier(a, 10*9, (a+b)*c);
 
-c[1][2] = d;
-proc int function(int a, int c){
-    a = c + 10;
-    int d;
-    return a;
-}

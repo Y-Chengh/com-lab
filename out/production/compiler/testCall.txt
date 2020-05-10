@@ -34,10 +34,10 @@ int d;
 float h;
 d = c + list[i][j];
 list[i][j] = c;
-
+call identifier();
 d = h * c;
 
-call identifier(10, a+b, (c*d)+a);
+call identifier(a, 10*9, (a+b)*c);
 
 c[1][2] = d;
 proc int function(int a, int c){
@@ -45,5 +45,3 @@ proc int function(int a, int c){
     int d;
     return a;
 }
-call identifier(10, a+b, (c*d)+a);
-
