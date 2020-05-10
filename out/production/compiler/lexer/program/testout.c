@@ -23,13 +23,9 @@ a = b + c * d;
 
 if(a > b)
     c = d;
-proc int function(int a, int c){
-    a = c + 10;
-    int d;
-    return a;
-}
 
-call function(10+50, c+a);
+
+
 
 
 int [2][3] list;
@@ -43,11 +39,17 @@ list[i][j] = c;
 
 d = h * c;
 
-
-proc int function1(int a, int c, int d){
+proc int function(int a, int c){
     a = c + 10;
     int d;
     return a;
 }
 
-call function1(10-9, (a+c)*b, d);
+proc int function1(int a, int c, int d){
+    a = c + 10;
+    int m;
+    return a;
+}
+call function(10+50, c+a);
+d = 10;
+call function1(10*9, (a+c)*b, d);

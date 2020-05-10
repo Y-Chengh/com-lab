@@ -60,6 +60,8 @@ public class getFourAddrInstruction {
             }
 
         }else if(line.contains("param")){
+//            System.out.print("param");
+            line = line.trim();
             fourAddrIns[0] = line.split(" ")[0];
             fourAddrIns[3] = line.split(" ")[1];
             count++;
@@ -96,9 +98,12 @@ public class getFourAddrInstruction {
             }
             else if(line.contains("param")){
                 line = line.trim();
+                System.out.println(line);
                 fourAddrIns[0] = "param";
                 fourAddrIns[1] = line.split(" ")[0].trim();//
+                System.out.println(line.split(" ")[0].trim());
                 fourAddrIns[2] = line.split(" ")[1];
+                System.out.println(line.split(" ")[1]);
             }
             else {
                 fourAddrIns[0] = "=";

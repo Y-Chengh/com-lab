@@ -30,33 +30,36 @@
 29 :  if a > b goto 31
 30 :  goto 32
 31 :  c = d
-32 :  t9 = c + 10
-33 :  a = t9
-34 :  t10 = 10 + 50
-35 :  PARAM10 = t10
-36 :  t11 = c + a
-37 :  PARAM11 = t11
-38 :  param PARAM10
-39 :  param PARAM11
-40 :  call function 2
-41 :  t12 = i * 12
-42 :  t13 = j * 4
-43 :  t14 = t12 + t13
-44 :  t15 = c + list[t14]
-45 :  d = t15
-46 :  t16 = i * 12
-47 :  t17 = j * 4
-48 :  t18 = t16 + t17
-49 :  list [ t18 ] = c
-50 :  t19 = h * (float) c
-51 :  d = t19
-52 :  t20 = c + 10
-53 :  a = t20
-54 :  t21 = a + c
-55 :  t22 = t21 * b
-56 :  PARAM21 = t22
-57 :  PARAM22 = d
-58 :  param PARAM20
-59 :  param PARAM21
-60 :  param PARAM22
-61 :  call function1 3
+32 :  t9 = i * 12
+33 :  t10 = j * 4
+34 :  t11 = t9 + t10
+35 :  t12 = c + list[t11]
+36 :  d = t12
+37 :  t13 = i * 12
+38 :  t14 = j * 4
+39 :  t15 = t13 + t14
+40 :  list [ t15 ] = c
+41 :  t16 = h * (float) c
+42 :  d = t16
+43 :  t17 = c + 10
+44 :  a = t17
+45 :  t18 = c + 10
+46 :  a = t18
+47 :  t19 = 10 + 50
+48 :  PARAM10 = t19
+49 :  t20 = c + a
+50 :  PARAM11 = t20
+51 :  param PARAM10
+52 :  param PARAM11
+53 :  call function 2
+54 :  d = 10
+55 :  t21 = 10 * 9
+56 :  PARAM20 = t21
+57 :  t22 = a + c
+58 :  t23 = t22 * b
+59 :  PARAM21 = t23
+60 :  PARAM22 = d
+61 :  param PARAM20
+62 :  param PARAM21
+63 :  param PARAM22
+64 :  call function1 3
