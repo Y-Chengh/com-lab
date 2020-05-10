@@ -9,6 +9,7 @@ package GUI;
 
 import lexer.Lexer;
 import parser.Parser;
+import parser.getFourAddrInstruction;
 
 import java.awt.*;
 import java.io.*;
@@ -20,7 +21,6 @@ import java.util.Stack;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  *
@@ -43,11 +43,12 @@ public class Frame3 extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
     private static final long serialVersionUID = 1L;
 
-    public static String sourcePath;
+    public static String sourcePath="src/lexer/program/test.c";
     public static String grammarPath = "src/parser/Grammar_Good.txt";
 
     /** Creates new form Frame */
@@ -68,6 +69,8 @@ public class Frame3 extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();//设置滚动面板
         jTextArea1 = new javax.swing.JTextArea();//文本区域
         jTextArea1.setFont(new Font("黑体",Font.BOLD,24));//设置字体大小
+        jTextArea2 = new javax.swing.JTextArea();//文本区域
+        jTextArea2.setFont(new Font("黑体",Font.BOLD,19));//设置字体大小
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();//表格
         jTable2.setFont(new Font("Menu.font", Font.PLAIN, 19));
@@ -129,7 +132,7 @@ public class Frame3 extends javax.swing.JFrame {
                 return canEdit[columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane4.setViewportView(jTextArea2);
 
         jMenu1.setText("文件");
 
@@ -250,11 +253,11 @@ public class Frame3 extends javax.swing.JFrame {
     }// </editor-fold>
     //GEN-END:initComponents
 
+
     private void lexerReadSourceCode() throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(sourcePath)));
         bufferedWriter.toString();
         bufferedWriter.close();
-
         Lexer lexer = new Lexer(sourcePath);
     }
 
@@ -274,13 +277,15 @@ public class Frame3 extends javax.swing.JFrame {
         //interCodeArea.setEditable(false);
 
         File file=new File("src/parser/interCode.txt");
+        //getFourAddrInstruction.getFourAddrInstruction("src/parser/interCode.txt");
         FileReader filereader = new FileReader(file);
         BufferedReader bufferreader = new BufferedReader(filereader);
         String aline;
         while ((aline = bufferreader.readLine()) != null){
+            String line = getFourAddrInstruction.dealLine(aline);
             String[] aa=aline.split(":");
             DefaultTableModel tableModel2 = (DefaultTableModel) jTable1.getModel();
-            tableModel2.addRow(new Object[]{aa[0],aa[1]," "});
+            tableModel2.addRow(new Object[]{aa[0],aa[1],line});
             jTable1.invalidate();
         }
         filereader.close();
@@ -291,17 +296,16 @@ public class Frame3 extends javax.swing.JFrame {
         System.out.println(parser.getTable().toString());
         StringBuilder sb = new StringBuilder();
         sb = new StringBuilder(parser.getTable().toString());
-        while(sb.length()!=0){
+        jTextArea2.setText(parser.getTable().toString());
 
+
+        StringBuilder parserError = new StringBuilder();
+        for (String error : parser.getErrorMessages()){
+            parserError.append(error).append("\n");
+            DefaultTableModel tableModel2 = (DefaultTableModel) jTable2.getModel();
+            tableModel2.addRow(new Object[]{error});
+            jTable2.invalidate();
         }
-
-
-//        semanticErrorArea.setStyle(errorCSS);
-//        StringBuilder parserError = new StringBuilder();
-//        for (String error : parser.getErrorMessages())
-//            parserError.append(error).append("\n");
-//        semanticErrorArea.setText(parserError.toString());
-//        semanticErrorArea.setEditable(false);
     }
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {
