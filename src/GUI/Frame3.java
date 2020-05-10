@@ -258,35 +258,36 @@ public class Frame3 extends javax.swing.JFrame {
 
 
     private void lexerReadSourceCode() throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(sourcePath)));
-        bufferedWriter.toString();
-        bufferedWriter.close();
+        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(sourcePath)));
+        //bufferedWriter.toString();
+        //bufferedWriter.close();
         Lexer lexer = new Lexer(sourcePath);
     }
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Lexer lexer = new Lexer(sourcePath);
-        System.out.println(sourcePath);
+        //System.out.println(sourcePath);
         lexer.scan();
         Parser parser = new Parser(grammarPath);
         parser.items();
         parser.outputLRTableToFile();
         lexerReadSourceCode();
         PrintStream origin = System.out;
-        tool.post();
-        PrintStream printStream = new PrintStream(new FileOutputStream("src/parser/interCode.txt"));
-        System.setOut(printStream);
+        //PrintStream printStream = new PrintStream(new FileOutputStream("src/parser/interCode.txt"));
+        //System.setOut(printStream);
         parser.reduce(lexer.getTokens());
         System.setOut(origin);
         //interCodeArea.setText(readFromFile("src/parser/interCode.txt"));
         //interCodeArea.setEditable(false);
-
+        tool.post();
         File file=new File("src/parser/interCode.txt");
         //getFourAddrInstruction.getFourAddrInstruction("src/parser/interCode.txt");
         FileReader filereader = new FileReader(file);
         BufferedReader bufferreader = new BufferedReader(filereader);
         String aline;
+        System.out.println("********************************************");
         while ((aline = bufferreader.readLine()) != null){
+            System.out.println(aline);
             String line = getFourAddrInstruction.dealLine(aline);
             String[] aa=aline.split(":");
             DefaultTableModel tableModel2 = (DefaultTableModel) jTable1.getModel();
@@ -333,20 +334,25 @@ public class Frame3 extends javax.swing.JFrame {
             //将textarea清空
             jTextArea1.setText("");
             file = new File(fileDialog.getDirectory(), fileDialog.getFile());
-            sourcePath=fileDialog.getFile();
-            System.out.println(sourcePath);
+            //sourcePath=fileDialog.getFile();
+            //System.out.println(sourcePath);
             fileString=fileDialog.getFile();
+            System.out.println(fileString);
             FileReader filereader = new FileReader(file);
             BufferedReader bufferreader = new BufferedReader(filereader);
             String aline;
-            while ((aline = bufferreader.readLine()) != null)
-
+            String aa = null;
+            while ((aline = bufferreader.readLine()) != null){
+                //System.out.println(aline);
                 jTextArea1.append(aline + "\r\n");
+            }
+
             filereader.close();
             bufferreader.close();
 
         } catch (IOException e) {
             System.out.println(e);
+            System.out.println("*************8");
         }
     }
 

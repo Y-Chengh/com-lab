@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class getFourAddrInstruction {
+    public  static  int count=0;
 
     // 输入文件地址, 返回一个四地址指令的字符串List
     public  static  void getFourAddrInstruction(String filePath) {
@@ -30,6 +31,8 @@ public class getFourAddrInstruction {
     }
 
     public static String dealLine(String line){
+        System.out.println("*****************************************");
+        System.out.println(line);
         String lineNumber = line.split(":")[0];
         line = line.split(":")[1];
         String[] fourAddrIns = {"_","_","_","_"};
@@ -56,7 +59,16 @@ public class getFourAddrInstruction {
                 fourAddrIns[2] = line.split("=")[1].trim().split(" ")[0];
             }
 
-        }else{
+        }else if(line.contains("param")){
+            fourAddrIns[0] = line.split(" ")[0];
+            fourAddrIns[3] = line.split(" ")[1];
+            count++;
+        }else if(line.contains("call")){
+            fourAddrIns[0] = line.split(" ")[0];
+            fourAddrIns[1] = line.split(" ")[2];
+            fourAddrIns[3] = line.split(" ")[1];
+        }
+        else{
             fourAddrIns[3] = line.split("=")[0];
             line = line.split("=")[1];
             if(line.contains("-")){
@@ -78,7 +90,16 @@ public class getFourAddrInstruction {
                 fourAddrIns[0] = "/";
                 fourAddrIns[1] = line.split("/")[0].trim();//
                 fourAddrIns[2] = line.split("/")[1];
-            }else {
+            }
+            else if(line.contains("call")){
+
+            }
+            else if(line.contains("param")){
+                fourAddrIns[0] = "param";
+                fourAddrIns[1] = line.split("/")[0].trim();//
+                fourAddrIns[2] = line.split("/")[1];
+            }
+            else {
                 fourAddrIns[0] = "=";
                 fourAddrIns[1] = line; //
             }
