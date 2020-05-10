@@ -12,14 +12,14 @@ e = 0;
 int x;
 int y;
 y = 999;
-y = (a + b * c) * (d + c);
+y = (a + b) * c;
 record rec{int re;}
 int z;
 z = 100;
 while (a < b && a > b || a < b)
     if (c < d) x = y + z; else x = a + b;
 
-a = b + c * (d + e);
+a = b + c * d;
 
 if(a > b)
     c = d;
@@ -29,11 +29,8 @@ proc int function(int a, int c){
     return a;
 }
 
-call function(a, c);
+call function(10+50, c+a);
 
-call function((a+b),(a+b)*c,15+20);
-
-call function();
 
 int [2][3] list;
 int c;
@@ -47,3 +44,10 @@ list[i][j] = c;
 d = h * c;
 
 
+proc int function1(int a, int c, int d){
+    a = c + 10;
+    int d;
+    return a;
+}
+
+call function1(10-9, (a+c)*b, d);

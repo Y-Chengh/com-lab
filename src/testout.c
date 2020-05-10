@@ -11,8 +11,6 @@ int e;
 e = 0;
 int x;
 int y;
-y = 999;
-y = (a + b * c) * (d + c);
 record rec{int re;}
 int z;
 z = 100;
