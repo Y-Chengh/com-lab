@@ -95,9 +95,10 @@ public class getFourAddrInstruction {
 
             }
             else if(line.contains("param")){
+                line = line.trim();
                 fourAddrIns[0] = "param";
-                fourAddrIns[1] = line.split("/")[0].trim();//
-                fourAddrIns[2] = line.split("/")[1];
+                fourAddrIns[1] = line.split(" ")[0].trim();//
+                fourAddrIns[2] = line.split(" ")[1];
             }
             else {
                 fourAddrIns[0] = "=";

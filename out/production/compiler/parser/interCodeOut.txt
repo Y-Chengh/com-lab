@@ -37,7 +37,7 @@
 36 :  a = t12
 37 :  PARAM10 = a
 38 :  param PARAM10
-39 :  call function
+39 :  call function 1
 40 :  t13 = i * 12
 41 :  t14 = j * 4
 42 :  t15 = t13 + t14
