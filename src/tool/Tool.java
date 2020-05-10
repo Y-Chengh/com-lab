@@ -13,7 +13,7 @@ public class Tool {
     public List<List<String>> listOfParamCodes = new ArrayList<>();// 最后向3地址指令添加的代码
 
     public void pre(){
-        ana("lexer/program/test.c");
+        ana("lexer/program/testout.c");
     }
 
     public void post(){
@@ -87,7 +87,7 @@ public class Tool {
                 processCall(lines, i, "PARAM"+(++index));
             }
         }
-        writeFile("lexer/program/testout.c", lines);
+        writeFile("lexer/program/test.c", lines);
     }
 
     //向指令中添加调用函数的指令
@@ -232,6 +232,7 @@ public class Tool {
                 bw.write(i + " : " + lines.get(i) + "\n");
 //            for(String line: lines)
 //                bw.write(line + "\n");
+            bw.write("\n");
             bw.close();
             System.out.println("Done");
 

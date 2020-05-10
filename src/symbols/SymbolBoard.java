@@ -36,9 +36,23 @@ public class SymbolBoard {
         StringBuilder stringBuilder = new StringBuilder();
         for (SymbolItem item : board.values()) {
             stringBuilder.append(item).append("\n");
-            if (item instanceof ProcSymbolItem)
+            if (item instanceof ProcSymbolItem){
                 stringBuilder.append(item.getIdentifier()).append(" Table:\n").append("{\n").append(((ProcSymbolItem) item).getProcSymbolTable()).append("}\n");
+            }
+
         }
+
+//        String[] ss = (stringBuilder+"").split("\n");
+//        String res = "";
+//        for(String temp: ss){
+//            if(temp.contains("<") && temp.lastIndexOf(",") > 8){
+//
+//                res += temp.substring(0, temp.lastIndexOf(",")) + ">" + "\n";
+//            }else{
+//                res += temp + "\n";
+//            }
+//        }
+//        return res;
         return stringBuilder.toString();
     }
 

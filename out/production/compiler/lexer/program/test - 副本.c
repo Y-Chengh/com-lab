@@ -23,9 +23,10 @@ a = b + c * (d + e);
 if(a > b)
     c = d;
 
-proc float function(float i){
-    i = i + 1;
-    return i;
+proc int function(int a, int c){
+    a = c + 10;
+    int d;
+    return a;
 }
 
 int [2][3] list;
@@ -40,3 +41,8 @@ list[i][j] = c;
 d = h * c;
 
 
+proc int function(int a, int c){
+    a = c + 10;
+    int d;
+    return a;
+}

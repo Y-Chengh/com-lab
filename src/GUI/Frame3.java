@@ -10,6 +10,7 @@ package GUI;
 import lexer.Lexer;
 import parser.Parser;
 import parser.getFourAddrInstruction;
+import tool.Tool;
 
 import java.awt.*;
 import java.io.*;
@@ -44,6 +45,8 @@ public class Frame3 extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+
+    Tool tool = new Tool();
     // End of variables declaration//GEN-END:variables
 
     private static final long serialVersionUID = 1L;
@@ -263,12 +266,14 @@ public class Frame3 extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         Lexer lexer = new Lexer(sourcePath);
+        System.out.println(sourcePath);
         lexer.scan();
         Parser parser = new Parser(grammarPath);
         parser.items();
         parser.outputLRTableToFile();
         lexerReadSourceCode();
         PrintStream origin = System.out;
+        tool.post();
         PrintStream printStream = new PrintStream(new FileOutputStream("src/parser/interCode.txt"));
         System.setOut(printStream);
         parser.reduce(lexer.getTokens());
@@ -315,6 +320,7 @@ public class Frame3 extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        tool.pre();
 
         FileDialog fileDialog; //{@code FileDialog}类显示一个对话框窗口用户可以从中选择文件。
         File file = null;
