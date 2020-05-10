@@ -13,6 +13,7 @@ public class Tool {
     public List<List<String>> listOfParamCodes = new ArrayList<>();// 最后向3地址指令添加的代码
 
     public void pre(){
+
         ana("lexer/program/testout.c");
     }
 
@@ -92,6 +93,13 @@ public class Tool {
 
     //向指令中添加调用函数的指令
     public void addCallFunctionCode(List<String> interCode){
+        for(int i = 0; i < interCode.size(); i++){
+            if(interCode.get(i).contains("9143250") && interCode.get(i).contains("PARAM")){
+                interCode.remove(i);
+                i--;
+            }
+        }
+
         for (int i = 0; i < listOfTempNames.size(); i++) {
             callFunctionCodeHelper(interCode, i);
         }
@@ -141,6 +149,13 @@ public class Tool {
         String target = lines.get(index).trim();
         String first = target.substring(0, target.indexOf("(")).trim();
         String param = target.substring(target.indexOf("(") + 1, target.lastIndexOf(")")).trim();
+        int count = 1;
+        for(char c: param.toCharArray()){
+            if(c == ',')count++;
+        }
+        if(count == 1){
+            if(param.trim().length() == 0)count = 0;
+        }
 
         String id = first.substring(5).trim();
         String[] params = param.split(",");
@@ -151,10 +166,11 @@ public class Tool {
                 tempNames.add(tempName);
                 tempCodes.add("int " + tempName + ";");
                 tempCodes.add(tempName + " = " + p + ";");
+                tempCodes.add(tempName + " = " + 9143250 + ";");
                 paramCodes.add(" param " + tempName);
             }
         }
-        paramCodes.add(" call " + id + " " + param.length());
+        paramCodes.add(" call " + id + " " + count);
 
         lines.remove(index);
         lines.addAll(index, tempCodes);

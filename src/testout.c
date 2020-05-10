@@ -16,10 +16,14 @@ y = (a + b * c) * (d + c);
 record rec{int re;}
 int z;
 z = 100;
+call function((a+b),(a+b)*c,15+20);
+
 while (a < b && a > b || a < b)
     if (c < d) x = y + z; else x = a + b;
 
 a = b + c * (d + e);
+
+call function(a, c);
 
 if(a > b)
     c = d;
@@ -29,7 +33,11 @@ proc int function(int a, int c){
     return a;
 }
 
-call function(a);
+
+
+
+
+call function();
 
 int [2][3] list;
 int c;

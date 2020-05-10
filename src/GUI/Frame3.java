@@ -302,7 +302,7 @@ public class Frame3 extends javax.swing.JFrame {
         System.out.println(parser.getTable().toString());
         StringBuilder sb = new StringBuilder();
         sb = new StringBuilder(parser.getTable().toString());
-        jTextArea2.setText(parser.getTable().toString());
+        jTextArea2.setText(tool.toStringRemoveUnusedToken(parser.getTable().toString()));
 
 
         StringBuilder parserError = new StringBuilder();

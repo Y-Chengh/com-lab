@@ -29,7 +29,11 @@ proc int function(int a, int c){
     return a;
 }
 
-call function(a);
+call function(a, c);
+
+call function((a+b),(a+b)*c,15+20);
+
+call function();
 
 int [2][3] list;
 int c;

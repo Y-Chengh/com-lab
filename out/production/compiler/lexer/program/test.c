@@ -33,6 +33,25 @@ int PARAM1temp;
 PARAM1temp = 0;
 int PARAM10;
 PARAM10 = a;
+PARAM10 = 9143250;
+int PARAM11;
+PARAM11 =  c;
+PARAM11 = 9143250;
+
+int PARAM2temp;
+PARAM2temp = 0;
+int PARAM20;
+PARAM20 = (a+b);
+PARAM20 = 9143250;
+int PARAM21;
+PARAM21 = (a+b)*c;
+PARAM21 = 9143250;
+int PARAM22;
+PARAM22 = 15+20;
+PARAM22 = 9143250;
+
+int PARAM3temp;
+PARAM3temp = 0;
 
 int [2][3] list;
 int c;
